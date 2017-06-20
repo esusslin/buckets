@@ -24,6 +24,9 @@
 		861356641EF856640095631A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861356631EF856640095631A /* AudioToolbox.framework */; };
 		861356661EF8566F0095631A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 861356651EF8566F0095631A /* libsqlite3.tbd */; };
 		861356681EF8567B0095631A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 861356671EF8567B0095631A /* libz.tbd */; };
+		8613566A1EF8578C0095631A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861356691EF8578C0095631A /* Parse.framework */; };
+		8613566C1EF857910095631A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8613566B1EF857910095631A /* Bolts.framework */; };
+		D328A4DF04C9E506E652DB4F /* Pods_buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,11 @@
 		861356631EF856640095631A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		861356651EF8566F0095631A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		861356671EF8567B0095631A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		861356691EF8578C0095631A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../untitled folder 2/Parse.framework"; sourceTree = "<group>"; };
+		8613566B1EF857910095631A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../untitled folder 2/Bolts.framework"; sourceTree = "<group>"; };
+		A612732DA01ED0404779684B /* Pods-buckets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.debug.xcconfig"; sourceTree = "<group>"; };
+		B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3CD7128205015797983FFB /* Pods-buckets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.release.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,14 +84,17 @@
 			files = (
 				861356681EF8567B0095631A /* libz.tbd in Frameworks */,
 				861356661EF8566F0095631A /* libsqlite3.tbd in Frameworks */,
+				8613566A1EF8578C0095631A /* Parse.framework in Frameworks */,
 				861356641EF856640095631A /* AudioToolbox.framework in Frameworks */,
 				861356621EF8565D0095631A /* CFNetwork.framework in Frameworks */,
 				861356601EF856520095631A /* CoreGraphics.framework in Frameworks */,
 				8613565E1EF8564B0095631A /* CoreLocation.framework in Frameworks */,
 				8613565C1EF856440095631A /* QuartzCore.framework in Frameworks */,
+				8613566C1EF857910095631A /* Bolts.framework in Frameworks */,
 				8613565A1EF856340095631A /* Security.framework in Frameworks */,
 				861356581EF8562C0095631A /* StoreKit.framework in Frameworks */,
 				861356561EF856230095631A /* SystemConfiguration.framework in Frameworks */,
+				D328A4DF04C9E506E652DB4F /* Pods_buckets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +123,7 @@
 				861356451EF8560A0095631A /* bucketsUITests */,
 				861356241EF8560A0095631A /* Products */,
 				861356541EF856230095631A /* Frameworks */,
+				948D74F26D9CECFC13041D63 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +171,8 @@
 		861356541EF856230095631A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8613566B1EF857910095631A /* Bolts.framework */,
+				861356691EF8578C0095631A /* Parse.framework */,
 				861356671EF8567B0095631A /* libz.tbd */,
 				861356651EF8566F0095631A /* libsqlite3.tbd */,
 				861356631EF856640095631A /* AudioToolbox.framework */,
@@ -169,8 +183,18 @@
 				861356591EF856340095631A /* Security.framework */,
 				861356571EF8562C0095631A /* StoreKit.framework */,
 				861356551EF856230095631A /* SystemConfiguration.framework */,
+				B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		948D74F26D9CECFC13041D63 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A612732DA01ED0404779684B /* Pods-buckets.debug.xcconfig */,
+				BA3CD7128205015797983FFB /* Pods-buckets.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,9 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8613564B1EF8560A0095631A /* Build configuration list for PBXNativeTarget "buckets" */;
 			buildPhases = (
+				17B37A1F1BD4AEDF1F113445 /* [CP] Check Pods Manifest.lock */,
 				8613561F1EF8560A0095631A /* Sources */,
 				861356201EF8560A0095631A /* Frameworks */,
 				861356211EF8560A0095631A /* Resources */,
+				D9CC2A49330038EBA9AEFCA8 /* [CP] Embed Pods Frameworks */,
+				26339EF958063915B801CBE7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -242,6 +269,7 @@
 					861356221EF8560A0095631A = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = KF8E33TYLJ;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					861356361EF8560A0095631A = {
@@ -304,6 +332,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17B37A1F1BD4AEDF1F113445 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		26339EF958063915B801CBE7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buckets/Pods-buckets-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9CC2A49330038EBA9AEFCA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-buckets/Pods-buckets-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8613561F1EF8560A0095631A /* Sources */ = {
@@ -463,26 +539,41 @@
 		};
 		8613564C1EF8560A0095631A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A612732DA01ED0404779684B /* Pods-buckets.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = KF8E33TYLJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = buckets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = esusslin.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		8613564D1EF8560A0095631A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA3CD7128205015797983FFB /* Pods-buckets.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = KF8E33TYLJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = buckets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = esusslin.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -564,6 +655,7 @@
 				8613564D1EF8560A0095631A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8613564E1EF8560A0095631A /* Build configuration list for PBXNativeTarget "bucketsTests" */ = {
 			isa = XCConfigurationList;
@@ -572,6 +664,7 @@
 				861356501EF8560A0095631A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		861356511EF8560A0095631A /* Build configuration list for PBXNativeTarget "bucketsUITests" */ = {
 			isa = XCConfigurationList;
@@ -580,6 +673,7 @@
 				861356531EF8560A0095631A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
