@@ -10,6 +10,10 @@ import UIKit
 
 class bucketCell: UITableViewCell {
 
+    @IBOutlet weak var itemLbl: UILabel!
+
+   
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,7 +31,7 @@ class bucketCell: UITableViewCell {
         
         print("load data?")
         
-     
+     itemLbl.text = proposal.item
         
 //        let url = URL(string: proposal.imageString)!
 //        let data = try? Data(contentsOf: url)
