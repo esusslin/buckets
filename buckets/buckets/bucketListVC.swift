@@ -26,30 +26,51 @@ class bucketListVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         tableView.reloadData()
         
     }
+    
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+                if section == 0 {
+                  return "Buckets"
+                } else {
+                   return "Proposals"
+                }
+    }
+    
 
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myProposals.count
+        if section == 0 {
+            return myBuckets.count
+        } else {
+            return myProposals.count
+        }
+
     }
     
     //MARK: UITableviewDelegate functions
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+      if indexPath.section == 0 {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! bucketCell
-        
-        
         let prop = myProposals[indexPath.row]
-        
         cell.bindData(proposal: prop)
-        
         return cell
+        
+      } else {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! bucketCell
+        let prop = myProposals[indexPath.row]
+        cell.bindData(proposal: prop)
+        return cell
+
+        }
+        
     }
 
 
