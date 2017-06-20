@@ -53,9 +53,10 @@ class loginVC: UIViewController {
            if (user != nil) {
              let user = Auth.auth().currentUser
             
-            let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "WelcomeBackVC") as! WelcomeBackVC
-            self.present(welcomeVC, animated: true, completion: nil)
-        } else {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarVC") as! tabbarVC
+            vc.selectedIndex = 1
+            
+            self.present(vc, animated: true, completion: nil)        } else {
             print(error)
         }
 
