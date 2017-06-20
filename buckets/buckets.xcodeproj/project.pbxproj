@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		861356271EF8560A0095631A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356261EF8560A0095631A /* AppDelegate.swift */; };
-		861356291EF8560A0095631A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356281EF8560A0095631A /* ViewController.swift */; };
 		8613562C1EF8560A0095631A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8613562A1EF8560A0095631A /* Main.storyboard */; };
 		8613562E1EF8560A0095631A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8613562D1EF8560A0095631A /* Assets.xcassets */; };
 		861356311EF8560A0095631A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8613562F1EF8560A0095631A /* LaunchScreen.storyboard */; };
@@ -26,6 +25,10 @@
 		861356681EF8567B0095631A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 861356671EF8567B0095631A /* libz.tbd */; };
 		8613566A1EF8578C0095631A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861356691EF8578C0095631A /* Parse.framework */; };
 		8613566C1EF857910095631A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8613566B1EF857910095631A /* Bolts.framework */; };
+		861356951EF95FDF0095631A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 861356941EF95FDF0095631A /* GoogleService-Info.plist */; };
+		861356971EF961250095631A /* loginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356961EF961250095631A /* loginVC.swift */; };
+		861356991EF965980095631A /* welcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356981EF965980095631A /* welcomeVC.swift */; };
+		8613569B1EF97FBF0095631A /* WelcomeBackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613569A1EF97FBF0095631A /* WelcomeBackVC.swift */; };
 		D328A4DF04C9E506E652DB4F /* Pods_buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +52,6 @@
 /* Begin PBXFileReference section */
 		861356231EF8560A0095631A /* buckets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = buckets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		861356261EF8560A0095631A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		861356281EF8560A0095631A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8613562B1EF8560A0095631A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8613562D1EF8560A0095631A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		861356301EF8560A0095631A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,6 +74,10 @@
 		861356671EF8567B0095631A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		861356691EF8578C0095631A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../untitled folder 2/Parse.framework"; sourceTree = "<group>"; };
 		8613566B1EF857910095631A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../untitled folder 2/Bolts.framework"; sourceTree = "<group>"; };
+		861356941EF95FDF0095631A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		861356961EF961250095631A /* loginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginVC.swift; sourceTree = "<group>"; };
+		861356981EF965980095631A /* welcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeVC.swift; sourceTree = "<group>"; };
+		8613569A1EF97FBF0095631A /* WelcomeBackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeBackVC.swift; sourceTree = "<group>"; };
 		A612732DA01ED0404779684B /* Pods-buckets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.debug.xcconfig"; sourceTree = "<group>"; };
 		B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3CD7128205015797983FFB /* Pods-buckets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.release.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,11 +147,14 @@
 			isa = PBXGroup;
 			children = (
 				861356261EF8560A0095631A /* AppDelegate.swift */,
-				861356281EF8560A0095631A /* ViewController.swift */,
+				861356961EF961250095631A /* loginVC.swift */,
+				861356981EF965980095631A /* welcomeVC.swift */,
+				8613569A1EF97FBF0095631A /* WelcomeBackVC.swift */,
 				8613562A1EF8560A0095631A /* Main.storyboard */,
 				8613562D1EF8560A0095631A /* Assets.xcassets */,
 				8613562F1EF8560A0095631A /* LaunchScreen.storyboard */,
 				861356321EF8560A0095631A /* Info.plist */,
+				861356941EF95FDF0095631A /* GoogleService-Info.plist */,
 			);
 			path = buckets;
 			sourceTree = "<group>";
@@ -312,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				861356311EF8560A0095631A /* LaunchScreen.storyboard in Resources */,
+				861356951EF95FDF0095631A /* GoogleService-Info.plist in Resources */,
 				8613562E1EF8560A0095631A /* Assets.xcassets in Resources */,
 				8613562C1EF8560A0095631A /* Main.storyboard in Resources */,
 			);
@@ -386,7 +396,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				861356291EF8560A0095631A /* ViewController.swift in Sources */,
+				8613569B1EF97FBF0095631A /* WelcomeBackVC.swift in Sources */,
+				861356991EF965980095631A /* welcomeVC.swift in Sources */,
+				861356971EF961250095631A /* loginVC.swift in Sources */,
 				861356271EF8560A0095631A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
