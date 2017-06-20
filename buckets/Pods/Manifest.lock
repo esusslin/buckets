@@ -60,6 +60,7 @@ DEPENDENCIES:
   - Alamofire
   - Backendless
   - Firebase/Auth
+  - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
   - JSQMessagesViewController
@@ -90,6 +91,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 1ef8a0efb023544643bdf480c1ec4a62b204f293
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 46e81bacf5b994bf48c59eae68e1fec941d0ab88
+PODFILE CHECKSUM: f2afa1784f82d0c5ac0697203d9eb402911e500e
 
 COCOAPODS: 1.2.1
