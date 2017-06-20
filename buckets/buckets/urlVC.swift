@@ -69,31 +69,43 @@ class urlVC: UIViewController {
                                     let prop = Proposal(item: b["item"] as! String, price: b["price"] as! Double, imageString: b["imageString"] as! String)
                                     
                                      myProposals.append(prop)
-                                    
+                                    print("--------------")
+                                    print(myProposals)
                                 }
                                 
-                                    
-                            }
                                 
-                                    
+                                
+                                
+                            }
+                                let p = myProposals.last!
+                                print("--------------")
+                                print("--------------")
+                                print("--------------")
+                                print(p.item)
+                                print(p.price)
+                                
+            
+                                let alert = UIAlertController(title: "New Proposal: \(p.item) ..!", message: "Pay for this item in 8 months at \(p.monthly)", preferredStyle: .alert)
+            
+                                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            
+            
+                                }
+                                alert.addAction(cancelAction)
+            
+            
+                                let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
+                                alert.view.addConstraint(height);
+                                self.present(alert, animated: true, completion: nil)
+                            
                         }
                     })
+                    
+                    
                 
                  
-                    let p = myProposals.last
-                
-                    let alert = UIAlertController(title: "New Proposal: \(p?.item) ..!", message: "Pay for this item in 8 months at \(p?.monthly)", preferredStyle: .alert)
                     
-                    let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-                        
-                        
-                    }
-                    alert.addAction(cancelAction)
-                    
-                    
-                    let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
-                    alert.view.addConstraint(height);
-                    self.present(alert, animated: true, completion: nil)
+
                     
                 }
         }
