@@ -78,7 +78,7 @@ class urlVC: UIViewController {
             .responseJSON() { response in
                 
                 if let JSON = response.result.value as? [String:Any] {
-//                    print(JSON)
+                    print(JSON)
                     
                     
                     

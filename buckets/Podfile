@@ -16,7 +16,7 @@ target 'buckets' do
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  
+  pod 'TSCurrencyTextField', '~> 0.1.0'
   
   
   pod 'JSQMessagesViewController'

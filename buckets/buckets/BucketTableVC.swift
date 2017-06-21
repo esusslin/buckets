@@ -74,6 +74,23 @@ class BucketTableVC: UITableViewController {
         }
         return 0
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 {
+            
+            let bucket = myBuckets[indexPath.row]
+            
+            performSegue(withIdentifier: "bucketShow", sender: indexPath)
+        }
+        
+        if indexPath.section == 1 {
+            let proposal = myProposals[indexPath.row]
+            
+            performSegue(withIdentifier: "proposalShow", sender: indexPath)
+        }
+       
+    }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,7 +102,8 @@ class BucketTableVC: UITableViewController {
             print("loading buckets..")
             
               cell.itemLbl.text = myBuckets[indexPath.row].item
-            
+            cell.percentLbl.text = String(myProposals[indexPath.row].price)
+            cell.bucketImage.image = UIImage(named: "grey_bucket")
 //            if myBuckets.count < 0 {
 //                let item = self.items[indexPath.section][indexPath.row] as! Bucket
 //                    cell.itemLbl.text = item.item
@@ -98,6 +116,8 @@ class BucketTableVC: UITableViewController {
         if indexPath.section == 1 {
             print("loading proposals..")
            cell.itemLbl.text = myProposals[indexPath.row].item
+            cell.percentLbl.text = String(myProposals[indexPath.row].price)
+            cell.bucketImage.image = UIImage(named: "grey_bucket")
         }
 
         
@@ -106,6 +126,34 @@ class BucketTableVC: UITableViewController {
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "proposalShow" {
+            let indexPath = sender as! NSIndexPath
+            
+            if let nav = segue.destination as? UINavigationController {
+                let proposalVC = nav.topViewController as? proposalVC!
+                let theProposal = myProposals[indexPath.row] as! Proposal
+                proposalVC?.proposal = theProposal
+            }
+
+        }
+        
+        if segue.identifier == "bucketShow" {
+            let indexPath = sender as! NSIndexPath
+            
+            if let nav = segue.destination as? UINavigationController {
+                let bucketVC = nav.topViewController as? bucketVC!
+                let theBucket = myBuckets[indexPath.row] as! Bucket
+                bucketVC?.bucket = theBucket
+            }
+
+    }
+    
+
+    }
+
+
 //
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell

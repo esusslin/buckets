@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1AAB96120C20191EEA4EB910316B9A25'
-               BlueprintName = 'SwiftRangeSlider'
+               BlueprintIdentifier = '97022F5A7BFB2E6110240F8573FF0645'
+               BlueprintName = 'TSCurrencyTextField'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SwiftRangeSlider.framework'>
+               BuildableName = 'TSCurrencyTextField.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
