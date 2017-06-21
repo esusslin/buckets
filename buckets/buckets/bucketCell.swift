@@ -25,7 +25,7 @@ class bucketCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func bindData(proposal: Proposal) {
+    func bindProposals(proposal: Proposal) {
         
         print(proposal)
         
@@ -44,6 +44,27 @@ class bucketCell: UITableViewCell {
 //        }
 //        
     }
+    
+    func bindBuckets(bucket: Bucket) {
+        
+        print(bucket)
+        
+        print("load data?")
+        
+        itemLbl.text = bucket.item
+        
+        //        let url = URL(string: proposal.imageString)!
+        //        let data = try? Data(contentsOf: url)
+        //        if let imageData = data {
+        //            let image = UIImage(data: data!)
+        //
+        //            itemImage.image = image
+        //            //            imageView.layer.cornerRadius = 8
+        //            itemImage.layer.shadowOpacity = 0.8
+        //        }
+        //        
+    }
+
 
 
 }
