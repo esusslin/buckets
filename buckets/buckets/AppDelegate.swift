@@ -59,7 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                return
 //            }
 //            
-//            print("Object has been saved!")
+//            print("Object has been saved!")#12	0x0000000102cbbe17 in main at /Users/emmet/Desktop/buckets/buckets/buckets/AppDelegate.swift:15
+
 //        }
 //    }
 
