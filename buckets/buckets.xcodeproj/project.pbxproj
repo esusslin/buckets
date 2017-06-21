@@ -32,9 +32,11 @@
 		8613569D1EF990FA0095631A /* urlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613569C1EF990FA0095631A /* urlVC.swift */; };
 		8613569F1EF993D50095631A /* tabbarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613569E1EF993D50095631A /* tabbarVC.swift */; };
 		861356A11EF995620095631A /* bucketListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356A01EF995620095631A /* bucketListVC.swift */; };
-		861356A31EF995E10095631A /* bucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356A21EF995E10095631A /* bucketCell.swift */; };
+		861356A31EF995E10095631A /* bucketCell___.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356A21EF995E10095631A /* bucketCell___.swift */; };
 		861356A51EF9964C0095631A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356A41EF9964C0095631A /* Models.swift */; };
 		861356A71EF9D5C50095631A /* proposalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356A61EF9D5C50095631A /* proposalVC.swift */; };
+		861356AB1EFAB6C60095631A /* BucketTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356AA1EFAB6C60095631A /* BucketTableVC.swift */; };
+		861356AD1EFABBB30095631A /* BucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356AC1EFABBB30095631A /* BucketCell.swift */; };
 		D328A4DF04C9E506E652DB4F /* Pods_buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,9 +89,11 @@
 		8613569C1EF990FA0095631A /* urlVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = urlVC.swift; sourceTree = "<group>"; };
 		8613569E1EF993D50095631A /* tabbarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabbarVC.swift; sourceTree = "<group>"; };
 		861356A01EF995620095631A /* bucketListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketListVC.swift; sourceTree = "<group>"; };
-		861356A21EF995E10095631A /* bucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketCell.swift; sourceTree = "<group>"; };
+		861356A21EF995E10095631A /* bucketCell___.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "bucketCell___.swift"; sourceTree = "<group>"; };
 		861356A41EF9964C0095631A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		861356A61EF9D5C50095631A /* proposalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = proposalVC.swift; sourceTree = "<group>"; };
+		861356AA1EFAB6C60095631A /* BucketTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketTableVC.swift; sourceTree = "<group>"; };
+		861356AC1EFABBB30095631A /* BucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketCell.swift; sourceTree = "<group>"; };
 		A612732DA01ED0404779684B /* Pods-buckets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.debug.xcconfig"; sourceTree = "<group>"; };
 		B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3CD7128205015797983FFB /* Pods-buckets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.release.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,9 +167,11 @@
 				861356981EF965980095631A /* welcomeVC.swift */,
 				8613569A1EF97FBF0095631A /* WelcomeBackVC.swift */,
 				861356A01EF995620095631A /* bucketListVC.swift */,
+				861356AC1EFABBB30095631A /* BucketCell.swift */,
 				8613569E1EF993D50095631A /* tabbarVC.swift */,
 				861356A41EF9964C0095631A /* Models.swift */,
-				861356A21EF995E10095631A /* bucketCell.swift */,
+				861356A21EF995E10095631A /* bucketCell___.swift */,
+				861356AA1EFAB6C60095631A /* BucketTableVC.swift */,
 				861356A61EF9D5C50095631A /* proposalVC.swift */,
 				8613569C1EF990FA0095631A /* urlVC.swift */,
 				8613562A1EF8560A0095631A /* Main.storyboard */,
@@ -415,10 +421,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8613569B1EF97FBF0095631A /* WelcomeBackVC.swift in Sources */,
-				861356A31EF995E10095631A /* bucketCell.swift in Sources */,
+				861356AD1EFABBB30095631A /* BucketCell.swift in Sources */,
+				861356A31EF995E10095631A /* bucketCell___.swift in Sources */,
 				8613569D1EF990FA0095631A /* urlVC.swift in Sources */,
 				861356A11EF995620095631A /* bucketListVC.swift in Sources */,
 				861356991EF965980095631A /* welcomeVC.swift in Sources */,
+				861356AB1EFAB6C60095631A /* BucketTableVC.swift in Sources */,
 				861356971EF961250095631A /* loginVC.swift in Sources */,
 				861356A71EF9D5C50095631A /* proposalVC.swift in Sources */,
 				861356A51EF9964C0095631A /* Models.swift in Sources */,
