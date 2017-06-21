@@ -13,17 +13,30 @@ class BucketTableVC: UITableViewController {
     let section = ["Buckets", "Queue"]
 //    let footer = ["- - - - - - - - - - - - - - -", "- - - - - - - - - - - - - - -"]
 //    
-    let items = [["Margarita", "BBQ Chicken", "Pepperoni"], ["sausage", "meat lovers", "veggie lovers"]]
-    
-    
+//    let items = [myBuckets, myProposals] as [[Any]]
+//    let items = [["Margarita", "BBQ Chicken", "Pepperoni"], ["sausage", "meat lovers", "veggie lovers"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.reloadData()
 
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
+//        print(items)
+//        print(items.count)
+        print("---------------")
+        print(myBuckets)
+        print(myBuckets.count)
+        print("---------------")
+        print(myProposals)
+        print(myProposals.count)
+        print("---------------")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -38,10 +51,7 @@ class BucketTableVC: UITableViewController {
         
         return 80
     }
-//    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-//        
-//        return self.footer [section ]
-//    }
+
 
 
     // MARK: - Table view data source
@@ -53,20 +63,62 @@ class BucketTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.items [section ].count
+//        return (self.items [section ] as AnyObject).count
+        
+        if section == 0 {
+           return myBuckets.count
+        }
+        
+        if section == 1 {
+            return myProposals.count
+        }
+        return 0
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
         
-        // Configure the cell...
+        print("loading cells..")
         
-        cell.itemLbl.text = self.items[indexPath.section][indexPath.row]
+        if indexPath.section == 0 {
+            print("loading buckets..")
+            
+              cell.itemLbl.text = myBuckets[indexPath.row].item
+            
+//            if myBuckets.count < 0 {
+//                let item = self.items[indexPath.section][indexPath.row] as! Bucket
+//                    cell.itemLbl.text = item.item
+//                } else {
+//                    cell.itemLbl.text = "No Buckets Yet"
+//                }
 
+        }
+        
+        if indexPath.section == 1 {
+            print("loading proposals..")
+           cell.itemLbl.text = myProposals[indexPath.row].item
+        }
+
+        
+        
+        
 
         return cell
     }
+//
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
+//        
+//        // Configure the cell...
+//        print("loading cells..")
+//        
+//        cell.itemLbl.text = self.items[indexPath.section][indexPath.row]
+//        
+//        
+//        return cell
+//    }
+
 
     /*
     // Override to support conditional editing of the table view.
