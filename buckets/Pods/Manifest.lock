@@ -54,6 +54,9 @@ PODS:
   - SwiftRangeSlider (1.0.2)
   - SwiftWebSocket (2.6.5)
   - SwiftyJSON (3.1.4)
+  - TSCurrencyTextField (0.1.0):
+    - TSCurrencyTextField/Core (= 0.1.0)
+  - TSCurrencyTextField/Core (0.1.0)
 
 DEPENDENCIES:
   - ActionCableClient
@@ -68,6 +71,7 @@ DEPENDENCIES:
   - SwiftRangeSlider (~> 1.0)
   - SwiftWebSocket
   - SwiftyJSON
+  - TSCurrencyTextField (~> 0.1.0)
 
 SPEC CHECKSUMS:
   ActionCableClient: c8a466410d31bfa14e7a9c209b539c1e2d026a5f
@@ -90,7 +94,8 @@ SPEC CHECKSUMS:
   SwiftRangeSlider: 111f9a70b8502c6b0607bd3fcf5662f47009a90c
   SwiftWebSocket: 1ef8a0efb023544643bdf480c1ec4a62b204f293
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  TSCurrencyTextField: 03f9d4d263d617d1f0e034e4ace12febcfa6fe48
 
-PODFILE CHECKSUM: f2afa1784f82d0c5ac0697203d9eb402911e500e
+PODFILE CHECKSUM: 1d35b42cdba5aca98b74fb8641d2424762a5e11b
 
 COCOAPODS: 1.2.1
