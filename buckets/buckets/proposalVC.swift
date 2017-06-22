@@ -135,7 +135,12 @@ class proposalVC: UIViewController {
 
     @IBAction func bucketApproveBtn_pressed(_ sender: Any) {
         
+        let propRefString = proposal!.key as! String
         
+        
+        
+        let oldPropRef = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("proposals").child(propRefString)
+        oldPropRef.removeValue()
 //       let old = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("proposals").value(forKey: "item").)
         
          self.ref.child("users").child(Auth.auth().currentUser!.uid).child("buckets").childByAutoId().setValue(["item": proposal!.item, "price": proposal!.price, "imageString": proposal!.imageString, "monthly": proposal!.monthly, "months": proposal!.months, "balance": 0.0, "active": true])
