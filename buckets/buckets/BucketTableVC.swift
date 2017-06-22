@@ -13,6 +13,8 @@ class BucketTableVC: UITableViewController {
     
     var ref: DatabaseReference!
     
+    let balanceView = UIView()
+    
     var proposals: [Proposal] = []
     
     var buckets: [Bucket] = []
@@ -25,9 +27,23 @@ class BucketTableVC: UITableViewController {
         tableView.allowsMultipleSelectionDuringEditing = false
         
         ref = Database.database().reference()
+    print("SELF")
+        
+        let tableWidth = view.frame.size.width
+        let tableHeight = view.frame.size.height
         
         
+        balanceView.frame.size.width = tableWidth / 2
+        balanceView.frame.size.height = tableHeight / 8
+        balanceView.backgroundColor = UIColor.blue
+        balanceView.center.x = view.center.x
         
+        balanceView.center.y = view.center.y - 300
+        
+        
+        view.addSubview(balanceView)
+        print(view.center.x)
+        print(view.center.y)
         reloadArrays()
         tableView.reloadData()
         addBalanceSubview()
@@ -142,6 +158,18 @@ class BucketTableVC: UITableViewController {
             performSegue(withIdentifier: "proposalShow", sender: indexPath)
         }
        
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            
+        }
+        
+        if indexPath.section == 1 {
+            
+        }
+
+    
     }
 
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
