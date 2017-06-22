@@ -138,8 +138,8 @@ class proposalVC: UIViewController {
         
 //       let old = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("proposals").value(forKey: "item").)
         
-        
-        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("buckets").childByAutoId().setValue(["item": proposal!.item, "price": proposal!.price, "monthly": proposal!.monthly, "months": proposal!.months, "currentBucketValue": 0, "timeLeft": proposal!.months, "imageString": proposal!.imageString])
+         self.ref.child("users").child(Auth.auth().currentUser!.uid).child("buckets").childByAutoId().setValue(["item": proposal!.item, "price": proposal!.price, "imageString": proposal!.imageString, "monthly": proposal!.monthly, "months": proposal!.months, "balance": 0.0, "active": true])
+       
         
         let alert = UIAlertController(title: "Bucket Approved!", message: "Bucket for \(proposal!.item) ETA: \(proposal!.months) months!", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in

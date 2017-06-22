@@ -41,8 +41,8 @@ class BucketTableVC: UITableViewController {
     
     func reloadArrays() {
         
-//        myProposals.removeAll()
-//        myBuckets.removeAll()
+       proposals.removeAll()
+        buckets.removeAll()
         
         let userID = Auth.auth().currentUser?.uid
         
@@ -87,16 +87,7 @@ class BucketTableVC: UITableViewController {
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
-//        print(items)
-//        print(items.count)
-        print("---------------")
-        print(buckets)
-        print(buckets.count)
-        print("---------------")
-        print(proposals)
-        
-                print(proposals.count)
-        print("---------------")
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
