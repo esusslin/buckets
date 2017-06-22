@@ -7,34 +7,95 @@
 //
 
 import UIKit
+import Firebase
 
 class BucketTableVC: UITableViewController {
     
+    var ref: DatabaseReference!
+    
+    var proposals: [Proposal] = []
+    
+    var buckets: [Bucket] = []
+    
     let section = ["Buckets", "Queue"]
-//    let footer = ["- - - - - - - - - - - - - - -", "- - - - - - - - - - - - - - -"]
-//    
-//    let items = [myBuckets, myProposals] as [[Any]]
-//    let items = [["Margarita", "BBQ Chicken", "Pepperoni"], ["sausage", "meat lovers", "veggie lovers"]]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.allowsMultipleSelectionDuringEditing = false
+        
+        ref = Database.database().reference()
+        
+        
+        
+        reloadArrays()
         tableView.reloadData()
-
+        addBalanceSubview()
     }
     
+    func addBalanceSubview() {
+        
+//        let balanceView = UIView(coder: CGRect(x: 0, y: 0, width: self.view.frame.width / 2, height: self.view.frame.height / 8))
+    
+    }
+    
+    func reloadArrays() {
+        
+//        myProposals.removeAll()
+//        myBuckets.removeAll()
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+
+
+        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
+
+            for item in snapshot.children {
+                // 4
+                let prop = Proposal(snapshot: item as! DataSnapshot)
+                
+                print("KEYS FOR ALLLLLL")
+                print(prop.key)
+                print(prop.ref)
+                self.proposals.append(prop)
+            }
+
+            self.tableView.reloadData()
+        })
+        
+//        print(itemsRef)
+        self.ref.child("users").child(userID!).child("buckets").observe(.value, with: { snapshot in
+            // 2
+            
+            
+            // 3
+            for item in snapshot.children {
+                // 4
+                let prop = Bucket(snapshot: item as! DataSnapshot)
+                self.buckets.append(prop)
+            }
+            
+            self.tableView.reloadData()
+        })
+
+        
+    }
+
+    
     override func viewDidAppear(_ animated: Bool) {
+        reloadArrays()
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
 //        print(items)
 //        print(items.count)
         print("---------------")
-        print(myBuckets)
-        print(myBuckets.count)
+        print(buckets)
+        print(buckets.count)
         print("---------------")
-        print(myProposals)
-        print(myProposals.count)
+        print(proposals)
+        
+                print(proposals.count)
         print("---------------")
     }
     override func didReceiveMemoryWarning() {
@@ -66,11 +127,11 @@ class BucketTableVC: UITableViewController {
 //        return (self.items [section ] as AnyObject).count
         
         if section == 0 {
-           return myBuckets.count
+           return buckets.count
         }
         
         if section == 1 {
-            return myProposals.count
+            return proposals.count
         }
         return 0
     }
@@ -79,13 +140,13 @@ class BucketTableVC: UITableViewController {
         
         if indexPath.section == 0 {
             
-            let bucket = myBuckets[indexPath.row]
+            let bucket = buckets[indexPath.row]
             
             performSegue(withIdentifier: "bucketShow", sender: indexPath)
         }
         
         if indexPath.section == 1 {
-            let proposal = myProposals[indexPath.row]
+            let proposal = proposals[indexPath.row]
             
             performSegue(withIdentifier: "proposalShow", sender: indexPath)
         }
@@ -101,9 +162,9 @@ class BucketTableVC: UITableViewController {
         if indexPath.section == 0 {
             print("loading buckets..")
             
-              cell.itemLbl.text = myBuckets[indexPath.row].item
-            cell.percentLbl.text = String(myProposals[indexPath.row].price)
-            cell.bucketImage.image = UIImage(named: "grey_bucket")
+              cell.itemLbl.text = buckets[indexPath.row].item
+            cell.percentLbl.text = String(buckets[indexPath.row].balance)
+            cell.bucketImage.image = UIImage(named: "green_bucket")
 //            if myBuckets.count < 0 {
 //                let item = self.items[indexPath.section][indexPath.row] as! Bucket
 //                    cell.itemLbl.text = item.item
@@ -115,8 +176,8 @@ class BucketTableVC: UITableViewController {
         
         if indexPath.section == 1 {
             print("loading proposals..")
-           cell.itemLbl.text = myProposals[indexPath.row].item
-            cell.percentLbl.text = String(myProposals[indexPath.row].price)
+           cell.itemLbl.text = proposals[indexPath.row].item
+            cell.percentLbl.text = String(proposals[indexPath.row].price)
             cell.bucketImage.image = UIImage(named: "grey_bucket")
         }
 
@@ -133,7 +194,7 @@ class BucketTableVC: UITableViewController {
             
             if let nav = segue.destination as? UINavigationController {
                 let proposalVC = nav.topViewController as? proposalVC!
-                let theProposal = myProposals[indexPath.row] as! Proposal
+                let theProposal = proposals[indexPath.row] as! Proposal
                 proposalVC?.proposal = theProposal
             }
 
@@ -144,7 +205,7 @@ class BucketTableVC: UITableViewController {
             
             if let nav = segue.destination as? UINavigationController {
                 let bucketVC = nav.topViewController as? bucketVC!
-                let theBucket = myBuckets[indexPath.row] as! Bucket
+                let theBucket = buckets[indexPath.row] as! Bucket
                 bucketVC?.bucket = theBucket
             }
 

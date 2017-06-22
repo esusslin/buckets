@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 
 class proposalVC: UIViewController {
+    
+    var ref: DatabaseReference!
     
     var proposal: Proposal?
     
@@ -24,6 +27,7 @@ class proposalVC: UIViewController {
     @IBOutlet weak var slider: UISlider!
    
     @IBOutlet weak var bucketApprovedBtn: UIButton!
+    @IBOutlet weak var rateSetBtn: UIButton!
     
     @IBOutlet weak var inputField: UITextField!
   
@@ -32,8 +36,7 @@ class proposalVC: UIViewController {
         super.viewDidLoad()
         inputField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
 
-        
-        
+        ref = Database.database().reference()
         
         itemLbl.text = proposal!.item
         
@@ -60,6 +63,15 @@ class proposalVC: UIViewController {
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
             monthlyLbl.text = amountString
+//            proposal!.monthly = Double(amountString)!
+            
+            let monthlyDouble = ((proposal?.price)! / (proposal?.monthly)!)
+            
+            monthsLbl.text = String(Int(monthlyDouble))
+            
+//            let monthlyInt = Int(monthlyDouble)
+            monthlyLbl.text = ""
+            
         }
     }
     override func didReceiveMemoryWarning() {
@@ -67,13 +79,83 @@ class proposalVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func rateSetBtn_pressed(_ sender: Any) {
+        
+        
+        
+        
+        
+        var rate = inputField.text!
+        rate.remove(at: rate.startIndex)
+        print(rate)
+        
+        let monthVar = ((proposal!.price) / Double(rate)!)
+        
+        if monthVar > 14 {
+            let alert = UIAlertController(title: "TOO LOW", message: "Bucket Max is 14 months - Please select a higher rate", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                
+                print("Alert!")
+                
+            }
+            alert.addAction(cancelAction)
+            
+            
+            let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
+            alert.view.addConstraint(height);
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        
+        monthsLbl.text = String(Int(monthVar))
+        slider.setValue(Float(Int(monthVar)), animated: true)
+        proposal!.monthly = Double(rate)!
+        
+        monthlyLbl.text = String((proposal!.monthly))
+        print(proposal!.monthly)
+    }
+
+    
+    
+    
     @IBAction func slider_changed(_ sender: UISlider) {
+
+        
+        let fixed = roundf(sender.value / 100.0) * 100.0;
+        sender.setValue(fixed, animated: true)
         
         
+        let monthly = proposal!.monthly
+        print(fixed)
+        
+        print((monthly / 5.99) * 5.99)
         
     }
 
-    @IBOutlet weak var bucketApproveBtn_pressed: UIButton!
+
+    @IBAction func bucketApproveBtn_pressed(_ sender: Any) {
+        
+        
+//       let old = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("proposals").value(forKey: "item").)
+        
+        
+        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("buckets").childByAutoId().setValue(["item": proposal!.item, "price": proposal!.price, "monthly": proposal!.monthly, "months": proposal!.months, "currentBucketValue": 0, "timeLeft": proposal!.months, "imageString": proposal!.imageString])
+        
+        let alert = UIAlertController(title: "Bucket Approved!", message: "Bucket for \(proposal!.item) ETA: \(proposal!.months) months!", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+            
+            print("Alert!")
+            
+        }
+        alert.addAction(cancelAction)
+        
+        
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.80)
+        alert.view.addConstraint(height);
+        self.present(alert, animated: true, completion: nil)
+
+
+    }
 
     
     @IBAction func Back(_ sender: Any) {

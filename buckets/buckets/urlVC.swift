@@ -6,6 +6,25 @@
 //  Copyright © 2017 Emmet Susslin. All rights reserved.
 //
 
+
+//// 1
+//let rootRef = FIRDatabase.database().reference()
+//
+//// 2
+//let childRef = FIRDatabase.database().reference(withPath: "grocery-items")
+//
+//// 3
+//let itemsRef = rootRef.child("grocery-items")
+//
+//// 4
+//let milkRef = itemsRef.child("milk")
+//
+//// 5
+//print(rootRef.key)   // prints: ""
+//print(childRef.key)  // prints: "grocery-items"
+//print(itemsRef.key)  // prints: "grocery-items"
+//print(milkRef.key)   // prints: "milk"
+
 import UIKit
 import Alamofire
 import Firebase
@@ -22,49 +41,58 @@ class urlVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         ref = Database.database().reference()
-        reloadProposals()
+        
     }
     
-    func reloadProposals() {
+    func queryone() {
         
+        var proposals: [Proposal] = []
+        var prop: Proposal?
         let userID = Auth.auth().currentUser?.uid
         
+//        let key = self.ref.child("users").child(userID!).child("proposals").key
+//        print(key)
+//        
+//        let updateProp = ["uid": userID,
+//                    "item": "Callaway Men's Strata Complete Golf Club Set with Bag (12-Piece)",
+//                    "price": 199.00
+//        ] as [String : Any]
+//        
+//        let childUpdates = ["/users/\(userID)/proposals/\(key)": updateProp
+//        ]
         
-            self.ref.child("users").child(userID!).child("proposals").observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            print("snapshot!")
+//        self.ref.updateChildValues(childUpdates)
+
+        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
             
+            for item in snapshot.children {
+
+                let prop = Proposal(snapshot: item as! DataSnapshot)
+                proposals.append(prop)
+            }
             
-                if let snapDict = snapshot.value as? [String:AnyObject] {
-            
-                        print(snapDict)
-            
-                        for a in snapDict {
-            
-                        if let b = a.value as? [String:AnyObject] {
-            
-                            let prop = Proposal(item: b["item"] as! String, price: b["price"] as! Double, imageString: b["imageString"] as! String)
-            
-                                myProposals.append(prop)
-                                print("--------------")
-                                print(myProposals)
-                        }
-    
-            
-            
-            
-                        }
+            for p in proposals {
+                if p.item == "Callaway Men's Strata Complete Golf Club Set with Bag (12-Piece)" {
+                    prop = p
                 }
-            })
+            }
 
-        }
+            print(prop?.item)
+             print(prop?.price)
+        })
 
 
+
+    }
+    
+  
 
     @IBAction func submitBtn_pressed(_ sender: Any) {
-        postSemantics(url: self.urlTF.text!)
-        
+      postSemantics(url: self.urlTF.text!)
+        queryone()
     }
     
     
@@ -78,34 +106,27 @@ class urlVC: UIViewController {
             .responseJSON() { response in
                 
                 if let JSON = response.result.value as? [String:Any] {
-                    print(JSON)
+//                    print(JSON)
+                    
+                let newitemString = JSON["item"] as! String
+                    
+                    self.ref.child("users").child(Auth.auth().currentUser!.uid).child("proposals").childByAutoId().setValue(["item": JSON["item"], "price": JSON["price"], "imageString": JSON["imageString"], "monthly": JSON["monthly"], "months": 8, "balance": 0.0, "active": false])
+                    
+                    let alert = UIAlertController(title: "New Proposal: \(JSON["item"]) ..!", message: "Start this bucket today))", preferredStyle: .alert)
+                    
+                    let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
+                        
+                        
+                    }
+                    alert.addAction(cancelAction)
                     
                     
+                    let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
+                    alert.view.addConstraint(height);
+                    self.present(alert, animated: true, completion: nil)
+
+            
                     
-                    self.ref.child("users").child(Auth.auth().currentUser!.uid).child("proposals").childByAutoId().setValue(["item": JSON["item"], "price": JSON["price"], "monthly": JSON["monthly"], "months": JSON["months"],"imageString": JSON["imageString"]])
-                    
-                                self.reloadProposals()
-                                let p = myProposals.last!
-//                                print("--------------")
-//                                print("--------------")
-//                                print("--------------")
-//                                print(p.item)
-//                                print(p.price)
-                    
-            
-                                let alert = UIAlertController(title: "New Proposal: \(p.item) ..!", message: "Pay for this item in 8 months at \(p.monthly)", preferredStyle: .alert)
-            
-                                let cancelAction = UIAlertAction(title: "OK", style: .cancel) { (action) in
-            
-            
-                                }
-                                alert.addAction(cancelAction)
-            
-            
-                                let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
-                                alert.view.addConstraint(height);
-                                self.present(alert, animated: true, completion: nil)
-                            
                         }
         }
         

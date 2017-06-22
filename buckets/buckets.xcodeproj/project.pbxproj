@@ -38,6 +38,7 @@
 		861356AB1EFAB6C60095631A /* BucketTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356AA1EFAB6C60095631A /* BucketTableVC.swift */; };
 		861356AD1EFABBB30095631A /* BucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356AC1EFABBB30095631A /* BucketCell.swift */; };
 		861356AF1EFAD6240095631A /* bucketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356AE1EFAD6240095631A /* bucketVC.swift */; };
+		861356B11EFB2C230095631A /* balanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356B01EFB2C230095631A /* balanceVC.swift */; };
 		D328A4DF04C9E506E652DB4F /* Pods_buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 		861356AA1EFAB6C60095631A /* BucketTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketTableVC.swift; sourceTree = "<group>"; };
 		861356AC1EFABBB30095631A /* BucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketCell.swift; sourceTree = "<group>"; };
 		861356AE1EFAD6240095631A /* bucketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketVC.swift; sourceTree = "<group>"; };
+		861356B01EFB2C230095631A /* balanceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = balanceVC.swift; sourceTree = "<group>"; };
 		A612732DA01ED0404779684B /* Pods-buckets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.debug.xcconfig"; sourceTree = "<group>"; };
 		B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3CD7128205015797983FFB /* Pods-buckets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.release.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				861356AA1EFAB6C60095631A /* BucketTableVC.swift */,
 				861356A61EF9D5C50095631A /* proposalVC.swift */,
 				861356AE1EFAD6240095631A /* bucketVC.swift */,
+				861356B01EFB2C230095631A /* balanceVC.swift */,
 				8613569C1EF990FA0095631A /* urlVC.swift */,
 				8613562A1EF8560A0095631A /* Main.storyboard */,
 				861356A01EF995620095631A /* bucketListVC.swift */,
@@ -424,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8613569B1EF97FBF0095631A /* WelcomeBackVC.swift in Sources */,
+				861356B11EFB2C230095631A /* balanceVC.swift in Sources */,
 				861356AD1EFABBB30095631A /* BucketCell.swift in Sources */,
 				861356A31EF995E10095631A /* bucketCell___.swift in Sources */,
 				8613569D1EF990FA0095631A /* urlVC.swift in Sources */,
