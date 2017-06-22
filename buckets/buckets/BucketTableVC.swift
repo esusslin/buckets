@@ -129,12 +129,12 @@ class BucketTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
-            
-            let bucket = buckets[indexPath.row]
-            
-            performSegue(withIdentifier: "bucketShow", sender: indexPath)
-        }
+//        if indexPath.section == 0 {
+//            
+//            let bucket = buckets[indexPath.row]
+//            
+//            performSegue(withIdentifier: "bucketShow", sender: indexPath)
+//        }
         
         if indexPath.section == 1 {
             let proposal = proposals[indexPath.row]
@@ -144,39 +144,47 @@ class BucketTableVC: UITableViewController {
        
     }
 
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//   <#code#>
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
         
-        print("loading cells..")
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
         
         if indexPath.section == 0 {
             print("loading buckets..")
             
-              cell.itemLbl.text = buckets[indexPath.row].item
-            cell.percentLbl.text = String(buckets[indexPath.row].balance)
-            cell.bucketImage.image = UIImage(named: "green_bucket")
-//            if myBuckets.count < 0 {
-//                let item = self.items[indexPath.section][indexPath.row] as! Bucket
-//                    cell.itemLbl.text = item.item
-//                } else {
-//                    cell.itemLbl.text = "No Buckets Yet"
-//                }
-
+            let cell = tableView.dequeueReusableCell(withIdentifier: "bigBucketCell", for: indexPath) as! BigBucketCell
+            
+            cell.bucket = buckets[indexPath.row]
+            
+            cell.bindData(bucket: cell.bucket!)
+           return cell
+        } else {
+            
+//        }
+//        
+//        if indexPath.section == 1 {
+            print("loading props..")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
+            
+            cell.prop = proposals[indexPath.row]
+            
+            cell.bindData(prop: cell.prop!)
+            
+            return cell
         }
-        
-        if indexPath.section == 1 {
-            print("loading proposals..")
-           cell.itemLbl.text = proposals[indexPath.row].item
-            cell.percentLbl.text = String(proposals[indexPath.row].price)
-            cell.bucketImage.image = UIImage(named: "grey_bucket")
-        }
 
         
+//           let string = buckets[indexPath.row].imageString as! String
+            
+           
         
         
 
-        return cell
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

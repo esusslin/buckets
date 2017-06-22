@@ -562,7 +562,7 @@
         <scene sceneID="pQs-uN-BYQ">
             <objects>
                 <tableViewController id="BC2-Jx-4Ig" customClass="BucketTableVC" customModule="buckets" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" id="fp4-vX-owj">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" id="fp4-vX-owj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -615,6 +615,60 @@
                                     <outlet property="bucketImage" destination="ufz-Di-2Fy" id="GjQ-Bj-Vgl"/>
                                     <outlet property="itemLbl" destination="reY-pD-LaG" id="Ib3-7w-uJg"/>
                                     <outlet property="percentLbl" destination="zwe-4c-Nhc" id="qZk-Vs-LiD"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="bigBucketCell" rowHeight="100" id="ibO-kQ-dZg" customClass="BigBucketCell" customModule="buckets" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="128" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ibO-kQ-dZg" id="d2C-HQ-X6B">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6G-7o-mDc">
+                                            <rect key="frame" x="8" y="12" width="75" height="75"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdp-dT-qOR">
+                                            <rect key="frame" x="91" y="8" width="276" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiQ-Zd-XAr">
+                                            <rect key="frame" x="200" y="63" width="59" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68V-d3-KBn">
+                                            <rect key="frame" x="299" y="8" width="16" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="up"/>
+                                            <connections>
+                                                <action selector="upBtn_pressed:" destination="ibO-kQ-dZg" eventType="touchUpInside" id="4Hx-5G-QRK"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-b9-zXI">
+                                            <rect key="frame" x="299" y="63" width="16" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="down"/>
+                                            <connections>
+                                                <action selector="downBtn_pressed:" destination="ibO-kQ-dZg" eventType="touchUpInside" id="vB7-dn-BbP"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s5O-Cg-BQZ">
+                                            <rect key="frame" x="108" y="54" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="actualItemImage" destination="s5O-Cg-BQZ" id="mjs-40-mA6"/>
+                                    <outlet property="itemImage" destination="B6G-7o-mDc" id="6MA-Zb-D57"/>
+                                    <outlet property="itemLbl" destination="Fdp-dT-qOR" id="gS5-wB-wkI"/>
+                                    <outlet property="percentLbl" destination="PiQ-Zd-XAr" id="2q0-Bd-HCt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -764,7 +818,9 @@
     </scenes>
     <resources>
         <image name="bucket" width="700" height="700"/>
+        <image name="down" width="16" height="16"/>
         <image name="target" width="24" height="24"/>
         <image name="target_large" width="256" height="256"/>
+        <image name="up" width="16" height="16"/>
     </resources>
 </document>
