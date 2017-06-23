@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+
+
 class BigBucketCell: UITableViewCell {
 
     
@@ -19,13 +21,14 @@ class BigBucketCell: UITableViewCell {
     
     var bucket: Bucket?
 
+    @IBOutlet weak var upBtn: UIButton!
     @IBOutlet weak var itemLbl: UILabel!
     
+    @IBOutlet weak var downBtn: UIButton!
     @IBOutlet weak var itemImage: UIImageView!
 
     @IBOutlet weak var percentLbl: UILabel!
     @IBOutlet weak var balanceLbl: UILabel!
-    
     
     
     override func awakeFromNib() {
@@ -41,8 +44,12 @@ class BigBucketCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    
     func bindData(bucket: Bucket) {
         
+       
+
         
         let url = URL(string: bucket.imageString)!
         let data = try? Data(contentsOf: url)
@@ -89,13 +96,15 @@ class BigBucketCell: UITableViewCell {
         itemLbl.text = bucket.item
         itemImage.image = UIImage(named: "bucket")
 //        return cell
-
-    
+//reload()
+//        self.viewController?.viewDidLoad()
     
     }
 
 
-
+    func reload() {
+       self.viewController?.viewDidLoad()
+    }
 
 
     @IBAction func upBtn_pressed(_ sender: Any) {
@@ -112,8 +121,11 @@ class BigBucketCell: UITableViewCell {
 //        guard let indexPath = tableView?.indexPath(for: cellInAction) else { return }
         
         
-       let _super = self.superview
-        print(_super)
+        print(userBalance)
+        
+        userBalance -= 1.0
+        
+        
         
         print("UP!")
         print(sender)
@@ -131,6 +143,7 @@ class BigBucketCell: UITableViewCell {
         if bucket!.balance < 1 {
             
 //            BucketTableVC.userBalance
+            
             
             print(per2)
             percentLbl.text = "0%"
@@ -195,7 +208,7 @@ class BigBucketCell: UITableViewCell {
 //        
         
         
-     
+     self.viewController?.viewDidAppear(false)
 
         
     }

@@ -9,14 +9,51 @@
 import UIKit
 import Firebase
 
+class StaticLinker
+{
+    static var viewController : UITableViewController? = nil
+}
+
+
 class BucketTableVC: UITableViewController {
     
-    var userBalance:Float = 987.94 {
+    
+    
+//    var pageIndex: Int
+//    let StaticLinker.viewController = self
+    
+//    struct GlobalVariable{
+//        static var myString = Double()
+//        
+//        willSet(newValue){
+//         = String(userBalance)
+//        }
+//        didSet{
+//        self.title = String(userBalance)
+////        }
+////
+//    }
+//    
+    
+//    struct GlobalVariable{
+//        static var userBalance:Float = 987.94 {
+//            willSet(newValue){
+//            BucketTableVC.title = String(userBalance)
+//            }
+//            didSet{
+//            self.title = String(userBalance)
+//        }
+//        }
+//
+//    }
+    
+    
+    var balance: Double = 0.0 {
         willSet(newValue){
-            self.title = String(userBalance)
+            self.title = String(balance)
         }
         didSet{
-            self.title = String(userBalance)
+            self.title = String(balance)
         }
     }
 
@@ -33,8 +70,17 @@ class BucketTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        userBalance = 987.94
-         self.title = String(userBalance)
+//        tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapEdit(_:)))
+//        tableView.addGestureRecognizer(tapGesture!)
+//        tapGesture!.delegate = self
+//        
+        userBalance = 957.06
+        let userbal = Double((userBalance * 100)/100)
+       
+        
+        self.balance = userbal
+//         self.title = String(describing: balance)
+        
         tableView.allowsMultipleSelectionDuringEditing = false
         
         ref = Database.database().reference()
@@ -60,6 +106,7 @@ class BucketTableVC: UITableViewController {
 //        addBalanceSubview()
     }
     
+     
     func reloadArrays() {
         
        proposals.removeAll()
@@ -100,6 +147,13 @@ class BucketTableVC: UITableViewController {
 
     
     override func viewDidAppear(_ animated: Bool) {
+        
+//        self.balance = userBalance
+        let userbal = Double((userBalance * 100)/100)
+        
+        
+        self.balance = userbal
+        self.title = String(balance)
         reloadArrays()
 //         self.tableView.reloadData()
 //        DispatchQueue.main.async{
@@ -147,14 +201,23 @@ class BucketTableVC: UITableViewController {
         return 0
     }
     
+    func resetBalance() {
+        let userbal = Double((userBalance * 100)/100)
+        
+        
+        self.balance = userbal
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        if indexPath.section == 0 {
-//            
+        if indexPath.section == 0 {
+            
+//            self.resetBalance()
+            
 //            let bucket = buckets[indexPath.row]
 //            
 //            performSegue(withIdentifier: "bucketShow", sender: indexPath)
-//        }
+        }
         
         if indexPath.section == 1 {
             let proposal = proposals[indexPath.row]
@@ -187,7 +250,24 @@ class BucketTableVC: UITableViewController {
 //
 //    }
 
-
+//    func updateBalance() {
+//        
+//        print("update!")
+//        let userbal = Double((userBalance * 100)/100)
+//        
+//        
+//        self.balance = userbal
+//    }
+    
+    func balanceUpTap(_ sender: UIGestureRecognizer){
+        
+        print("Up tap")
+    }
+    
+    func balanceDownTap(_ sender: UIGestureRecognizer){
+        
+        print("Down tap")
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -201,8 +281,15 @@ class BucketTableVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "bigBucketCell", for: indexPath) as! BigBucketCell
          cell.viewController = self
             cell.bucket = buckets[indexPath.row]
-            
+//            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action:"tapEdit:"))
             cell.bindData(bucket: cell.bucket!)
+            
+//            let tapUpGesture = UITapGestureRecognizer(target: self, action:#selector(balanceUpTap(_:)))
+//             let tapDownGesture = UITapGestureRecognizer(target: self, action:#selector(balanceDownTap(_:)))
+//
+//            cell.upBtn.addGestureRecognizer(tapUpGesture )
+//            cell.downBtn.addGestureRecognizer(tapDownGesture)
+            
            return cell
         } else {
             
@@ -260,6 +347,9 @@ class BucketTableVC: UITableViewController {
 }
 
 
+extension BucketTableVC {
+ 
+}
 
 
 

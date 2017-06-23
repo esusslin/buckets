@@ -700,9 +700,11 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="balanceLbl" destination="bg2-lR-CeY" id="l3v-Rg-oAZ"/>
+                                    <outlet property="downBtn" destination="TNu-b9-zXI" id="vpm-V4-bxN"/>
                                     <outlet property="itemImage" destination="B6G-7o-mDc" id="6MA-Zb-D57"/>
                                     <outlet property="itemLbl" destination="Fdp-dT-qOR" id="gS5-wB-wkI"/>
                                     <outlet property="percentLbl" destination="PiQ-Zd-XAr" id="2q0-Bd-HCt"/>
+                                    <outlet property="upBtn" destination="68V-d3-KBn" id="cgz-9F-Bf1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
