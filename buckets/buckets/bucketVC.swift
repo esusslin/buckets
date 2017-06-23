@@ -13,10 +13,11 @@ class bucketVC: UIViewController {
     
     var bucket: Bucket?
     
+    @IBOutlet weak var itemLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        itemLbl.text = bucket?.item
         // Do any additional setup after loading the view.
     }
 

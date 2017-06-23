@@ -21,6 +21,7 @@ class BigBucketCell: UITableViewCell {
     
     var bucket: Bucket?
 
+    @IBOutlet weak var bucketDetailBtn: UIButton!
     @IBOutlet weak var upBtn: UIButton!
     @IBOutlet weak var itemLbl: UILabel!
     
@@ -44,6 +45,9 @@ class BigBucketCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func detailBtn_pressed(_ sender: Any) {
+        
+    }
     
     
     func bindData(bucket: Bucket) {
@@ -108,18 +112,7 @@ class BigBucketCell: UITableViewCell {
 
 
     @IBAction func upBtn_pressed(_ sender: Any) {
-        
-//        if let myViewController = parentViewController as? BucketTableVC {
-//            print(myViewController.title)
-//        }
-//        if let table = self.superview as? BucketTableVC {
-//        print(table)
-//          print(table?.userBalance)
-//        table?.userBalance -= 1.0
-//        }
-//        guard let cellInAction = (sender as AnyObject).superview as? UITableViewCell else { return }
-//        guard let indexPath = tableView?.indexPath(for: cellInAction) else { return }
-        
+         
         
         print(userBalance)
         
@@ -127,9 +120,13 @@ class BigBucketCell: UITableViewCell {
         
         
         
-        print("UP!")
-        print(sender)
+        print("UP!!!!!!")
+        
         bucket!.balance += 1.0
+        print("balance!!!!!!")
+        
+        print(bucket!.balance)
+        
         
         let per = (bucket!.balance / bucket!.price) as! Double
         let per2 = Int(per * 100)
@@ -168,47 +165,14 @@ class BigBucketCell: UITableViewCell {
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
         }
 
-        let propRefString = bucket!.key as! String
-        
-        let bucketref = self.bucket!.ref!
-        
-//        bucketref.child("balance").setValue(bucket!.balance)
-        
-//        let oldPropRef = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("buckets").child(propRefString).child("balance")
-//        
-//        oldPropRef.setValue(bucket!.balance)
-//        if bucket!.balance < 1 {
-//            percentLbl.text = "0%"
-//            percentLbl.textColor = UIColor.red
-//            
-//            
-//        } else {
-//            let per = (bucket!.balance / bucket!.price) as! Double
-//            let per2 = Int(per * 100)
-//            
-//            if per2 < 25 {
-//                percentLbl.textColor = UIColor.red
-//            }
-//            
-//            if (per > 25) && (per2 < 75) {
-//                percentLbl.textColor = UIColor.yellow
-//                itemImage.backgroundColor = UIColor.yellow
-//            }
-//            
-//            if (per2 > 75) {
-//                percentLbl.textColor = UIColor.green
-//                itemImage.backgroundColor = UIColor.green
-//            }
-//
-//            
-//            percentLbl.text = String(per2) + "%"
-//        }
-//
 //        let propRefString = bucket!.key as! String
-//        
+//
+        let bucketref = self.bucket!.ref!
+        let key = self.bucket!.key
+        let bal = ["balance": bucket!.balance]
         
-        
-     self.viewController?.viewDidAppear(false)
+        ref.updateChildValues(bal)
+//     self.viewController?.viewDidAppear(false)
 
         
     }
@@ -218,6 +182,23 @@ class BigBucketCell: UITableViewCell {
         
         print("DOWN!")
     }
+    
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        
+        if segue.identifier == "bucketShow" {
+            let indexPath = sender as! NSIndexPath
+            
+            if let nav = segue.destination as? UINavigationController {
+                let bucketVC = nav.topViewController as? bucketVC!
+              
+                bucketVC?.bucket = self.bucket!
+            }
+            
+        }
+    }
+        
+        
 
 }
 

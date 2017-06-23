@@ -86,8 +86,8 @@ class BucketTableVC: UITableViewController {
         ref = Database.database().reference()
         print("SELF")
         reloadArrays()
-        let tableWidth = view.frame.size.width
-        let tableHeight = view.frame.size.height
+//        let tableWidth = view.frame.size.width
+//        let tableHeight = view.frame.size.height
         
         
 //        balanceView.frame.size.width = tableWidth / 2
@@ -127,7 +127,7 @@ class BucketTableVC: UITableViewController {
                 print(prop.ref)
                 proposals.append(prop)
             }
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
             
         })
 
@@ -139,7 +139,7 @@ class BucketTableVC: UITableViewController {
                 buckets.append(prop)
             }
             
-           self.tableView.reloadData()
+//           self.tableView.reloadData()
         })
 
         
@@ -151,10 +151,11 @@ class BucketTableVC: UITableViewController {
 //        self.balance = userBalance
         let userbal = Double((userBalance * 100)/100)
         
-        
+        self.tableView.reloadData()
         self.balance = userbal
         self.title = String(balance)
-        reloadArrays()
+       
+//        reloadArrays()
 //         self.tableView.reloadData()
 //        DispatchQueue.main.async{
 //            self.tableView.reloadData()
@@ -226,38 +227,7 @@ class BucketTableVC: UITableViewController {
         }
        
     }
-    
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        
-//        
-//    if editingStyle == .delete {
-//        if indexPath.section == 0 {
-//            
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            let dunzo = buckets[indexPath.row]
-//            dunzo.ref?.removeValue()
-//
-//        }
-//        
-//        if indexPath.section == 1 {
-//            
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            let dunzo = proposals[indexPath.row]
-//            dunzo.ref?.removeValue()
-//
-//        }
-//        }
-//
-//    }
 
-//    func updateBalance() {
-//        
-//        print("update!")
-//        let userbal = Double((userBalance * 100)/100)
-//        
-//        
-//        self.balance = userbal
-//    }
     
     func balanceUpTap(_ sender: UIGestureRecognizer){
         
@@ -279,26 +249,17 @@ class BucketTableVC: UITableViewController {
             
            
             let cell = tableView.dequeueReusableCell(withIdentifier: "bigBucketCell", for: indexPath) as! BigBucketCell
-         cell.viewController = self
-            cell.bucket = buckets[indexPath.row]
-//            cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action:"tapEdit:"))
+         cell.bucket = buckets[indexPath.row]
             cell.bindData(bucket: cell.bucket!)
-            
-//            let tapUpGesture = UITapGestureRecognizer(target: self, action:#selector(balanceUpTap(_:)))
-//             let tapDownGesture = UITapGestureRecognizer(target: self, action:#selector(balanceDownTap(_:)))
-//
-//            cell.upBtn.addGestureRecognizer(tapUpGesture )
-//            cell.downBtn.addGestureRecognizer(tapDownGesture)
-            
+
            return cell
+            
         } else {
             
-//        }
-//        
-//        if indexPath.section == 1 {
+
             print("loading props..")
             let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
-//           cell.viewController = self
+
             cell.prop = proposals[indexPath.row]
             
             cell.bindData(prop: cell.prop!)
@@ -307,14 +268,19 @@ class BucketTableVC: UITableViewController {
         }
 
         
-//           let string = buckets[indexPath.row].imageString as! String
-            
-           
-        
-        
-
         
     }
+    
+    func balanceDownTap() {
+        print("LOLLLLLER")
+    }
+    
+//    func bucketSeg(bucket: Bucket) {
+//        let bucket = bucket
+//        bucketVC?.bucket = theBucket
+//        performSegue(withIdentifier: "bucketShow", sender: indexPath)
+//    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "proposalShow" {
