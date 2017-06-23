@@ -27,26 +27,26 @@ class BucketTableVC: UITableViewController {
         tableView.allowsMultipleSelectionDuringEditing = false
         
         ref = Database.database().reference()
-    print("SELF")
+        print("SELF")
         
         let tableWidth = view.frame.size.width
         let tableHeight = view.frame.size.height
         
         
-        balanceView.frame.size.width = tableWidth / 2
-        balanceView.frame.size.height = tableHeight / 8
-        balanceView.backgroundColor = UIColor.blue
-        balanceView.center.x = view.center.x
-        
-        balanceView.center.y = view.center.y - 300
-        
-        
-        view.addSubview(balanceView)
-        print(view.center.x)
-        print(view.center.y)
-        reloadArrays()
-        tableView.reloadData()
-        addBalanceSubview()
+//        balanceView.frame.size.width = tableWidth / 2
+//        balanceView.frame.size.height = tableHeight / 8
+//        balanceView.backgroundColor = UIColor.blue
+//        balanceView.center.x = view.center.x
+//        
+//        balanceView.center.y = view.center.y - 300
+//        
+//        
+//        view.addSubview(balanceView)
+//        print(view.center.x)
+//        print(view.center.y)
+//        reloadArrays()
+//        tableView.reloadData()
+//        addBalanceSubview()
     }
     
     func addBalanceSubview() {
@@ -162,10 +162,13 @@ class BucketTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            
+            let dunzo = buckets[indexPath.row]
+            dunzo.ref?.removeValue()
         }
         
         if indexPath.section == 1 {
+            let dunzo = proposals[indexPath.row]
+            dunzo.ref?.removeValue()
             
         }
 

@@ -49,27 +49,27 @@ class BigBucketCell: UITableViewCell {
             actualItemImage.image = image
         }
         
+        let per = (bucket.balance / bucket.price) as! Double
+        let per2 = Int(per * 100)
+        
         if bucket.balance < 1 {
             percentLbl.text = "0%"
             percentLbl.textColor = UIColor.red
-        } else {
-            let per = (bucket.balance / bucket.price) as! Double
-            let per2 = Int(per * 100)
-            
-            if per2 < 25 {
-                percentLbl.textColor = UIColor.yellow
-            }
-            
-            if per2 < 75 {
-                percentLbl.textColor = UIColor.green
-            }
+        } else if (bucket.balance > 25) && (bucket.balance < 75) {
             
             percentLbl.text = String(per2) + "%"
+            percentLbl.textColor = UIColor.yellow
+            itemImage.backgroundColor = UIColor.yellow
+        } else if (bucket.balance > 75) {
+            
+            percentLbl.text = String(per2) + "%"
+            percentLbl.textColor = UIColor.red
+            itemImage.backgroundColor = UIColor.red
         }
         
         
         itemLbl.text = bucket.item
-        itemImage.image = UIImage(named: "green_bucket")
+        itemImage.image = UIImage(named: "bucket")
 //        return cell
 
     
@@ -95,12 +95,19 @@ class BigBucketCell: UITableViewCell {
             let per2 = Int(per * 100)
             
             if per2 < 25 {
-                percentLbl.textColor = UIColor.yellow
+                percentLbl.textColor = UIColor.red
             }
             
-            if per2 < 75 {
-                percentLbl.textColor = UIColor.green
+            if (per > 25) && (per2 < 75) {
+                percentLbl.textColor = UIColor.yellow
+                itemImage.backgroundColor = UIColor.yellow
             }
+            
+            if (per2 > 75) {
+                percentLbl.textColor = UIColor.green
+                itemImage.backgroundColor = UIColor.green
+            }
+
             
             percentLbl.text = String(per2) + "%"
         }
