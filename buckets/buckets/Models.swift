@@ -31,6 +31,15 @@ var myProposals = [Proposal]()
 //        
 //    }
 //
+
+
+var proposals: [Proposal] = []
+
+var buckets: [Bucket] = []
+
+//var userBalance = Float()
+
+
 //}
 
 internal class Proposal {

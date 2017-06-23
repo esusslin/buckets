@@ -11,24 +11,35 @@ import Firebase
 
 class BucketTableVC: UITableViewController {
     
+    var userBalance:Float = 987.94 {
+        willSet(newValue){
+            self.title = String(userBalance)
+        }
+        didSet{
+            self.title = String(userBalance)
+        }
+    }
+
+    
     var ref: DatabaseReference!
     
     let balanceView = UIView()
     
-    var proposals: [Proposal] = []
-    
-    var buckets: [Bucket] = []
+
     
     let section = ["Buckets", "Queue"]
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        userBalance = 987.94
+         self.title = String(userBalance)
         tableView.allowsMultipleSelectionDuringEditing = false
         
         ref = Database.database().reference()
         print("SELF")
-        
+        reloadArrays()
         let tableWidth = view.frame.size.width
         let tableHeight = view.frame.size.height
         
@@ -49,12 +60,6 @@ class BucketTableVC: UITableViewController {
 //        addBalanceSubview()
     }
     
-    func addBalanceSubview() {
-        
-//        let balanceView = UIView(coder: CGRect(x: 0, y: 0, width: self.view.frame.width / 2, height: self.view.frame.height / 8))
-    
-    }
-    
     func reloadArrays() {
         
        proposals.removeAll()
@@ -73,25 +78,21 @@ class BucketTableVC: UITableViewController {
                 print("KEYS FOR ALLLLLL")
                 print(prop.key)
                 print(prop.ref)
-                self.proposals.append(prop)
+                proposals.append(prop)
             }
-
-            self.tableView.reloadData()
+                self.tableView.reloadData()
+            
         })
-        
-//        print(itemsRef)
+
         self.ref.child("users").child(userID!).child("buckets").observe(.value, with: { snapshot in
-            // 2
-            
-            
-            // 3
+
             for item in snapshot.children {
                 // 4
                 let prop = Bucket(snapshot: item as! DataSnapshot)
-                self.buckets.append(prop)
+                buckets.append(prop)
             }
             
-            self.tableView.reloadData()
+           self.tableView.reloadData()
         })
 
         
@@ -100,11 +101,14 @@ class BucketTableVC: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         reloadArrays()
-        DispatchQueue.main.async{
-            self.tableView.reloadData()
-        }
+//         self.tableView.reloadData()
+//        DispatchQueue.main.async{
+//            self.tableView.reloadData()
+//        }
 
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -160,24 +164,30 @@ class BucketTableVC: UITableViewController {
        
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let dunzo = buckets[indexPath.row]
-            dunzo.ref?.removeValue()
-        }
-        
-        if indexPath.section == 1 {
-            let dunzo = proposals[indexPath.row]
-            dunzo.ref?.removeValue()
-            
-        }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        
+//        
+//    if editingStyle == .delete {
+//        if indexPath.section == 0 {
+//            
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            let dunzo = buckets[indexPath.row]
+//            dunzo.ref?.removeValue()
+//
+//        }
+//        
+//        if indexPath.section == 1 {
+//            
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            let dunzo = proposals[indexPath.row]
+//            dunzo.ref?.removeValue()
+//
+//        }
+//        }
+//
+//    }
 
-    
-    }
 
-    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//   <#code#>
-    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -187,8 +197,9 @@ class BucketTableVC: UITableViewController {
         if indexPath.section == 0 {
             print("loading buckets..")
             
+           
             let cell = tableView.dequeueReusableCell(withIdentifier: "bigBucketCell", for: indexPath) as! BigBucketCell
-            
+         cell.viewController = self
             cell.bucket = buckets[indexPath.row]
             
             cell.bindData(bucket: cell.bucket!)
@@ -200,7 +211,7 @@ class BucketTableVC: UITableViewController {
 //        if indexPath.section == 1 {
             print("loading props..")
             let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
-            
+//           cell.viewController = self
             cell.prop = proposals[indexPath.row]
             
             cell.bindData(prop: cell.prop!)
@@ -245,63 +256,13 @@ class BucketTableVC: UITableViewController {
     }
 
 
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
-//        
-//        // Configure the cell...
-//        print("loading cells..")
-//        
-//        cell.itemLbl.text = self.items[indexPath.section][indexPath.row]
-//        
-//        
-//        return cell
-//    }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+
+
+
+
+
+
+
