@@ -60,25 +60,3 @@ class BucketCell: UITableViewCell {
 }
 }
 
-
-//if indexPath.section == 0 {
-//    print("loading buckets..")
-//    
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "bigBucketCell", for: indexPath) as! BigBucketCell
-//    
-//    cell.bucket = buckets[indexPath.row]
-//    
-//    cell.bindData(bucket: cell.bucket!)
-//    return cell
-//}
-//
-//if indexPath.section == 1 {
-//    print("loading props..")
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
-//    
-//    cell.prop = proposals[indexPath.row]
-//    
-//    cell.bindData(prop: cell.prop!)
-//    
-//    return cell
-//}

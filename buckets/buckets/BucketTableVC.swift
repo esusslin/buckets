@@ -19,35 +19,6 @@ class BucketTableVC: UITableViewController {
     
     
     
-//    var pageIndex: Int
-//    let StaticLinker.viewController = self
-    
-//    struct GlobalVariable{
-//        static var myString = Double()
-//        
-//        willSet(newValue){
-//         = String(userBalance)
-//        }
-//        didSet{
-//        self.title = String(userBalance)
-////        }
-////
-//    }
-//    
-    
-//    struct GlobalVariable{
-//        static var userBalance:Float = 987.94 {
-//            willSet(newValue){
-//            BucketTableVC.title = String(userBalance)
-//            }
-//            didSet{
-//            self.title = String(userBalance)
-//        }
-//        }
-//
-//    }
-    
-    
     var balance: Double = 0.0 {
         willSet(newValue){
             self.title = String(balance)
@@ -60,7 +31,6 @@ class BucketTableVC: UITableViewController {
     
     var ref: DatabaseReference!
     
-    let balanceView = UIView()
     
 
     
@@ -79,7 +49,7 @@ class BucketTableVC: UITableViewController {
        
         
         self.balance = userbal
-//         self.title = String(describing: balance)
+
         
         tableView.allowsMultipleSelectionDuringEditing = false
         
@@ -112,6 +82,10 @@ class BucketTableVC: UITableViewController {
        proposals.removeAll()
         buckets.removeAll()
         
+        print("COUNT")
+        print(proposals.count)
+        print(buckets.count)
+        
         let userID = Auth.auth().currentUser?.uid
         
 
@@ -127,7 +101,7 @@ class BucketTableVC: UITableViewController {
                 print(prop.ref)
                 proposals.append(prop)
             }
-//                self.tableView.reloadData()
+               self.tableView.reloadData()
             
         })
 
@@ -139,7 +113,7 @@ class BucketTableVC: UITableViewController {
                 buckets.append(prop)
             }
             
-//           self.tableView.reloadData()
+           self.tableView.reloadData()
         })
 
         
@@ -147,19 +121,23 @@ class BucketTableVC: UITableViewController {
 
     
     override func viewDidAppear(_ animated: Bool) {
+       
         
+        print("APPEAR")
+        
+        print(userBalance)
 //        self.balance = userBalance
         let userbal = Double((userBalance * 100)/100)
         
-        self.tableView.reloadData()
+//       reloadArrays()
         self.balance = userbal
         self.title = String(balance)
        
 //        reloadArrays()
 //         self.tableView.reloadData()
-//        DispatchQueue.main.async{
-//            self.tableView.reloadData()
-//        }
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
 
     }
     
@@ -213,11 +191,7 @@ class BucketTableVC: UITableViewController {
         
         if indexPath.section == 0 {
             
-//            self.resetBalance()
-            
-//            let bucket = buckets[indexPath.row]
-//            
-//            performSegue(withIdentifier: "bucketShow", sender: indexPath)
+
         }
         
         if indexPath.section == 1 {
@@ -249,6 +223,7 @@ class BucketTableVC: UITableViewController {
             
            
             let cell = tableView.dequeueReusableCell(withIdentifier: "bigBucketCell", for: indexPath) as! BigBucketCell
+            cell.viewController = self
          cell.bucket = buckets[indexPath.row]
             cell.bindData(bucket: cell.bucket!)
 

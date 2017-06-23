@@ -47,52 +47,51 @@ class urlVC: UIViewController {
         
     }
     
-    func queryone() {
-        
-        var proposals: [Proposal] = []
-        var prop: Proposal?
-        let userID = Auth.auth().currentUser?.uid
-        
-//        let key = self.ref.child("users").child(userID!).child("proposals").key
-//        print(key)
+//    func queryone() {
 //        
-//        let updateProp = ["uid": userID,
-//                    "item": "Callaway Men's Strata Complete Golf Club Set with Bag (12-Piece)",
-//                    "price": 199.00
-//        ] as [String : Any]
+//        var proposals: [Proposal] = []
+//        var prop: Proposal?
+//        let userID = Auth.auth().currentUser?.uid
 //        
-//        let childUpdates = ["/users/\(userID)/proposals/\(key)": updateProp
-//        ]
-        
-//        self.ref.updateChildValues(childUpdates)
-
-        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
-            
-            for item in snapshot.children {
-
-                let prop = Proposal(snapshot: item as! DataSnapshot)
-                proposals.append(prop)
-            }
-            
-            for p in proposals {
-                if p.item == "Callaway Men's Strata Complete Golf Club Set with Bag (12-Piece)" {
-                    prop = p
-                }
-            }
-
-            print(prop?.item)
-             print(prop?.price)
-        })
-
-
-
-    }
-    
-  
-
+////        let key = self.ref.child("users").child(userID!).child("proposals").key
+////        print(key)
+////        
+////        let updateProp = ["uid": userID,
+////                    "item": "Callaway Men's Strata Complete Golf Club Set with Bag (12-Piece)",
+////                    "price": 199.00
+////        ] as [String : Any]
+////        
+////        let childUpdates = ["/users/\(userID)/proposals/\(key)": updateProp
+////        ]
+//        
+////        self.ref.updateChildValues(childUpdates)
+//
+//        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
+//            
+//            for item in snapshot.children {
+//
+//                let prop = Proposal(snapshot: item as! DataSnapshot)
+//                proposals.append(prop)
+//            }
+//            
+//            for p in proposals {
+//                if p.item == "Callaway Men's Strata Complete Golf Club Set with Bag (12-Piece)" {
+//                    prop = p
+//                }
+//            }
+//
+//            print(prop?.item)
+//             print(prop?.price)
+//        })
+//
+//
+//    }
+//
+//  
+//}
     @IBAction func submitBtn_pressed(_ sender: Any) {
       postSemantics(url: self.urlTF.text!)
-        queryone()
+//        queryone()
     }
     
     

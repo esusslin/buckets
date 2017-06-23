@@ -22,10 +22,10 @@ class BigBucketCell: UITableViewCell {
     var bucket: Bucket?
 
     @IBOutlet weak var bucketDetailBtn: UIButton!
-    @IBOutlet weak var upBtn: UIButton!
+   
     @IBOutlet weak var itemLbl: UILabel!
     
-    @IBOutlet weak var downBtn: UIButton!
+
     @IBOutlet weak var itemImage: UIImageView!
 
     @IBOutlet weak var percentLbl: UILabel!
@@ -115,16 +115,17 @@ class BigBucketCell: UITableViewCell {
          
         
         print(userBalance)
-        
+     
         userBalance -= 1.0
-        
+        self.viewController?.viewDidAppear(true)
+//          self.viewController?.title = String(userBalance)
         
         
         print("UP!!!!!!")
         
         bucket!.balance += 1.0
         print("balance!!!!!!")
-        
+       
         print(bucket!.balance)
         
         
@@ -165,15 +166,8 @@ class BigBucketCell: UITableViewCell {
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
         }
 
-//        let propRefString = bucket!.key as! String
-//
-        let bucketref = self.bucket!.ref!
-        let key = self.bucket!.key
-        let bal = ["balance": bucket!.balance]
-        
-        ref.updateChildValues(bal)
-//     self.viewController?.viewDidAppear(false)
 
+        self.viewController?.viewDidAppear(false)
         
     }
 
@@ -181,27 +175,32 @@ class BigBucketCell: UITableViewCell {
     @IBAction func downBtn_pressed(_ sender: Any) {
         
         print("DOWN!")
+      
+//        print(self.viewController?.viewWillAppear(false)
+        self.viewController?.viewDidAppear(true)
+        self.viewController?.viewDidAppear(false)
     }
     
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        
-        if segue.identifier == "bucketShow" {
-            let indexPath = sender as! NSIndexPath
-            
-            if let nav = segue.destination as? UINavigationController {
-                let bucketVC = nav.topViewController as? bucketVC!
-              
-                bucketVC?.bucket = self.bucket!
-            }
-            
-        }
-    }
-        
-        
 
 }
 
+
+
+//    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//
+//        if segue.identifier == "bucketShow" {
+//            let indexPath = sender as! NSIndexPath
+//
+//            if let nav = segue.destination as? UINavigationController {
+//                let bucketVC = nav.topViewController as? bucketVC!
+//
+//                bucketVC?.bucket = self.bucket!
+//            }
+//
+//        }
+//    }
 
 //extension UITableViewCell {
 //    var tableView:UITableView? {
