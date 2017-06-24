@@ -115,16 +115,14 @@ class BigBucketCell: UITableViewCell {
          
         
         print(userBalance)
-     
+        
         userBalance -= 1.0
         self.viewController?.viewDidAppear(true)
 //          self.viewController?.title = String(userBalance)
         
-        
-        print("UP!!!!!!")
-        
+
         bucket!.balance += 1.0
-        print("balance!!!!!!")
+       
        
         print(bucket!.balance)
         
@@ -132,22 +130,14 @@ class BigBucketCell: UITableViewCell {
         let per = (bucket!.balance / bucket!.price) as! Double
         let per2 = Int(per * 100)
         
-        print(per2)
-        
-        
-        print(bucket!.balance)
-        
         
         if bucket!.balance < 1 {
-            
-//            BucketTableVC.userBalance
             
             
             print(per2)
             percentLbl.text = "0%"
             percentLbl.textColor = UIColor.red
             
-//            balanceLbl.text = String(bucket!.balance)
         } else if (per2 < 25) && (per2 > 1) {
             percentLbl.text = "$" + String(per2) + "%"
             percentLbl.textColor = UIColor.red
@@ -166,6 +156,8 @@ class BigBucketCell: UITableViewCell {
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
         }
 
+        let buckRef = bucket!.ref
+        
 
         self.viewController?.viewDidAppear(false)
         
@@ -176,52 +168,25 @@ class BigBucketCell: UITableViewCell {
         
         print("DOWN!")
       
-//        print(self.viewController?.viewWillAppear(false)
-        self.viewController?.viewDidAppear(true)
-        self.viewController?.viewDidAppear(false)
     }
     
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+        
+        if segue.identifier == "bucketShow" {
+            
+            print("BUCKET!")
+//            let indexPath = sender as! NSIndexPath
+//            
+//            if let nav = segue.destination as? UINavigationController {
+//                let bucketVC = nav.topViewController as? bucketVC!
+//              
+//                bucketVC?.bucket = self.bucket!
+//            }
+            
+        }
+    }
 
 }
 
 
-
-//    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//
-//        if segue.identifier == "bucketShow" {
-//            let indexPath = sender as! NSIndexPath
-//
-//            if let nav = segue.destination as? UINavigationController {
-//                let bucketVC = nav.topViewController as? bucketVC!
-//
-//                bucketVC?.bucket = self.bucket!
-//            }
-//
-//        }
-//    }
-
-//extension UITableViewCell {
-//    var tableView:UITableView? {
-//        get {
-//            if let view = self.superview {
-//                if view is UITableView {
-//                    return (view as! UITableView)
-//                }
-//            }            return nil
-//        }
-//    }
-//    
-//    var tableViewDataSource:UITableViewDataSource? {
-//        get {
-//            return self.tableView?.dataSource
-//        }
-//    }
-//    
-//    var tableViewDelegate:UITableViewDelegate? {
-//        get {
-//            return self.tableView?.delegate
-//        }
-//    }
-//}

@@ -40,10 +40,7 @@ class BucketTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapEdit(_:)))
-//        tableView.addGestureRecognizer(tapGesture!)
-//        tapGesture!.delegate = self
-//        
+      
         userBalance = 957.06
         let userbal = Double((userBalance * 100)/100)
        
@@ -75,6 +72,65 @@ class BucketTableVC: UITableViewController {
 //        tableView.reloadData()
 //        addBalanceSubview()
     }
+    
+    
+    @IBAction func days_Action(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "A Day has now Passed.", message: "Ok?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "OK, thanks", style: .cancel) { (action) in
+            
+            
+        }
+        alert.addAction(cancelAction)
+        
+        
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
+        alert.view.addConstraint(height);
+        self.present(alert, animated: true, completion: nil)
+
+        
+        for b in buckets {
+            
+            let dailly = Double(b.monthly/30)
+            let dly = (dailly/100)*100
+            
+            
+             b.balance += dly
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    
+    @IBAction func month_Action(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "A Whole Month just passed", message: "Ok?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "OK, thanks", style: .cancel) { (action) in
+            
+            
+        }
+        alert.addAction(cancelAction)
+        
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
+        alert.view.addConstraint(height);
+        self.present(alert, animated: true, completion: nil)
+
+
+        
+        for b in buckets {
+            
+            
+            b.balance += b.monthly
+        }
+        
+        self.tableView.reloadData()
+        
+        
+    }
+    
+    
     
      
     func reloadArrays() {
@@ -131,7 +187,7 @@ class BucketTableVC: UITableViewController {
         
 //       reloadArrays()
         self.balance = userbal
-        self.title = String(balance)
+        self.title = "Current Balance:  " + String(balance)
        
 //        reloadArrays()
 //         self.tableView.reloadData()
@@ -226,6 +282,7 @@ class BucketTableVC: UITableViewController {
             cell.viewController = self
          cell.bucket = buckets[indexPath.row]
             cell.bindData(bucket: cell.bucket!)
+            cell.bucketDetailBtn.tag = indexPath.row
 
            return cell
             
@@ -247,7 +304,7 @@ class BucketTableVC: UITableViewController {
     }
     
     func balanceDownTap() {
-        print("LOLLLLLER")
+//        print("LOLLLLLER")
     }
     
 //    func bucketSeg(bucket: Bucket) {
@@ -270,16 +327,17 @@ class BucketTableVC: UITableViewController {
         }
         
         if segue.identifier == "bucketShow" {
-            let indexPath = sender as! NSIndexPath
+//            let indexPath = sender as! NSIndexPath
+            print(sender)
             
             if let nav = segue.destination as? UINavigationController {
                 let bucketVC = nav.topViewController as? bucketVC!
-                let theBucket = buckets[indexPath.row] as! Bucket
+                let theBucket = buckets[(sender! as AnyObject).tag] as! Bucket
                 bucketVC?.bucket = theBucket
             }
 
     }
-    
+
 
     }
 
@@ -288,9 +346,6 @@ class BucketTableVC: UITableViewController {
 }
 
 
-extension BucketTableVC {
- 
-}
 
 
 
