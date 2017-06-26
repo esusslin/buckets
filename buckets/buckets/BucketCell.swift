@@ -9,7 +9,7 @@
 import UIKit
 
 class BucketCell: UITableViewCell {
-    
+//     var delegate: myTableDelegate?
     
     var prop: Proposal?
     
@@ -21,8 +21,17 @@ class BucketCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MyTableViewCell.tapEdit(_:)))
+//        addGestureRecognizer(tapGesture)
+        
+        
         // Initialization code
     }
+    
+//    func tapEdit(sender: UITapGestureRecognizer) {
+//        delegate?.myTableDelegate()
+//    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -51,25 +60,3 @@ class BucketCell: UITableViewCell {
 }
 }
 
-
-//if indexPath.section == 0 {
-//    print("loading buckets..")
-//    
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "bigBucketCell", for: indexPath) as! BigBucketCell
-//    
-//    cell.bucket = buckets[indexPath.row]
-//    
-//    cell.bindData(bucket: cell.bucket!)
-//    return cell
-//}
-//
-//if indexPath.section == 1 {
-//    print("loading props..")
-//    let cell = tableView.dequeueReusableCell(withIdentifier: "bucketCell", for: indexPath) as! BucketCell
-//    
-//    cell.prop = proposals[indexPath.row]
-//    
-//    cell.bindData(prop: cell.prop!)
-//    
-//    return cell
-//}
