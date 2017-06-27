@@ -78,13 +78,30 @@ var ref: DatabaseReference!
             self.proposals = newProposals
            self.collectionView.reloadData()
         })
+        
+        let balanceRef = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance")
+        
+        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").observe(.value, with: { snapshot in
+            
+            //        balanceRef.observe(.value, with: { snapshot in
+            
+            print("balance observing")
+            print(snapshot.value!)
+            
+            userBal = snapshot.value! as! Double
+            userBalance = snapshot.value! as! Double
+            
+            self.title = "$" + String(userBal)
 
-        
-//        print(Auth.auth().currentUser.name)
-        let userbal = Double((userBalance * 100)/100)
-        
-     
-        self.title = "Current Balance:  " + String(userbal)
+            print(userBal)
+            print(userBalance)
+            
+        })
+
+//        let userbal = Double((userBalance * 100)/100)
+//        
+//     
+//        self.title = "Current Balance:  " + String(userbal)
 
         
         let screenSize: CGRect = UIScreen.main.bounds
@@ -96,15 +113,10 @@ var ref: DatabaseReference!
         
         iconView.frame.size.height = iconView.frame.size.width
         
-//        iconView.frame.size.height = view.frame.size.height / 2
         iconView.backgroundColor = UIColor.white
         iconView.layer.cornerRadius = 22.0
         iconView.alpha = 0
-
-
-        
-//        let viewsDictionary = ["pic":iconViewimage, "up":upBtn, "down":downBtn, "per":percentLbl, "price":priceLbl] as [String : Any]
-        
+  
     
         iconViewimage.center.x = 40
         iconViewimage.center.y = 40
@@ -155,8 +167,6 @@ var ref: DatabaseReference!
         let dismissWihtTap = UITapGestureRecognizer(target: self, action: #selector(hidicon))
         iconView.addGestureRecognizer(dismissWihtTap)
 
-
-
         
     }
     
@@ -178,7 +188,7 @@ var ref: DatabaseReference!
         frame.origin.x = 0
         frame.origin.y = 0
         collectionView.frame = frame
-//        fullImageView.frame = collectionView.frame
+
     }
     
     
@@ -199,9 +209,6 @@ var ref: DatabaseReference!
         let per2 = Int(per * 100)
 
         let userbal = Double((userBalance * 100)/100)
-        
-        
-        self.title = "Checking Balance:  " + String(userbal)
         
         
         
@@ -233,9 +240,20 @@ var ref: DatabaseReference!
             
         }
         
+        let buckRef = bucket.ref
+        
+        buckRef?.child("balance").setValue(bucket.balance)
+        
+        userBalance -= 1.0
+        
+        
+        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+
+        
+        
         balaceLbl.text = "$ " + String(bucket.balance) + " of " + "$ " + String(bucket.price)
         
-//        collectionView.cellForItem(at: currentIndex)
+
         
         collectionView.reloadData()
     }
