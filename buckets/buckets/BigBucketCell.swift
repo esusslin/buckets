@@ -157,15 +157,13 @@ class BigBucketCell: UITableViewCell {
 
         let buckRef = bucket!.ref
         
-        print(buckRef)
+        
+        
         buckRef?.child("balance").setValue(bucket!.balance)
         
-//        userBalance = userBal
-//        
+       
         userBalance -= 1.0
-//
-//        print(userBalance)
-//        print(userBal)
+
         
         self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
         

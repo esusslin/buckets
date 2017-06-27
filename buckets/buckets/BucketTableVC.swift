@@ -12,9 +12,6 @@ import Firebase
 
 class BucketTableVC: UITableViewController {
     
-    
-    
-    
     var proposals: [Proposal] = []
     
     var buckets: [Bucket] = []
@@ -77,7 +74,7 @@ class BucketTableVC: UITableViewController {
             userBalance = snapshot.value! as! Double
             
             self.title = "$" + String(userBal)
-//            
+         
 //            for child in snapshot.children {   //in case there are several skillets
 //                
 //                print("child?")
@@ -91,9 +88,7 @@ class BucketTableVC: UITableViewController {
 //                //                print(child[key])
 //                                userBal = value2[key]! as! Double
 //                                userBalance = value2[key]! as! Double
-//                
-//                
-//              
+         
 //                            }
 //            self.title = "$" + String(userBal)
             print(userBal)
@@ -203,6 +198,10 @@ print(userBal)
             
             if indexPath.section == 0 {
                 let bucket = buckets[indexPath.row]
+
+                userBalance += bucket.balance
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+                
                 bucket.ref?.removeValue()
             }
             
