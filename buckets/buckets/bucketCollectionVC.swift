@@ -8,20 +8,27 @@
 
 import UIKit
 import Alamofire
+import Firebase
 
 class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
-
+var ref: DatabaseReference!
+    
+    var proposals: [Proposal] = []
+    
+    var buckets: [Bucket] = []
     
    var images = ["noun1", "noun2", "noun3"]
     
     @IBOutlet weak var iconView: UIView!
  
-    var itemImages = [UIImage]()
+
     var fullImageView: UIImageView!
     
-    
+//    var currentSection: Int = 0
+//    var currentRow: Int = 0
+    var currentIndexPath: Int = 0
     
     
     //ICON STUFF
@@ -29,12 +36,56 @@ class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var upBtn: UIButton!
     @IBOutlet weak var downBtn: UIButton!
     @IBOutlet weak var percentLbl: UILabel!
-    @IBOutlet weak var priceLbl: UILabel!
+    
+    @IBOutlet weak var balaceLbl: UILabel!
+    @IBOutlet weak var itemImage: UIImageView!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+        self.ref.child("users").child(userID!).child("buckets").observe(.value, with: { snapshot in
+            
+            var newBuckets: [Bucket] = []
+            
+            for item in snapshot.children {
+                // 4
+                let buck = Bucket(snapshot: item as! DataSnapshot)
+                newBuckets.append(buck)
+            }
+            
+            // 5
+            self.buckets = newBuckets
+            self.collectionView.reloadData()
+        })
+        
+        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
+            
+            var newProposals: [Proposal] = []
+            
+            for item in snapshot.children {
+                // 4
+                let prop = Proposal(snapshot: item as! DataSnapshot)
+                newProposals.append(prop)
+            }
+            
+            // 5
+            self.proposals = newProposals
+           self.collectionView.reloadData()
+        })
+
+        
+//        print(Auth.auth().currentUser.name)
+        let userbal = Double((userBalance * 100)/100)
+        
+     
+        self.title = "Current Balance:  " + String(userbal)
+
         
         let screenSize: CGRect = UIScreen.main.bounds
         
@@ -49,79 +100,57 @@ class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         iconView.backgroundColor = UIColor.white
         iconView.layer.cornerRadius = 22.0
         iconView.alpha = 0
+
+
         
+//        let viewsDictionary = ["pic":iconViewimage, "up":upBtn, "down":downBtn, "per":percentLbl, "price":priceLbl] as [String : Any]
         
-//        iconView.addSubview(iconViewimage)
-//        iconView.addSubview(upBtn)
-//        iconView.addSubview(downBtn)
-//         iconView.addSubview(percentLbl)
-//        iconView.addSubview(priceLbl)
-//
-        priceLbl.textColor = UIColor.white
-        percentLbl.textColor = UIColor.white
-        
-        let viewsDictionary = ["pic":iconViewimage, "up":upBtn, "down":downBtn, "per":percentLbl, "price":priceLbl] as [String : Any]
-        
-//        nextLbl.translatesAutoresizingMaskIntoConstraints = false
-//        arrowPic.translatesAutoresizingMaskIntoConstraints = false
-//        distLbl.translatesAutoresizingMaskIntoConstraints = false
-        
-//        iconView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[pic(40)]-20-[label]-20-|",
-//                                                                  options: [],
-//                                                                  metrics: nil,
-//                                                                  views: viewsDictionary))
-//        
+    
         iconViewimage.center.x = 40
         iconViewimage.center.y = 40
+        
+        itemImage.center.x = 40
+        itemImage.center.y = 100
+        
+        itemImage.layer.cornerRadius = 12
         upBtn.center.x = 180
         upBtn.center.y = 60
         downBtn.center.x = 180
         downBtn.center.y = 120
         
+        percentLbl.center.x = 100
+        percentLbl.center.y = 160
+        
+
+        balaceLbl.center.x = 100
+        balaceLbl.center.y = 200
+        
         print(upBtn.center)
         print(downBtn.center)
         
-        
-//        print(iconViewimage.center)
-//        
-//        print(iconView.center)
-//
-//        iconViewimage.frame.size.width = view.frame.size.width / 2
-//        
-//        iconViewimage.frame.size.height = iconView.frame.size.width / 3
-//        iconViewimage.frame.size.width = iconViewimage.frame.size.height
-//        iconViewimage.backgroundColor = UIColor.white
-        
-        
+ 
         
         
         
         self.view.addSubview(iconView)
         
-        for a in buckets {
-        let url = URL(string: a.imageString)!
-        let data = try? Data(contentsOf: url)
-        if let imageData = data {
-            let image = UIImage(data: data!)!
-            
-            itemImages.append(image)
-            }
-
-            
-        }
+//        for a in buckets {
+//        let url = URL(string: a.imageString)!
+//        let data = try? Data(contentsOf: url)
+//        if let imageData = data {
+//            let image = UIImage(data: data!)!
+//            
+//            itemImages.append(image)
+//            }
+//
+//            
+//        }
 
         
      
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
-//        fullImageView = UIImageView()
-//        fullImageView.contentMode = .scaleAspectFit
-//        fullImageView.backgroundColor = UIColor.lightGray
-//        fullImageView.isUserInteractionEnabled = true
-//        fullImageView.alpha = 0
-//        self.view.addSubview(fullImageView)
-        
+
         
         let dismissWihtTap = UITapGestureRecognizer(target: self, action: #selector(hidicon))
         iconView.addGestureRecognizer(dismissWihtTap)
@@ -134,9 +163,8 @@ class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidAppear(_ animated: Bool) {
         myBuckets.removeAll()
 
-        
-        print("ITEM IMAGES COUNT")
-       print(itemImages.count)
+        self.collectionView.reloadData()
+
     }
     
 
@@ -153,8 +181,82 @@ class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollecti
 //        fullImageView.frame = collectionView.frame
     }
     
+    
+    
+    @IBAction func upBtn_pressed(_ sender: Any) {
+        print(userBalance)
+        
+        userBalance -= 1.0
+//        print(currentIndex)
+        
+     let bucket = buckets[currentIndexPath]
+        
+        bucket.balance += 1.0
+        
+        print(bucket.balance)
+        
+        let per = (bucket.balance / bucket.price) as! Double
+        let per2 = Int(per * 100)
+
+        let userbal = Double((userBalance * 100)/100)
+        
+        
+        self.title = "Checking Balance:  " + String(userbal)
+        
+        
+        
+        if bucket.balance < 1 {
+            
+            
+            print(per2)
+            percentLbl.text = "0%"
+            percentLbl.textColor = UIColor.red
+            iconViewimage.backgroundColor = UIColor.red
+            
+        } else if (per2 < 25) && (per2 > 1) {
+            percentLbl.text = String(per2) + "%"
+            percentLbl.textColor = UIColor.red
+            iconViewimage.backgroundColor = UIColor.red
+            //           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
+        } else if (per2 > 25) && (per2 < 75) {
+            print(per2)
+            percentLbl.text = String(per2) + "%"
+            percentLbl.textColor = UIColor.yellow
+            iconViewimage.backgroundColor = UIColor.yellow
+            //            cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
+        } else if (per2 > 75) {
+            print(per2)
+            percentLbl.text = String(per2) + "%"
+            percentLbl.textColor = UIColor.red
+            
+            iconViewimage.backgroundColor = UIColor.green
+            
+        }
+        
+        balaceLbl.text = "$ " + String(bucket.balance) + " of " + "$ " + String(bucket.price)
+        
+//        collectionView.cellForItem(at: currentIndex)
+        
+        collectionView.reloadData()
+    }
+
+    
+    @IBAction func downBtn_pressed(_ sender: Any) {
+        
+        
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemImages.count
+        return buckets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -168,6 +270,8 @@ class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         
         let a = buckets[indexPath.row]
         
+        print("INDEX PATH")
+        print(indexPath)
         let url = URL(string: a.imageString)!
         let data = try? Data(contentsOf: url)
         if let imageData = data {
@@ -184,7 +288,7 @@ class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollecti
         if a.balance < 1 {
             
             
-            print(per2)
+            
             cell.percentlabel.text = "0%"
             cell.percentlabel.textColor = UIColor.red
             
@@ -193,24 +297,18 @@ class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollecti
             cell.percentlabel.textColor = UIColor.red
 //           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 25) && (per2 < 75) {
-            print(per2)
+           
             cell.percentlabel.text = String(per2) + "%"
             cell.percentlabel.textColor = UIColor.yellow
             cell.iconImageView.backgroundColor = UIColor.yellow
 //            cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 75) {
-            print(per2)
+           
             cell.percentlabel.text = String(per2) + "%"
            cell.percentlabel.textColor = UIColor.red
             cell.iconImageView.backgroundColor = UIColor.red
            
         }
-
-        
-        
-
-//        cell.imageView.image = itemImages[indexPath.row]
-        
         
         
         return cell
@@ -220,21 +318,68 @@ class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! customCell
-       let buck = buckets[indexPath.row]
-            self.showBucket(bucket: buck)
-  
+        
         print(indexPath)
+        print(indexPath.section)
+        print(indexPath.row)
+        
+        currentIndexPath = indexPath.row
+        
+       let buck = buckets[indexPath.row]
+        self.showBucket(bucket: buck)
+  
+//        currentBucket = buckets[indexPath.row]
     }
 
     
     func showBucket(bucket: Bucket) {
         
-//        iconViewimage.center.x = iconView.center.x
-//        iconViewimage.center.y = iconView.center.y
-//        
+        let url = URL(string: bucket.imageString)!
+        let data = try? Data(contentsOf: url)
+        if let imageData = data {
+            let image = UIImage(data: data!)!
+            
+            itemImage.image = image
+        }
 
         
-        iconView.transform = CGAffineTransform(scaleX: 0, y: 0)
+        let per = (bucket.balance / bucket.price) as! Double
+        let per2 = Int(per * 100)
+        
+        balaceLbl.text = "$ " + String(bucket.balance) + " of " + "$ " + String(bucket.price)
+        
+        
+        if bucket.balance < 1 {
+            
+            
+            print(per2)
+            percentLbl.text = "0%"
+            percentLbl.textColor = UIColor.red
+            iconViewimage.backgroundColor = UIColor.red
+            
+        } else if (per2 < 25) && (per2 > 1) {
+            percentLbl.text = "$" + String(per2) + "%"
+            percentLbl.textColor = UIColor.red
+            iconViewimage.backgroundColor = UIColor.red
+            //           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
+        } else if (per2 > 25) && (per2 < 75) {
+            print(per2)
+            percentLbl.text = String(per2) + "%"
+            percentLbl.textColor = UIColor.yellow
+            iconViewimage.backgroundColor = UIColor.yellow
+            //            cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
+        } else if (per2 > 75) {
+            print(per2)
+            percentLbl.text = String(per2) + "%"
+            percentLbl.textColor = UIColor.red
+
+            iconViewimage.backgroundColor = UIColor.green
+            
+        }
+
+
+        
+      iconView.transform = CGAffineTransform(scaleX: 0, y: 0)
        iconView.contentMode = .scaleAspectFit
         
         UIView.animate(withDuration: 0.2, delay: 0, options: [], animations:{[unowned self] in

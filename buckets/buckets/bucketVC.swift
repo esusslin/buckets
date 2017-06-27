@@ -62,14 +62,14 @@ class bucketVC: UIViewController {
                 case 1:
                     
                    let wkly = Double(bucket!.monthly/4)
-                   let wk = (wkly/100)*100
+                   let wk = Double((wkly/100)*100)
                    
                 microRateLbl.text = "$" + String(wk) + "0 weekly";
                 
             case 2:
                 
                 let dailly = Double(bucket!.monthly/30)
-                let dly = (dailly/100)*100
+                let dly = Double((dailly/100)*100)
                 
                 microRateLbl.text = "$" + String(dly) + "0 weekly";
                 

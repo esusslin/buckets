@@ -7,27 +7,11 @@
 //
 
 
-//// 1
-//let rootRef = FIRDatabase.database().reference()
-//
-//// 2
-//let childRef = FIRDatabase.database().reference(withPath: "grocery-items")
-//
-//// 3
-//let itemsRef = rootRef.child("grocery-items")
-//
-//// 4
-//let milkRef = itemsRef.child("milk")
-//
-//// 5
-//print(rootRef.key)   // prints: ""
-//print(childRef.key)  // prints: "grocery-items"
-//print(itemsRef.key)  // prints: "grocery-items"
-//print(milkRef.key)   // prints: "milk"
 
 import UIKit
 import Alamofire
 import Firebase
+import FirebaseAuth
 
 class urlVC: UIViewController {
     
@@ -47,48 +31,31 @@ class urlVC: UIViewController {
         
     }
     
-//    func queryone() {
-//        
-//        var proposals: [Proposal] = []
-//        var prop: Proposal?
-//        let userID = Auth.auth().currentUser?.uid
-//        
-////        let key = self.ref.child("users").child(userID!).child("proposals").key
-////        print(key)
-////        
-////        let updateProp = ["uid": userID,
-////                    "item": "Callaway Men's Strata Complete Golf Club Set with Bag (12-Piece)",
-////                    "price": 199.00
-////        ] as [String : Any]
-////        
-////        let childUpdates = ["/users/\(userID)/proposals/\(key)": updateProp
-////        ]
-//        
-////        self.ref.updateChildValues(childUpdates)
-//
-//        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
-//            
-//            for item in snapshot.children {
-//
-//                let prop = Proposal(snapshot: item as! DataSnapshot)
-//                proposals.append(prop)
-//            }
-//            
-//            for p in proposals {
-//                if p.item == "Callaway Men's Strata Complete Golf Club Set with Bag (12-Piece)" {
-//                    prop = p
-//                }
-//            }
-//
-//            print(prop?.item)
-//             print(prop?.price)
-//        })
-//
-//
-//    }
-//
-//  
-//}
+
+    @IBAction func logoutsBtn_pressed(_ sender: Any) {
+        
+//        let firebaseAuth = Auth.auth()
+        do {
+            try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as! loginVC
+        
+        self.present(vc, animated: true, completion: nil)
+
+        
+        
+    }
+    
+
+    @IBAction func btn(_ sender: Any) {
+        
+        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(219.03)
+        
+    }
+
     @IBAction func submitBtn_pressed(_ sender: Any) {
       postSemantics(url: self.urlTF.text!)
 //        queryone()
@@ -124,8 +91,6 @@ class urlVC: UIViewController {
                     alert.view.addConstraint(height);
                     self.present(alert, animated: true, completion: nil)
 
-            
-                    
                         }
         }
         
