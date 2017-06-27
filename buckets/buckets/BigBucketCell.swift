@@ -67,8 +67,7 @@ class BigBucketCell: UITableViewCell {
         let per2 = Int(per * 100)
         
         print("per 2")
-//        print(viewController!.userBalance)
-//        BucketTableVC.userBalance
+
         print(per2)
         if bucket.balance == 0 {
             percentLbl.text = "0%"
@@ -93,8 +92,7 @@ class BigBucketCell: UITableViewCell {
              balanceLbl.text = "$" + String(bucket.balance) + "0"
         }
         
-        print("bucket balance")
-        print(bucket.balance)
+    
         
         balanceLbl.text = "$" + String(bucket.balance) + "0"
         itemLbl.text = bucket.item
@@ -114,9 +112,10 @@ class BigBucketCell: UITableViewCell {
     @IBAction func upBtn_pressed(_ sender: Any) {
          
         
+        print(userBal)
         print(userBalance)
         
-        userBalance -= 1.0
+        
         self.viewController?.viewDidAppear(true)
 //          self.viewController?.title = String(userBalance)
         
@@ -160,6 +159,15 @@ class BigBucketCell: UITableViewCell {
         
         print(buckRef)
         buckRef?.child("balance").setValue(bucket!.balance)
+        
+//        userBalance = userBal
+//        
+        userBalance -= 1.0
+//
+//        print(userBalance)
+//        print(userBal)
+        
+        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
         
 
         self.viewController?.viewDidAppear(false)

@@ -9,11 +9,6 @@
 import UIKit
 import Firebase
 
-class StaticLinker
-{
-    static var viewController : UITableViewController? = nil
-}
-
 
 class BucketTableVC: UITableViewController {
     
@@ -24,21 +19,11 @@ class BucketTableVC: UITableViewController {
     
     var buckets: [Bucket] = []
     
-    var balance: Double = 0.0 {
-        willSet(newValue){
-            self.title = String(balance)
-        }
-        didSet{
-            self.title = String(balance)
-        }
-    }
-
+//    var userBal = Double()
     
     var ref: DatabaseReference!
     
-    
 
-    
     let section = ["Buckets", "Queue"]
 
 
@@ -78,38 +63,48 @@ class BucketTableVC: UITableViewController {
             self.proposals = newProposals
             self.tableView.reloadData()
         })
-
-      
-        userBalance = 957.06
-        let userbal = Double((userBalance * 100)/100)
-       
         
-        self.balance = userbal
-
+        let balanceRef = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance")
+        
+        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").observe(.value, with: { snapshot in
+        
+//        balanceRef.observe(.value, with: { snapshot in
+            
+            print("balance observing")
+            print(snapshot.value!)
+            
+            userBal = snapshot.value! as! Double
+            userBalance = snapshot.value! as! Double
+            
+            self.title = "$" + String(userBal)
+//            
+//            for child in snapshot.children {   //in case there are several skillets
+//                
+//                print("child?")
+//                print(child)
+//                
+//                                let key = (child as AnyObject).key as String
+//                
+//                                let value2 = snapshot.value as! [String : AnyObject]
+//              
+//                
+//                //                print(child[key])
+//                                userBal = value2[key]! as! Double
+//                                userBalance = value2[key]! as! Double
+//                
+//                
+//              
+//                            }
+//            self.title = "$" + String(userBal)
+            print(userBal)
+            print(userBalance)
+            
+        })
+      
         
         tableView.allowsMultipleSelectionDuringEditing = false
         
-//        ref = Database.database().reference()
-//        print("SELF")
-//        reloadArrays()
-//        let tableWidth = view.frame.size.width
-//        let tableHeight = view.frame.size.height
-        
-        
-//        balanceView.frame.size.width = tableWidth / 2
-//        balanceView.frame.size.height = tableHeight / 8
-//        balanceView.backgroundColor = UIColor.blue
-//        balanceView.center.x = view.center.x
-//        
-//        balanceView.center.y = view.center.y - 300
-//        
-//        
-//        view.addSubview(balanceView)
-//        print(view.center.x)
-//        print(view.center.y)
-//        reloadArrays()
-//        tableView.reloadData()
-//        addBalanceSubview()
+
     }
     
     
@@ -169,67 +164,18 @@ class BucketTableVC: UITableViewController {
         
     }
     
-    
-    
-//     
-//    func reloadArrays() {
-//        
-//       proposals.removeAll()
-//        buckets.removeAll()
-//        
-//        print("COUNT")
-//        print(proposals.count)
-//        print(buckets.count)
-//        
-//        let userID = Auth.auth().currentUser?.uid
-//        
-//
-//
-//        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
-//
-//            for item in snapshot.children {
-//                // 4
-//                let prop = Proposal(snapshot: item as! DataSnapshot)
-//                
-//                print("KEYS FOR ALLLLLL")
-//                print(prop.key)
-//                print(prop.ref)
-//                proposals.append(prop)
-//            }
-//               self.tableView.reloadData()
-//            
-//        })
-//
-//        self.ref.child("users").child(userID!).child("buckets").observe(.value, with: { snapshot in
-//
-//            for item in snapshot.children {
-//                // 4
-//                let prop = Bucket(snapshot: item as! DataSnapshot)
-//                buckets.append(prop)
-//            }
-//            
-//           self.tableView.reloadData()
-//        })
-//
-//        
-//    }
-
-    
     override func viewDidAppear(_ animated: Bool) {
-       
-        
+     
         print("APPEAR")
-        
-        print(userBalance)
-//        self.balance = userBalance
+        print(userBal)
+//        print(userBalance)
+print(userBal)
         let userbal = Double((userBalance * 100)/100)
         
-//       reloadArrays()
-        self.balance = userbal
-        self.title = "Current Balance:  " + String(balance)
+
+//        self.balance = userbal
+//        self.title = "Current Balance:  " + String(balance)
        
-//        reloadArrays()
-//         self.tableView.reloadData()
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
@@ -252,6 +198,21 @@ class BucketTableVC: UITableViewController {
         return 80
     }
 
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            if indexPath.section == 0 {
+                let bucket = buckets[indexPath.row]
+                bucket.ref?.removeValue()
+            }
+            
+            if indexPath.section == 1 {
+                let proposal = proposals[indexPath.row]
+                proposal.ref?.removeValue()
+            }
+
+        }
+    }
 
 
     // MARK: - Table view data source
@@ -279,7 +240,7 @@ class BucketTableVC: UITableViewController {
         let userbal = Double((userBalance * 100)/100)
         
         
-        self.balance = userbal
+//        self.balance = userbal
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

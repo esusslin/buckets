@@ -19,7 +19,7 @@ var myProposals = [Proposal]()
 
 var userBalance = Double()
 
-
+var userBal = Double()
 
 
 //var userBalance = Float()

@@ -28,7 +28,6 @@
 		861356951EF95FDF0095631A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 861356941EF95FDF0095631A /* GoogleService-Info.plist */; };
 		861356971EF961250095631A /* loginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356961EF961250095631A /* loginVC.swift */; };
 		861356991EF965980095631A /* welcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356981EF965980095631A /* welcomeVC.swift */; };
-		8613569B1EF97FBF0095631A /* WelcomeBackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613569A1EF97FBF0095631A /* WelcomeBackVC.swift */; };
 		8613569D1EF990FA0095631A /* urlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613569C1EF990FA0095631A /* urlVC.swift */; };
 		8613569F1EF993D50095631A /* tabbarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8613569E1EF993D50095631A /* tabbarVC.swift */; };
 		861356A11EF995620095631A /* bucketListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356A01EF995620095631A /* bucketListVC.swift */; };
@@ -93,7 +92,6 @@
 		861356941EF95FDF0095631A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		861356961EF961250095631A /* loginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginVC.swift; sourceTree = "<group>"; };
 		861356981EF965980095631A /* welcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = welcomeVC.swift; sourceTree = "<group>"; };
-		8613569A1EF97FBF0095631A /* WelcomeBackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeBackVC.swift; sourceTree = "<group>"; };
 		8613569C1EF990FA0095631A /* urlVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = urlVC.swift; sourceTree = "<group>"; };
 		8613569E1EF993D50095631A /* tabbarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabbarVC.swift; sourceTree = "<group>"; };
 		861356A01EF995620095631A /* bucketListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketListVC.swift; sourceTree = "<group>"; };
@@ -179,17 +177,15 @@
 			isa = PBXGroup;
 			children = (
 				861356AA1EFAB6C60095631A /* BucketTableVC.swift */,
-				8696779B1F02CA9300DA95CF /* BuckTableVC.swift */,
+				869699301EFDD71700F388E6 /* bucketCollectionVC.swift */,
 				861356A41EF9964C0095631A /* Models.swift */,
 				869699351EFDF4D100F388E6 /* ChatVC.swift */,
 				869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */,
 				869699381F016DBF00F388E6 /* CreateChannelCell.swift */,
 				861356961EF961250095631A /* loginVC.swift */,
-				869699301EFDD71700F388E6 /* bucketCollectionVC.swift */,
 				861356AE1EFAD6240095631A /* bucketVC.swift */,
 				8613569E1EF993D50095631A /* tabbarVC.swift */,
 				861356981EF965980095631A /* welcomeVC.swift */,
-				8613569A1EF97FBF0095631A /* WelcomeBackVC.swift */,
 				861356AC1EFABBB30095631A /* BucketCell.swift */,
 				86A07CB91EFC568B00F82E82 /* BigBucketCell.swift */,
 				861356261EF8560A0095631A /* AppDelegate.swift */,
@@ -199,6 +195,7 @@
 				8613562A1EF8560A0095631A /* Main.storyboard */,
 				869699321EFDD7E000F388E6 /* customCell.swift */,
 				861356A01EF995620095631A /* bucketListVC.swift */,
+				8696779B1F02CA9300DA95CF /* BuckTableVC.swift */,
 				8613562D1EF8560A0095631A /* Assets.xcassets */,
 				8613562F1EF8560A0095631A /* LaunchScreen.storyboard */,
 				861356321EF8560A0095631A /* Info.plist */,
@@ -445,7 +442,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				869699371EFDF4D100F388E6 /* ChatVC.swift in Sources */,
-				8613569B1EF97FBF0095631A /* WelcomeBackVC.swift in Sources */,
 				861356B11EFB2C230095631A /* balanceVC.swift in Sources */,
 				861356AD1EFABBB30095631A /* BucketCell.swift in Sources */,
 				8613569D1EF990FA0095631A /* urlVC.swift in Sources */,
