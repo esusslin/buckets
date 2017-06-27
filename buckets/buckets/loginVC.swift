@@ -8,9 +8,11 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class loginVC: UIViewController {
     
+    @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -29,16 +31,24 @@ class loginVC: UIViewController {
 
     @IBAction func loginBtn_pressed(_ sender: Any) {
         
-        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-            
+       Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+        
+        
             if (user != nil) {
                 print("user saved")
                 print(user?.email)
+//                print(user?.displayName)
                 
-                let user = Auth.auth().currentUser
+//                user?.setValue(self.nameTextField.text!, forKey: "name")
+                
+                Analytics.setUserProperty(self.nameTextField.text, forName: "name")
+                
+                print(user?.displayName)
+                
                 
                  let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "welcomeVC") as! welcomeVC
                  welcomeVC.email = user?.email
+               
                 
                 self.present(welcomeVC, animated: true, completion: nil)
             } else {

@@ -31,11 +31,15 @@ class WelcomeBackVC: UIViewController {
         ref = Database.database().reference()
         
         welcomebacklbl.text = "WElcome back \(Auth.auth().currentUser!.email!)"
+        
+        Analytics.setUserProperty("jerry", forName: "name")
 
         // Do any additional setup after loading the view.
     }
 
     @IBAction func createBtn_pressed(_ sender: Any) {
+        
+       
         
         self.ref.child("users").child(Auth.auth().currentUser!.uid).child("proposals").childByAutoId().setValue(["item": item.text, "price": price.text, "monthly": monthly.text, "months": months.text])
         

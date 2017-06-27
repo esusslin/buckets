@@ -38,10 +38,12 @@
 		861356AD1EFABBB30095631A /* BucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356AC1EFABBB30095631A /* BucketCell.swift */; };
 		861356AF1EFAD6240095631A /* bucketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356AE1EFAD6240095631A /* bucketVC.swift */; };
 		861356B11EFB2C230095631A /* balanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356B01EFB2C230095631A /* balanceVC.swift */; };
+		8696779C1F02CA9300DA95CF /* BuckTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8696779B1F02CA9300DA95CF /* BuckTableVC.swift */; };
 		869699311EFDD71700F388E6 /* bucketCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699301EFDD71700F388E6 /* bucketCollectionVC.swift */; };
 		869699331EFDD7E000F388E6 /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699321EFDD7E000F388E6 /* customCell.swift */; };
 		869699361EFDF4D100F388E6 /* ChannelListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */; };
 		869699371EFDF4D100F388E6 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699351EFDF4D100F388E6 /* ChatVC.swift */; };
+		869699391F016DBF00F388E6 /* CreateChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699381F016DBF00F388E6 /* CreateChannelCell.swift */; };
 		86A07CBA1EFC568B00F82E82 /* BigBucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A07CB91EFC568B00F82E82 /* BigBucketCell.swift */; };
 		D328A4DF04C9E506E652DB4F /* Pods_buckets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */; };
 /* End PBXBuildFile section */
@@ -101,10 +103,12 @@
 		861356AC1EFABBB30095631A /* BucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketCell.swift; sourceTree = "<group>"; };
 		861356AE1EFAD6240095631A /* bucketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketVC.swift; sourceTree = "<group>"; };
 		861356B01EFB2C230095631A /* balanceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = balanceVC.swift; sourceTree = "<group>"; };
+		8696779B1F02CA9300DA95CF /* BuckTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuckTableVC.swift; sourceTree = "<group>"; };
 		869699301EFDD71700F388E6 /* bucketCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketCollectionVC.swift; sourceTree = "<group>"; };
 		869699321EFDD7E000F388E6 /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
 		869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelListTableVC.swift; sourceTree = "<group>"; };
 		869699351EFDF4D100F388E6 /* ChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		869699381F016DBF00F388E6 /* CreateChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChannelCell.swift; sourceTree = "<group>"; };
 		86A07CB91EFC568B00F82E82 /* BigBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigBucketCell.swift; sourceTree = "<group>"; };
 		A612732DA01ED0404779684B /* Pods-buckets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-buckets.debug.xcconfig"; path = "Pods/Target Support Files/Pods-buckets/Pods-buckets.debug.xcconfig"; sourceTree = "<group>"; };
 		B96D3A6D298AE12A68732E63 /* Pods_buckets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_buckets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,19 +179,21 @@
 			isa = PBXGroup;
 			children = (
 				861356AA1EFAB6C60095631A /* BucketTableVC.swift */,
-				861356AE1EFAD6240095631A /* bucketVC.swift */,
+				8696779B1F02CA9300DA95CF /* BuckTableVC.swift */,
 				861356A41EF9964C0095631A /* Models.swift */,
-				8613569E1EF993D50095631A /* tabbarVC.swift */,
+				869699351EFDF4D100F388E6 /* ChatVC.swift */,
+				869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */,
+				869699381F016DBF00F388E6 /* CreateChannelCell.swift */,
+				861356961EF961250095631A /* loginVC.swift */,
 				869699301EFDD71700F388E6 /* bucketCollectionVC.swift */,
+				861356AE1EFAD6240095631A /* bucketVC.swift */,
+				8613569E1EF993D50095631A /* tabbarVC.swift */,
 				861356981EF965980095631A /* welcomeVC.swift */,
 				8613569A1EF97FBF0095631A /* WelcomeBackVC.swift */,
-				861356961EF961250095631A /* loginVC.swift */,
 				861356AC1EFABBB30095631A /* BucketCell.swift */,
 				86A07CB91EFC568B00F82E82 /* BigBucketCell.swift */,
 				861356261EF8560A0095631A /* AppDelegate.swift */,
 				861356A61EF9D5C50095631A /* proposalVC.swift */,
-				869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */,
-				869699351EFDF4D100F388E6 /* ChatVC.swift */,
 				861356B01EFB2C230095631A /* balanceVC.swift */,
 				8613569C1EF990FA0095631A /* urlVC.swift */,
 				8613562A1EF8560A0095631A /* Main.storyboard */,
@@ -448,12 +454,14 @@
 				869699331EFDD7E000F388E6 /* customCell.swift in Sources */,
 				86A07CBA1EFC568B00F82E82 /* BigBucketCell.swift in Sources */,
 				861356AB1EFAB6C60095631A /* BucketTableVC.swift in Sources */,
+				8696779C1F02CA9300DA95CF /* BuckTableVC.swift in Sources */,
 				869699311EFDD71700F388E6 /* bucketCollectionVC.swift in Sources */,
 				861356971EF961250095631A /* loginVC.swift in Sources */,
 				861356A71EF9D5C50095631A /* proposalVC.swift in Sources */,
 				861356A51EF9964C0095631A /* Models.swift in Sources */,
 				861356AF1EFAD6240095631A /* bucketVC.swift in Sources */,
 				869699361EFDF4D100F388E6 /* ChannelListTableVC.swift in Sources */,
+				869699391F016DBF00F388E6 /* CreateChannelCell.swift in Sources */,
 				8613569F1EF993D50095631A /* tabbarVC.swift in Sources */,
 				861356271EF8560A0095631A /* AppDelegate.swift in Sources */,
 			);

@@ -158,6 +158,8 @@ class BigBucketCell: UITableViewCell {
 
         let buckRef = bucket!.ref
         
+        print(buckRef)
+        
 
         self.viewController?.viewDidAppear(false)
         

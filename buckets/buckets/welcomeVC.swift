@@ -18,7 +18,7 @@ class welcomeVC: UIViewController {
     
     var ref: DatabaseReference!
 
-
+    var name: String?
     var email: String?
     @IBOutlet weak var itemTF: UITextField!
     @IBOutlet weak var priceTF: UITextField!
@@ -36,7 +36,8 @@ class welcomeVC: UIViewController {
         
         print(Auth.auth().currentUser)
         
-        welcomeLbl.text = "Welcome \(self.email!)"
+        welcomeLbl.text = "Welcome \(self.email!), \(self.name)"
+        
 
         // Do any additional setup after loading the view.
     }

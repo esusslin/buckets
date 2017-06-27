@@ -19,6 +19,11 @@ class BucketTableVC: UITableViewController {
     
     
     
+    
+    var proposals: [Proposal] = []
+    
+    var buckets: [Bucket] = []
+    
     var balance: Double = 0.0 {
         willSet(newValue){
             self.title = String(balance)
@@ -40,6 +45,40 @@ class BucketTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ref = Database.database().reference()
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+        self.ref.child("users").child(userID!).child("buckets").observe(.value, with: { snapshot in
+            
+            var newBuckets: [Bucket] = []
+            
+            for item in snapshot.children {
+                // 4
+                let buck = Bucket(snapshot: item as! DataSnapshot)
+                newBuckets.append(buck)
+            }
+            
+            // 5
+            self.buckets = newBuckets
+            self.tableView.reloadData()
+        })
+        
+        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
+            
+            var newProposals: [Proposal] = []
+            
+            for item in snapshot.children {
+                // 4
+                let prop = Proposal(snapshot: item as! DataSnapshot)
+                newProposals.append(prop)
+            }
+            
+            // 5
+            self.proposals = newProposals
+            self.tableView.reloadData()
+        })
+
       
         userBalance = 957.06
         let userbal = Double((userBalance * 100)/100)
@@ -50,9 +89,9 @@ class BucketTableVC: UITableViewController {
         
         tableView.allowsMultipleSelectionDuringEditing = false
         
-        ref = Database.database().reference()
-        print("SELF")
-        reloadArrays()
+//        ref = Database.database().reference()
+//        print("SELF")
+//        reloadArrays()
 //        let tableWidth = view.frame.size.width
 //        let tableHeight = view.frame.size.height
         
@@ -132,48 +171,48 @@ class BucketTableVC: UITableViewController {
     
     
     
-     
-    func reloadArrays() {
-        
-       proposals.removeAll()
-        buckets.removeAll()
-        
-        print("COUNT")
-        print(proposals.count)
-        print(buckets.count)
-        
-        let userID = Auth.auth().currentUser?.uid
-        
-
-
-        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
-
-            for item in snapshot.children {
-                // 4
-                let prop = Proposal(snapshot: item as! DataSnapshot)
-                
-                print("KEYS FOR ALLLLLL")
-                print(prop.key)
-                print(prop.ref)
-                proposals.append(prop)
-            }
-               self.tableView.reloadData()
-            
-        })
-
-        self.ref.child("users").child(userID!).child("buckets").observe(.value, with: { snapshot in
-
-            for item in snapshot.children {
-                // 4
-                let prop = Bucket(snapshot: item as! DataSnapshot)
-                buckets.append(prop)
-            }
-            
-           self.tableView.reloadData()
-        })
-
-        
-    }
+//     
+//    func reloadArrays() {
+//        
+//       proposals.removeAll()
+//        buckets.removeAll()
+//        
+//        print("COUNT")
+//        print(proposals.count)
+//        print(buckets.count)
+//        
+//        let userID = Auth.auth().currentUser?.uid
+//        
+//
+//
+//        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
+//
+//            for item in snapshot.children {
+//                // 4
+//                let prop = Proposal(snapshot: item as! DataSnapshot)
+//                
+//                print("KEYS FOR ALLLLLL")
+//                print(prop.key)
+//                print(prop.ref)
+//                proposals.append(prop)
+//            }
+//               self.tableView.reloadData()
+//            
+//        })
+//
+//        self.ref.child("users").child(userID!).child("buckets").observe(.value, with: { snapshot in
+//
+//            for item in snapshot.children {
+//                // 4
+//                let prop = Bucket(snapshot: item as! DataSnapshot)
+//                buckets.append(prop)
+//            }
+//            
+//           self.tableView.reloadData()
+//        })
+//
+//        
+//    }
 
     
     override func viewDidAppear(_ animated: Bool) {
@@ -258,16 +297,7 @@ class BucketTableVC: UITableViewController {
        
     }
 
-    
-    func balanceUpTap(_ sender: UIGestureRecognizer){
-        
-        print("Up tap")
-    }
-    
-    func balanceDownTap(_ sender: UIGestureRecognizer){
-        
-        print("Down tap")
-    }
+
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -345,7 +375,7 @@ class BucketTableVC: UITableViewController {
 
 }
 
-
+//
 
 
 

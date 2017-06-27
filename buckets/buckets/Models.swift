@@ -9,6 +9,10 @@
 import Foundation
 import Firebase
 
+
+var username: String?
+
+
 var myBuckets = [Bucket]()
 var myProposals = [Proposal]()
 //Double(round(1000*x)/1000)
@@ -16,11 +20,26 @@ var myProposals = [Proposal]()
 var userBalance = Double()
 
 
-var proposals: [Proposal] = []
 
-var buckets: [Bucket] = []
 
 //var userBalance = Float()
+
+
+internal class Channel {
+    internal let id: String
+    internal let name: String
+       
+    init(id: String, name: String) {
+        self.id = id
+        self.name = name
+    }
+}
+
+struct User {
+    
+    let id: String
+    let name: String
+}
 
 
 //}
