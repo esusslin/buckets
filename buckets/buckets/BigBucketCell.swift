@@ -159,6 +159,7 @@ class BigBucketCell: UITableViewCell {
         let buckRef = bucket!.ref
         
         print(buckRef)
+        buckRef?.child("balance").setValue(bucket!.balance)
         
 
         self.viewController?.viewDidAppear(false)
