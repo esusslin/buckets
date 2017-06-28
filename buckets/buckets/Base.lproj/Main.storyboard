@@ -583,6 +583,7 @@
                                         <constraint firstItem="reY-pD-LaG" firstAttribute="leading" secondItem="ufz-Di-2Fy" secondAttribute="trailing" constant="8" symbolic="YES" id="wge-WW-P41"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.92636164679999999" green="1" blue="0.97918112599999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="bucketImage" destination="ufz-Di-2Fy" id="GjQ-Bj-Vgl"/>
                                     <outlet property="itemLbl" destination="reY-pD-LaG" id="Ib3-7w-uJg"/>
@@ -654,6 +655,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.92934819049999995" green="1" blue="0.9254633256" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="B6G-7o-mDc" firstAttribute="centerY" secondItem="1Fg-JF-rPj" secondAttribute="centerY" id="3nq-m0-JfJ"/>
                                         <constraint firstItem="Fdp-dT-qOR" firstAttribute="leading" secondItem="B6G-7o-mDc" secondAttribute="trailing" constant="8" symbolic="YES" id="DmN-CA-7u6"/>

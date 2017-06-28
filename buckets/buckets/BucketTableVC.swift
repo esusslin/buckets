@@ -188,6 +188,10 @@ print(userBal)
         return self.section [section ]
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 80
@@ -212,6 +216,11 @@ print(userBal)
 
         }
     }
+    
+    
+//    func tableView(tableView: UITableView, ViewForHeaderInSection section: Int) -> UIView? {
+//        return self.tableView.backgroundColor = UIColor.black
+//    }
 
 
     // MARK: - Table view data source
