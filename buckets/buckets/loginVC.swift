@@ -12,6 +12,9 @@ import Firebase
 
 class loginVC: UIViewController {
     
+    
+    var email: String?
+    var password: String?
 
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -21,6 +24,7 @@ class loginVC: UIViewController {
     @IBOutlet weak var signUpBtn: UIButton!
     
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var UserSeg: UISegmentedControl!
 
 
     override func viewDidLoad() {
@@ -42,11 +46,44 @@ class loginVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func userSEg(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex
+            
+        {
+        case 0:
+            self.email = "gary@gary.com"
+            self.password = "password";
+        case 1:
+            
+            
+            self.email = "betty@betty.com"
+            self.password = "password";
+            
+        case 2:
+            self.email = "ned@ned.com"
+            self.password = "password";
+            
+            
+        default:
+            break;
+        }
 
+        
+        
+    }
+
+  
     @IBAction func loginBtn_pressed(_ sender: Any) {
         
-        Auth.auth().signIn(withEmail: emailTextField.text!,
-                               password: passwordTextField.text!)
+        
+        
+     
+        Auth.auth().signIn(withEmail: self.email!, password: self.password!)
+                           //                               password: passwordTextField.text!)
+        
+//        Auth.auth().signIn(withEmail: emailTextField.text!,
+//                               password: passwordTextField.text!)
     }
     
 //        let alert = UIAlertController(title: "Welcome Back",

@@ -73,7 +73,7 @@ class BucketTableVC: UITableViewController {
             userBal = snapshot.value! as! Double
             userBalance = snapshot.value! as! Double
             
-            self.title = "$" + String(userBal)
+            self.title = "$" + String(userBal) + "0"
          
 //            for child in snapshot.children {   //in case there are several skillets
 //                
@@ -211,7 +211,7 @@ class BucketTableVC: UITableViewController {
         
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.font = UIFont(name: "Futura", size: 20)
-        header.textLabel?.textColor = UIColor.lightGray
+        header.textLabel?.textColor = UIColor.white
         (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
         

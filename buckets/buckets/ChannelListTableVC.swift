@@ -81,6 +81,8 @@ class ChannelListTableVC: UITableViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         
+        senderDisplayName = "Gary"
+        
         ref = Database.database().reference()
         super.viewDidLoad()
         title = "Channels"

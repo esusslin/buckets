@@ -97,17 +97,12 @@ var ref: DatabaseReference!
             userBal = snapshot.value! as! Double
             userBalance = snapshot.value! as! Double
             
-            self.title = "$" + String(userBal)
+            self.title = "$" + String(userBal) + "0"
 
             print(userBal)
             print(userBalance)
             
         })
-
-//        let userbal = Double((userBalance * 100)/100)
-//        
-//     
-//        self.title = "Current Balance:  " + String(userbal)
 
         
         let screenSize: CGRect = UIScreen.main.bounds
@@ -124,10 +119,10 @@ var ref: DatabaseReference!
         iconView.alpha = 0
   
     
-        iconViewimage.center.x = 40
-        iconViewimage.center.y = 40
+//        iconViewimage.center.x = 40
+//        iconViewimage.center.y = 40
         
-        itemImage.center.x = 40
+        itemImage.center.x = 100
         itemImage.center.y = 100
         
         itemImage.layer.cornerRadius = 12
@@ -185,17 +180,37 @@ var ref: DatabaseReference!
 
     
     func handleLongGesture(gesture: UILongPressGestureRecognizer) {
-         print("BONER!")
+        
         switch(gesture.state) {
             
         case UIGestureRecognizerState.began:
             guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else {
                 break
+                
+//                print(selectedIndexPath)
             }
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case UIGestureRecognizerState.changed:
+            print(gesture.location(in: view))
             collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
         case UIGestureRecognizerState.ended:
+           
+            let alert = UIAlertController(title: "Combine these buckets?", message: "", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "YES", style: .cancel) { (action) in
+                
+                print("Alert!")
+                
+            }
+            alert.addAction(cancelAction)
+            
+            
+            let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.18)
+            alert.view.addConstraint(height);
+            self.present(alert, animated: true, completion: nil)
+            
+            
+            
+            
             collectionView.endInteractiveMovement()
         default:
             collectionView.cancelInteractiveMovement()
@@ -204,22 +219,8 @@ var ref: DatabaseReference!
         
         
         
-        print("BONER!")
-//        if gesture.state != UIGestureRecognizerState.ended {
-//            return
-//        }
-//        
-//        let p = gesture.location(in: collectionView)
-//        let indexPath = collectionView.indexPathForItem(at: p)
-//        
-//        if let index = indexPath {
-//            var cell = collectionView.cellForItem(at: index)
-//            
-//            print(index)
-//            // do stuff with your cell, for example print the indexPath
-//            print(index.row)
-//        } else {
-//            print("Could not find index path")
+        
+
         }
     }
     
@@ -293,25 +294,25 @@ var ref: DatabaseReference!
             print(per2)
             percentLbl.text = "0%"
             percentLbl.textColor = UIColor.red
-            iconViewimage.backgroundColor = UIColor.red
+//            iconViewimage.backgroundColor = UIColor.red
             
         } else if (per2 < 25) && (per2 > 1) {
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.red
-            iconViewimage.backgroundColor = UIColor.red
+//            iconViewimage.backgroundColor = UIColor.red
             //           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 25) && (per2 < 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.yellow
-            iconViewimage.backgroundColor = UIColor.yellow
+//            iconViewimage.backgroundColor = UIColor.yellow
             //            cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.red
             
-            iconViewimage.backgroundColor = UIColor.green
+//            iconViewimage.backgroundColor = UIColor.green
             
         }
         
@@ -358,22 +359,24 @@ var ref: DatabaseReference!
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! customCell
         
         cell.layer.cornerRadius = 12
-        cell.layer.borderWidth = 1.5
+        cell.layer.borderWidth = 3
         cell.layer.borderColor = UIColor.white.cgColor
         
         let a = buckets[indexPath.row]
         
         print("INDEX PATH")
         print(indexPath)
-        let url = URL(string: a.imageString)!
-        let data = try? Data(contentsOf: url)
-        if let imageData = data {
-            let image = UIImage(data: data!)!
-            
-             cell.imageView.image = image
-        }
+        
+        cell.itemLbl.text = a.item
+//        let url = URL(string: a.imageString)!
+//        let data = try? Data(contentsOf: url)
+//        if let imageData = data {
+//            let image = UIImage(data: data!)!
+//            
+//             cell.imageView.image = image
+//        }
 
-        cell.iconImageView.image = UIImage(named: "bucket")
+        cell.iconImageView.image = UIImage(named: "bucket-1")
         
         let per = (a.balance / a.price) as! Double
         let per2 = Int(per * 100)
@@ -386,20 +389,20 @@ var ref: DatabaseReference!
             cell.percentlabel.textColor = UIColor.red
             
         } else if (per2 < 25) && (per2 > 1) {
-            cell.percentlabel.text = "$" + String(per2) + "%"
+            cell.percentlabel.text = String(per2) + "%"
             cell.percentlabel.textColor = UIColor.red
 //           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 25) && (per2 < 75) {
            
             cell.percentlabel.text = String(per2) + "%"
             cell.percentlabel.textColor = UIColor.yellow
-            cell.iconImageView.backgroundColor = UIColor.yellow
+//            cell.iconImageView.backgroundColor = UIColor.yellow.withAlphaComponent(0.3)
 //            cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 75) {
            
             cell.percentlabel.text = String(per2) + "%"
-           cell.percentlabel.textColor = UIColor.red
-            cell.iconImageView.backgroundColor = UIColor.red
+           cell.percentlabel.textColor = UIColor.green
+//            cell.iconImageView.backgroundColor = UIColor.green.withAlphaComponent(0.4)
            
         }
         
@@ -448,25 +451,25 @@ var ref: DatabaseReference!
             print(per2)
             percentLbl.text = "0%"
             percentLbl.textColor = UIColor.red
-            iconViewimage.backgroundColor = UIColor.red
+//            iconViewimage.backgroundColor = UIColor.red
             
         } else if (per2 < 25) && (per2 > 1) {
             percentLbl.text = "$" + String(per2) + "%"
             percentLbl.textColor = UIColor.red
-            iconViewimage.backgroundColor = UIColor.red
+//            iconViewimage.backgroundColor = UIColor.red
             //           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 25) && (per2 < 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.yellow
-            iconViewimage.backgroundColor = UIColor.yellow
+//            iconViewimage.backgroundColor = UIColor.yellow
             //            cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.red
 
-            iconViewimage.backgroundColor = UIColor.green
+//            iconViewimage.backgroundColor = UIColor.green
             
         }
 

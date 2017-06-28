@@ -41,7 +41,7 @@ class bucketVC: UIViewController {
         percentagelbl.text = "$" + String(per2) + "%"
 //        monthlyLbl.text = String(bucket!.monthly)
         priceLbl.text = "$" + String(bucket!.price)
-        microRateLbl.text = String(bucket!.monthly)
+        microRateLbl.text = String(bucket!.monthly) + "0  monthly"
         // Do any additional setup after loading the view.
     }
 

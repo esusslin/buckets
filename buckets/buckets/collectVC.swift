@@ -68,6 +68,8 @@ class collectVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     func collectionView(collectionView: UICollectionView,
                         moveItemAtIndexPath sourceIndexPath: NSIndexPath,
                         toIndexPath destinationIndexPath: NSIndexPath) {
+        
+        
         let item = self.order[sourceIndexPath.item]
         self.order.remove(at: sourceIndexPath.item)
         self.order.insert(item, at: destinationIndexPath.item)

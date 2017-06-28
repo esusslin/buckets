@@ -52,7 +52,7 @@ class urlVC: UIViewController {
 
     @IBAction func btn(_ sender: Any) {
         
-        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(219.03)
+        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(549.20)
         
     }
 

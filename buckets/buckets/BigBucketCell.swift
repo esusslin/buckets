@@ -82,8 +82,8 @@ class BigBucketCell: UITableViewCell {
             else if (per2 > 25) && (per2 < 75) {
             
             percentLbl.text = String(per2) + "%"
-            percentLbl.textColor = UIColor.yellow
-            itemImage.backgroundColor = UIColor.yellow
+            percentLbl.textColor = UIColor.black
+//            itemImage.backgroundColor = UIColor.yellow
             
             print("PROG")
             progBar.progress = Float(per)
@@ -163,8 +163,8 @@ class BigBucketCell: UITableViewCell {
         } else if (per2 > 25) && (per2 < 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
-            percentLbl.textColor = UIColor.yellow
-            itemImage.backgroundColor = UIColor.yellow
+            percentLbl.textColor = UIColor.black
+//            itemImage.backgroundColor = UIColor.yellow
              balanceLbl.text = "$" + String(Double((bucket!.balance/100)*100)) + "0"
               print("PROG")
              progBar.progress = Float(per)
@@ -172,7 +172,7 @@ class BigBucketCell: UITableViewCell {
         } else if (per2 > 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
-            percentLbl.textColor = UIColor.red
+            percentLbl.textColor = UIColor.green
             itemImage.backgroundColor = UIColor.red
              balanceLbl.text = "$" + String(Double((bucket!.balance/100)*100)) + "0"
             print("PROG")
