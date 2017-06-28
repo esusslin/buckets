@@ -31,6 +31,7 @@ class BigBucketCell: UITableViewCell {
     @IBOutlet weak var percentLbl: UILabel!
     @IBOutlet weak var balanceLbl: UILabel!
     
+    @IBOutlet weak var progBar: UIProgressView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -80,17 +81,22 @@ class BigBucketCell: UITableViewCell {
         if bucket.balance == 0 {
             percentLbl.text = "0%"
             percentLbl.textColor = UIColor.red
+             progBar.progress = 0.0
 //            self.viewController.user
         } else if (per2 < 25) && (per2 > 1) {
             percentLbl.text = "$" + String(per2) + "%"
             percentLbl.textColor = UIColor.red
             balanceLbl.text = "$" + String(bucket.balance) + "0"
+            progBar.progress = (Float(per2 / 100))
         }
             else if (per2 > 25) && (per2 < 75) {
             
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.yellow
             itemImage.backgroundColor = UIColor.yellow
+            
+            progBar.progress = (Float(per2 / 100))
+            progBar.progressTintColor = UIColor.yellow
              balanceLbl.text = "$" + String(bucket.balance) + "0"
         } else if (per2 > 75) {
             
@@ -98,6 +104,9 @@ class BigBucketCell: UITableViewCell {
             percentLbl.textColor = UIColor.red
             itemImage.backgroundColor = UIColor.red
              balanceLbl.text = "$" + String(bucket.balance) + "0"
+            
+            progBar.progress = (Float(per2 / 100))
+            progBar.progressTintColor = UIColor.green
         }
         
     
@@ -110,6 +119,8 @@ class BigBucketCell: UITableViewCell {
         itemImage.layer.masksToBounds = true
         
         itemImage.layer.cornerRadius = itemImage.frame.size.width/2
+        
+       
 
     
     }
