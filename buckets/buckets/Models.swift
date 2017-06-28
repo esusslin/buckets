@@ -79,6 +79,7 @@ internal class Proposal {
         balance = snapshotValue["balance"] as! Double
         active = snapshotValue["active"] as! Bool
         imageString = snapshotValue["imageString"] as! String
+//        period
         ref = snapshot.ref
     }
     

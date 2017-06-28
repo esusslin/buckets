@@ -105,27 +105,10 @@ class BucketTableVC: UITableViewController {
     
     @IBAction func days_Action(_ sender: Any) {
         
-        let alert = UIAlertController(title: "A Day has now Passed.", message: "Ok?", preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "OK, thanks", style: .cancel) { (action) in
-            
-            
-        }
-        alert.addAction(cancelAction)
-        
-        
-        let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
-        alert.view.addConstraint(height);
-        self.present(alert, animated: true, completion: nil)
-
         
         for b in buckets {
-            
-            let dailly = Double(b.monthly/30)
-            let dly = (dailly/100)*100
-            
-            
-             b.balance += dly
+        
+            if b.
         }
         
         self.tableView.reloadData()
@@ -188,6 +171,23 @@ print(userBal)
         return self.section [section ]
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Futura", size: 20)
+        header.textLabel?.textColor = UIColor.lightGray
+        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        
+        
+    }
+    
+//    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+//    {
+//        let header = view as! UITableViewHeaderFooterView
+//        header.textLabel?.font = UIFont(name: "Futura", size: 11)
+//        header.textLabel?.textColor = UIColor.lightGrayColor()
+//    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 80
@@ -212,6 +212,11 @@ print(userBal)
 
         }
     }
+    
+    
+//    func tableView(tableView: UITableView, ViewForHeaderInSection section: Int) -> UIView? {
+//        return self.tableView.backgroundColor = UIColor.black
+//    }
 
 
     // MARK: - Table view data source

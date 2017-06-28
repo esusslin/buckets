@@ -30,15 +30,24 @@ class proposalVC: UIViewController {
     @IBOutlet weak var rateSetBtn: UIButton!
     
     @IBOutlet weak var inputField: UITextField!
+    
+    var titleTap : UITapGestureRecognizer!
   
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
         inputField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
 
         ref = Database.database().reference()
         
         itemLbl.text = proposal!.item
+        
+        itemLbl.isUserInteractionEnabled = true
+        
+        let titleTap = UITapGestureRecognizer(target: self, action: #selector(self.tapButton(_:)))
+        itemLbl.addGestureRecognizer(titleTap)
         
         let url = URL(string: (proposal?.imageString)!)!
         let data = try? Data(contentsOf: url)
@@ -49,14 +58,68 @@ class proposalVC: UIViewController {
 
         }
         
-        priceLbl.text = String(describing: proposal!.price)
+        
+        
+        priceLbl.text = "$ " + String(describing: proposal!.price)
         monthsLbl.text = String(describing: proposal!.months)
-        monthlyLbl.text = String(describing: proposal!.monthly)
+        monthlyLbl.text = ""
 
 
 //            itemLbl.text = proposal?.item
         // Do any additional setup after loading the view.
     }
+
+    
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        
+       
+        
+//        itemLbl.addGestureRecognizer(titleTap)
+        
+        self.imageView.layer.masksToBounds = true
+        
+        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        imageView.alpha = 0.8
+        rateSetBtn.layer.cornerRadius = 8
+        bucketApprovedBtn.layer.cornerRadius = 8
+    }
+    
+    func tapButton(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "Rename this Item",
+                                      message: "Submit something",
+                                      preferredStyle: .alert)
+        
+//            / Add 1 textField and customize it
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardAppearance = .dark
+            textField.keyboardType = .default
+            textField.autocorrectionType = .default
+            textField.placeholder = "Type something here"
+            textField.clearButtonMode = .whileEditing
+        }
+        
+        // Cancel button
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default, handler: { (action) -> Void in
+            // Get 1st TextField's text
+            let textField = alert.textFields![0]
+            print(textField.text!)
+            
+            self.proposal!.item = textField.text!
+            
+            self.proposal?.ref?.child("item").setValue(textField.text!)
+            self.itemLbl.text = textField.text!
+        })
+        
+        alert.addAction(submitAction)
+//        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+           }
+
     
     func myTextFieldDidChange(_ textField: UITextField) {
         
@@ -78,6 +141,8 @@ class proposalVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
     
     @IBAction func rateSetBtn_pressed(_ sender: Any) {
         
@@ -111,7 +176,7 @@ class proposalVC: UIViewController {
         slider.setValue(Float(Int(monthVar)), animated: true)
         proposal!.monthly = Double(rate)!
         
-        monthlyLbl.text = String((proposal!.monthly))
+        monthlyLbl.text = String((proposal!.monthly)) + "0"
         print(proposal!.monthly)
     }
 
@@ -120,15 +185,32 @@ class proposalVC: UIViewController {
     
     @IBAction func slider_changed(_ sender: UISlider) {
 
+//        print(sender.value)
         
-        let fixed = roundf(sender.value / 100.0) * 100.0;
-        sender.setValue(fixed, animated: true)
+    inputField.text = ""
         
+        var fixed = round((sender.value / 100.0) * 100.0)
+//        sender.setValue(fixed, animated: true)
+        
+//       let rounded = fixed.round()
+//        
+//        print(rounded)
         
         let monthly = proposal!.monthly
-        print(fixed)
+        let price = proposal!.price
         
-        print((monthly / 5.99) * 5.99)
+       print(fixed)
+        
+        
+        
+        let fixMonth = round(price / Double(fixed))
+        
+        print(fixMonth)
+        
+        monthsLbl.text = String(Int(fixed))
+        monthlyLbl.text = "$" + String(fixMonth) + "0"
+        
+//        print((monthly / 5.99) * 5.99)
         
     }
 

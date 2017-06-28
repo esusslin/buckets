@@ -109,7 +109,7 @@ class loginVC: UIViewController {
 //        alert.addAction(saveAction)
 //        alert.addAction(cancelAction)
 //        
-//        present(alert, animated: true, completion: nil)
+//        present(alert, animated: true, completion: nil) 
 //
     
 //       Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in

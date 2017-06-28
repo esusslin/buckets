@@ -31,6 +31,7 @@ class BigBucketCell: UITableViewCell {
     @IBOutlet weak var percentLbl: UILabel!
     @IBOutlet weak var balanceLbl: UILabel!
     
+    @IBOutlet weak var progBar: UIProgressView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,6 +50,14 @@ class BigBucketCell: UITableViewCell {
         
     }
     
+    
+//    func viewDidLayoutSubviews() {
+//        
+//        itemImage.layer.masksToBounds = true
+//        
+//        itemImage.layer.cornerRadius = bucketImage.frame.size.width/2
+//        
+//    }
     
     func bindData(bucket: Bucket) {
         
@@ -72,34 +81,51 @@ class BigBucketCell: UITableViewCell {
         if bucket.balance == 0 {
             percentLbl.text = "0%"
             percentLbl.textColor = UIColor.red
+             progBar.progress = 0.0
 //            self.viewController.user
         } else if (per2 < 25) && (per2 > 1) {
             percentLbl.text = "$" + String(per2) + "%"
             percentLbl.textColor = UIColor.red
             balanceLbl.text = "$" + String(bucket.balance) + "0"
+            print("PROG")
+            progBar.progress = Float(per)
+            progBar.progressTintColor = UIColor.red
         }
             else if (per2 > 25) && (per2 < 75) {
             
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.yellow
             itemImage.backgroundColor = UIColor.yellow
+            
+            print("PROG")
+            progBar.progress = Float(per)
+            progBar.progressTintColor = UIColor.yellow
              balanceLbl.text = "$" + String(bucket.balance) + "0"
         } else if (per2 > 75) {
             
             percentLbl.text = String(per2) + "%"
-            percentLbl.textColor = UIColor.red
-            itemImage.backgroundColor = UIColor.red
+            percentLbl.textColor = UIColor.green
+//            itemImage.backgroundColor = UIColor.red
              balanceLbl.text = "$" + String(bucket.balance) + "0"
+            
+            print("PROG")
+            progBar.progress = Float(per)
+            progBar.progressTintColor = UIColor.green
         }
         
     
         
         balanceLbl.text = "$" + String(bucket.balance) + "0"
         itemLbl.text = bucket.item
-        itemImage.image = UIImage(named: "bucket")
-//        return cell
-//reload()
-//        self.viewController?.viewDidLoad()
+        itemImage.image = UIImage(named: "bucket-1")
+        itemImage.backgroundColor = UIColor.green.withAlphaComponent(0.2)
+        
+        itemImage.layer.masksToBounds = true
+        
+        itemImage.layer.cornerRadius = itemImage.frame.size.width/2
+        
+       
+
     
     }
 
@@ -141,18 +167,27 @@ class BigBucketCell: UITableViewCell {
             percentLbl.text = "$" + String(per2) + "%"
             percentLbl.textColor = UIColor.red
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
+              print("PROG")
+             progBar.progress = Float(per)
+            print(progBar.progress)
         } else if (per2 > 25) && (per2 < 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.yellow
             itemImage.backgroundColor = UIColor.yellow
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
+              print("PROG")
+             progBar.progress = Float(per)
+                    print(progBar.progress)
         } else if (per2 > 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.red
             itemImage.backgroundColor = UIColor.red
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
+            print("PROG")
+             progBar.progress = Float(per)
+                    print(progBar.progress)
         }
 
         let buckRef = bucket!.ref

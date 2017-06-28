@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import Firebase
 
-class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class bucketCollectionVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
 var ref: DatabaseReference!
@@ -23,13 +23,14 @@ var ref: DatabaseReference!
     
     @IBOutlet weak var iconView: UIView!
  
-
+    var delegate: UICollectionViewDelegate!
     var fullImageView: UIImageView!
     
 //    var currentSection: Int = 0
 //    var currentRow: Int = 0
     var currentIndexPath: Int = 0
     
+    var longPressGesture : UILongPressGestureRecognizer!
     
     //ICON STUFF
     @IBOutlet weak var iconViewimage: UIImageView!
@@ -62,7 +63,12 @@ var ref: DatabaseReference!
             // 5
             self.buckets = newBuckets
             self.collectionView.reloadData()
+           
+            
+            
         })
+        
+        
         
         self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
             
@@ -164,10 +170,79 @@ var ref: DatabaseReference!
         self.collectionView.dataSource = self
 
         
-        let dismissWihtTap = UITapGestureRecognizer(target: self, action: #selector(hidicon))
-        iconView.addGestureRecognizer(dismissWihtTap)
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture(gesture:)))
+        self.collectionView?.addGestureRecognizer(longPressGesture)
 
         
+    }
+    
+    @IBAction func hideViewX(_ sender: Any) {
+        
+        hidicon()
+    }
+    
+    
+
+    
+    func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+         print("BONER!")
+        switch(gesture.state) {
+            
+        case UIGestureRecognizerState.began:
+            guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else {
+                break
+            }
+            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case UIGestureRecognizerState.changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case UIGestureRecognizerState.ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+       
+        
+        
+        
+        
+        print("BONER!")
+//        if gesture.state != UIGestureRecognizerState.ended {
+//            return
+//        }
+//        
+//        let p = gesture.location(in: collectionView)
+//        let indexPath = collectionView.indexPathForItem(at: p)
+//        
+//        if let index = indexPath {
+//            var cell = collectionView.cellForItem(at: index)
+//            
+//            print(index)
+//            // do stuff with your cell, for example print the indexPath
+//            print(index.row)
+//        } else {
+//            print("Could not find index path")
+        }
+    }
+    
+    internal func invalidationContextForInteractivelyMovingItems(targetIndexPaths: [NSIndexPath],
+                                                                          withTargetPosition targetPosition: CGPoint,
+                                                                          previousIndexPaths: [NSIndexPath],
+                                                                          previousPosition: CGPoint) -> UICollectionViewLayoutInvalidationContext {
+        
+        var context = invalidationContextForInteractivelyMovingItems(targetIndexPaths: targetIndexPaths,
+                                                                           withTargetPosition: targetPosition, previousIndexPaths: previousIndexPaths,
+                                                                           previousPosition: previousPosition)
+        
+//        self.delegate.collectionView!(self.collectionView!, moveItemAtIndexPath: previousIndexPaths[0],
+//                                       toIndexPath: targetIndexPaths[0])
+        
+        return context
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                                 moveItemAt sourceIndexPath: IndexPath,
+                                 to destinationIndexPath: IndexPath) {
+        // move your data order
     }
     
     override func viewDidAppear(_ animated: Bool) {

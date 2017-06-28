@@ -18,6 +18,7 @@ target 'buckets' do
   pod 'Firebase/Database'
   pod 'TSCurrencyTextField', '~> 0.1.0'
   pod 'YLProgressBar', '~> 3.10.1'
+  pod 'LDProgressView', '>= 1.1'
   
   pod 'JSQMessagesViewController'
  pod 'Parse'

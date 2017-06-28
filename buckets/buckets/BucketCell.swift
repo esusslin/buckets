@@ -39,6 +39,15 @@ class BucketCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+//    func viewDidLayoutSubviews() {
+//        
+//        bucketImage.layer.masksToBounds = true
+//        
+//        bucketImage.layer.cornerRadius = bucketImage.frame.size.width/2
+//
+//    }
+    
+    
     func bindData(prop: Proposal) {
         
         
@@ -53,7 +62,12 @@ class BucketCell: UITableViewCell {
         
        itemLbl.text = prop.item
         percentLbl.text = ""
-        bucketImage.image = UIImage(named: "grey_bucket")
+        bucketImage.image = UIImage(named: "bucket-1")
+        bucketImage.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        
+        bucketImage.layer.masksToBounds = true
+        
+        bucketImage.layer.cornerRadius = bucketImage.frame.size.width/2
         //        return cell
 
 
