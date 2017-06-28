@@ -105,23 +105,10 @@ class BucketTableVC: UITableViewController {
     
     @IBAction func days_Action(_ sender: Any) {
         
-        let alert = UIAlertController(title: "A Day has now Passed.", message: "Ok?", preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "OK, thanks", style: .cancel) { (action) in
-            
-            
-        }
-        alert.addAction(cancelAction)
-        
-        
-        let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
-        alert.view.addConstraint(height);
-        self.present(alert, animated: true, completion: nil)
-
         
         for b in buckets {
         
-
+            if b.
         }
         
         self.tableView.reloadData()

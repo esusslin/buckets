@@ -87,7 +87,9 @@ class BigBucketCell: UITableViewCell {
             percentLbl.text = "$" + String(per2) + "%"
             percentLbl.textColor = UIColor.red
             balanceLbl.text = "$" + String(bucket.balance) + "0"
-            progBar.progress = (Float(per2 / 100))
+            print("PROG")
+            progBar.progress = Float(per)
+            progBar.progressTintColor = UIColor.red
         }
             else if (per2 > 25) && (per2 < 75) {
             
@@ -95,17 +97,19 @@ class BigBucketCell: UITableViewCell {
             percentLbl.textColor = UIColor.yellow
             itemImage.backgroundColor = UIColor.yellow
             
-            progBar.progress = (Float(per2 / 100))
+            print("PROG")
+            progBar.progress = Float(per)
             progBar.progressTintColor = UIColor.yellow
              balanceLbl.text = "$" + String(bucket.balance) + "0"
         } else if (per2 > 75) {
             
             percentLbl.text = String(per2) + "%"
-            percentLbl.textColor = UIColor.red
-            itemImage.backgroundColor = UIColor.red
+            percentLbl.textColor = UIColor.green
+//            itemImage.backgroundColor = UIColor.red
              balanceLbl.text = "$" + String(bucket.balance) + "0"
             
-            progBar.progress = (Float(per2 / 100))
+            print("PROG")
+            progBar.progress = Float(per)
             progBar.progressTintColor = UIColor.green
         }
         
@@ -163,18 +167,27 @@ class BigBucketCell: UITableViewCell {
             percentLbl.text = "$" + String(per2) + "%"
             percentLbl.textColor = UIColor.red
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
+              print("PROG")
+             progBar.progress = Float(per)
+            print(progBar.progress)
         } else if (per2 > 25) && (per2 < 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.yellow
             itemImage.backgroundColor = UIColor.yellow
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
+              print("PROG")
+             progBar.progress = Float(per)
+                    print(progBar.progress)
         } else if (per2 > 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.red
             itemImage.backgroundColor = UIColor.red
              balanceLbl.text = "$" + String(bucket!.balance) + "0"
+            print("PROG")
+             progBar.progress = Float(per)
+                    print(progBar.progress)
         }
 
         let buckRef = bucket!.ref
