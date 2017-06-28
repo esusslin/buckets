@@ -225,7 +225,7 @@ class proposalVC: UIViewController {
         oldPropRef.removeValue()
 //       let old = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("proposals").value(forKey: "item").)
         
-         self.ref.child("users").child(Auth.auth().currentUser!.uid).child("buckets").childByAutoId().setValue(["item": proposal!.item, "price": proposal!.price, "imageString": proposal!.imageString, "monthly": proposal!.monthly, "months": proposal!.months, "balance": 0.0, "active": true])
+         self.ref.child("users").child(Auth.auth().currentUser!.uid).child("buckets").childByAutoId().setValue(["item": proposal!.item, "price": proposal!.price, "imageString": proposal!.imageString, "monthly": proposal!.monthly, "months": proposal!.months, "balance": 0.0, "active": true, "rate": 0.0, "period": "monthly"])
        
         
         let alert = UIAlertController(title: "Bucket Approved!", message: "Bucket for \(proposal!.item) ETA: \(proposal!.months) months!", preferredStyle: .alert)

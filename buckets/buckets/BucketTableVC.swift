@@ -108,7 +108,15 @@ class BucketTableVC: UITableViewController {
         
         for b in buckets {
         
-            if b.
+            if b.period == "daily" {
+                b.balance += b.rate
+                b.ref?.child("balance").setValue(b.balance)
+                
+                userBalance -= 1.0
+                
+                
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+            }
         }
         
         self.tableView.reloadData()
@@ -117,25 +125,53 @@ class BucketTableVC: UITableViewController {
     
     @IBAction func month_Action(_ sender: Any) {
         
-        let alert = UIAlertController(title: "A Whole Month just passed", message: "Ok?", preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "OK, thanks", style: .cancel) { (action) in
-            
-            
-        }
-        alert.addAction(cancelAction)
-        
-        let height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.30)
-        alert.view.addConstraint(height);
-        self.present(alert, animated: true, completion: nil)
-
-
+       
         
         for b in buckets {
             
-            
-            b.balance += b.monthly
+            if b.period == "daily" {
+                
+             let thirty = round((b.rate * 30))
+                b.balance += thirty
+                b.ref?.child("balance").setValue(b.balance)
+                
+                userBalance -= 1.0
+                
+                
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+            }
         }
+        
+        for b in buckets {
+            
+            if b.period == "monthly" {
+                
+//                let thirty = round((b.rate * 30))
+                b.balance += b.rate
+                b.ref?.child("balance").setValue(b.balance)
+                
+                userBalance -= 1.0
+                
+                
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+            }
+        }
+
+        for b in buckets {
+            
+            if b.period == "weekly" {
+                
+                let quarterly = round((b.rate * 4))
+                b.balance += quarterly
+                b.ref?.child("balance").setValue(b.balance)
+                
+                userBalance -= 1.0
+                
+                
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+            }
+        }
+
         
         self.tableView.reloadData()
         
@@ -147,7 +183,7 @@ class BucketTableVC: UITableViewController {
         print("APPEAR")
         print(userBal)
 //        print(userBalance)
-print(userBal)
+        print(userBal)
         let userbal = Double((userBalance * 100)/100)
         
 

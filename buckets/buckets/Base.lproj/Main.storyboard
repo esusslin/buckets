@@ -284,6 +284,9 @@
                                 <state key="normal" image="target_large">
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btn:" destination="QIY-XD-zhg" eventType="touchUpInside" id="DiS-py-7Ce"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLw-pg-eRw">
                                 <rect key="frame" x="16" y="396" width="337" height="30"/>
@@ -523,7 +526,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.77436223329999998" green="1" blue="0.95160678210000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.87515514120000004" green="1" blue="0.90705324649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.92934819049999995" green="1" blue="0.9254633256" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CtY-bl-DpB">
                             <rect key="frame" x="0.0" y="228" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -621,7 +624,7 @@
                                             </connections>
                                         </button>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="g0c-bc-vH0">
-                                            <rect key="frame" x="108" y="85" width="259" height="2.5"/>
+                                            <rect key="frame" x="107" y="85" width="260" height="2.5"/>
                                             <color key="backgroundColor" red="0.87515514120000004" green="1" blue="0.90705324649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="progressTintColor" red="0.23216703399999999" green="1" blue="0.1886733766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="trackTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -646,9 +649,9 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bg2-lR-CeY">
-                                            <rect key="frame" x="216" y="46" width="42" height="21"/>
+                                            <rect key="frame" x="216" y="46" width="62" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="42" id="kUh-uj-WIu"/>
+                                                <constraint firstAttribute="width" constant="62" id="kUh-uj-WIu"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
@@ -666,9 +669,9 @@
                                         <constraint firstItem="QjL-cE-4ZB" firstAttribute="leading" secondItem="1Fg-JF-rPj" secondAttribute="trailing" constant="36" id="Jzb-uf-lPg"/>
                                         <constraint firstItem="Fdp-dT-qOR" firstAttribute="top" secondItem="d2C-HQ-X6B" secondAttribute="topMargin" id="K1U-MR-fEc"/>
                                         <constraint firstItem="PiQ-Zd-XAr" firstAttribute="centerY" secondItem="d2C-HQ-X6B" secondAttribute="centerY" id="Npf-F6-6t3"/>
-                                        <constraint firstItem="bg2-lR-CeY" firstAttribute="centerX" secondItem="g0c-bc-vH0" secondAttribute="centerX" id="ThI-9c-LBf"/>
+                                        <constraint firstItem="bg2-lR-CeY" firstAttribute="centerX" secondItem="g0c-bc-vH0" secondAttribute="centerX" constant="10" id="ThI-9c-LBf"/>
                                         <constraint firstItem="g0c-bc-vH0" firstAttribute="top" secondItem="1Fg-JF-rPj" secondAttribute="bottom" constant="3" id="UmQ-vH-g6a"/>
-                                        <constraint firstItem="1Fg-JF-rPj" firstAttribute="leading" secondItem="bg2-lR-CeY" secondAttribute="trailing" constant="28" id="ePS-AM-S5S"/>
+                                        <constraint firstItem="1Fg-JF-rPj" firstAttribute="leading" secondItem="bg2-lR-CeY" secondAttribute="trailing" constant="8" id="ePS-AM-S5S"/>
                                         <constraint firstItem="B6G-7o-mDc" firstAttribute="centerY" secondItem="1Fg-JF-rPj" secondAttribute="centerY" id="eZf-6G-10G"/>
                                         <constraint firstItem="bg2-lR-CeY" firstAttribute="top" secondItem="Fdp-dT-qOR" secondAttribute="bottom" constant="17" id="iIG-29-PJq"/>
                                         <constraint firstItem="Fdp-dT-qOR" firstAttribute="leading" secondItem="B6G-7o-mDc" secondAttribute="trailing" constant="8" symbolic="YES" id="n9W-eU-XEE"/>

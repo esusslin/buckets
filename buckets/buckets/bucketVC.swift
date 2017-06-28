@@ -73,7 +73,7 @@ class bucketVC: UIViewController {
                 microRateLbl.text = "$" + String(wk) + "0 weekly";
                 
             case 2:
-                bucket!.ref?.child("period").setValue("monthly")
+                bucket!.ref?.child("period").setValue("daily")
                                 let dailly = Double(bucket!.monthly/30)
                 let dly = Double(round(10*dailly)/10)
                 
