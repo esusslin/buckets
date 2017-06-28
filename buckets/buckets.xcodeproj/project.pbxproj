@@ -38,6 +38,10 @@
 		861356AF1EFAD6240095631A /* bucketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356AE1EFAD6240095631A /* bucketVC.swift */; };
 		861356B11EFB2C230095631A /* balanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861356B01EFB2C230095631A /* balanceVC.swift */; };
 		8696779C1F02CA9300DA95CF /* BuckTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8696779B1F02CA9300DA95CF /* BuckTableVC.swift */; };
+		8696779E1F03F16000DA95CF /* collectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8696779D1F03F16000DA95CF /* collectVC.swift */; };
+		869677A21F03F53F00DA95CF /* SwappingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869677A11F03F53F00DA95CF /* SwappingCollectionView.swift */; };
+		869677A51F03F66600DA95CF /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869677A31F03F66600DA95CF /* TestCell.swift */; };
+		869677A61F03F66600DA95CF /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869677A41F03F66600DA95CF /* TestCell.xib */; };
 		869699311EFDD71700F388E6 /* bucketCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699301EFDD71700F388E6 /* bucketCollectionVC.swift */; };
 		869699331EFDD7E000F388E6 /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699321EFDD7E000F388E6 /* customCell.swift */; };
 		869699361EFDF4D100F388E6 /* ChannelListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */; };
@@ -102,6 +106,10 @@
 		861356AE1EFAD6240095631A /* bucketVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketVC.swift; sourceTree = "<group>"; };
 		861356B01EFB2C230095631A /* balanceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = balanceVC.swift; sourceTree = "<group>"; };
 		8696779B1F02CA9300DA95CF /* BuckTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuckTableVC.swift; sourceTree = "<group>"; };
+		8696779D1F03F16000DA95CF /* collectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectVC.swift; sourceTree = "<group>"; };
+		869677A11F03F53F00DA95CF /* SwappingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwappingCollectionView.swift; sourceTree = "<group>"; };
+		869677A31F03F66600DA95CF /* TestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
+		869677A41F03F66600DA95CF /* TestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
 		869699301EFDD71700F388E6 /* bucketCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketCollectionVC.swift; sourceTree = "<group>"; };
 		869699321EFDD7E000F388E6 /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
 		869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelListTableVC.swift; sourceTree = "<group>"; };
@@ -176,6 +184,8 @@
 		861356251EF8560A0095631A /* buckets */ = {
 			isa = PBXGroup;
 			children = (
+				8696779D1F03F16000DA95CF /* collectVC.swift */,
+				869677A31F03F66600DA95CF /* TestCell.swift */,
 				861356AA1EFAB6C60095631A /* BucketTableVC.swift */,
 				869699301EFDD71700F388E6 /* bucketCollectionVC.swift */,
 				861356A41EF9964C0095631A /* Models.swift */,
@@ -184,10 +194,12 @@
 				869699381F016DBF00F388E6 /* CreateChannelCell.swift */,
 				861356961EF961250095631A /* loginVC.swift */,
 				861356AE1EFAD6240095631A /* bucketVC.swift */,
+				869677A41F03F66600DA95CF /* TestCell.xib */,
 				8613569E1EF993D50095631A /* tabbarVC.swift */,
 				861356981EF965980095631A /* welcomeVC.swift */,
 				861356AC1EFABBB30095631A /* BucketCell.swift */,
 				86A07CB91EFC568B00F82E82 /* BigBucketCell.swift */,
+				869677A11F03F53F00DA95CF /* SwappingCollectionView.swift */,
 				861356261EF8560A0095631A /* AppDelegate.swift */,
 				861356A61EF9D5C50095631A /* proposalVC.swift */,
 				861356B01EFB2C230095631A /* balanceVC.swift */,
@@ -368,6 +380,7 @@
 				861356311EF8560A0095631A /* LaunchScreen.storyboard in Resources */,
 				861356951EF95FDF0095631A /* GoogleService-Info.plist in Resources */,
 				8613562E1EF8560A0095631A /* Assets.xcassets in Resources */,
+				869677A61F03F66600DA95CF /* TestCell.xib in Resources */,
 				8613562C1EF8560A0095631A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,14 +465,17 @@
 				861356AB1EFAB6C60095631A /* BucketTableVC.swift in Sources */,
 				8696779C1F02CA9300DA95CF /* BuckTableVC.swift in Sources */,
 				869699311EFDD71700F388E6 /* bucketCollectionVC.swift in Sources */,
+				869677A51F03F66600DA95CF /* TestCell.swift in Sources */,
 				861356971EF961250095631A /* loginVC.swift in Sources */,
 				861356A71EF9D5C50095631A /* proposalVC.swift in Sources */,
+				8696779E1F03F16000DA95CF /* collectVC.swift in Sources */,
 				861356A51EF9964C0095631A /* Models.swift in Sources */,
 				861356AF1EFAD6240095631A /* bucketVC.swift in Sources */,
 				869699361EFDF4D100F388E6 /* ChannelListTableVC.swift in Sources */,
 				869699391F016DBF00F388E6 /* CreateChannelCell.swift in Sources */,
 				8613569F1EF993D50095631A /* tabbarVC.swift in Sources */,
 				861356271EF8560A0095631A /* AppDelegate.swift in Sources */,
+				869677A21F03F53F00DA95CF /* SwappingCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

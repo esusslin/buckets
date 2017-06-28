@@ -49,13 +49,27 @@ class proposalVC: UIViewController {
 
         }
         
-        priceLbl.text = String(describing: proposal!.price)
+        
+        
+        priceLbl.text = "$ " + String(describing: proposal!.price)
         monthsLbl.text = String(describing: proposal!.months)
-        monthlyLbl.text = String(describing: proposal!.monthly)
+        monthlyLbl.text = ""
 
 
 //            itemLbl.text = proposal?.item
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        
+        self.imageView.layer.masksToBounds = true
+        
+        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        imageView.alpha = 0.8
+        rateSetBtn.layer.cornerRadius = 8
+        bucketApprovedBtn.layer.cornerRadius = 8
     }
     
     func myTextFieldDidChange(_ textField: UITextField) {
@@ -111,7 +125,7 @@ class proposalVC: UIViewController {
         slider.setValue(Float(Int(monthVar)), animated: true)
         proposal!.monthly = Double(rate)!
         
-        monthlyLbl.text = String((proposal!.monthly))
+        monthlyLbl.text = String((proposal!.monthly)) + "0"
         print(proposal!.monthly)
     }
 
@@ -120,15 +134,32 @@ class proposalVC: UIViewController {
     
     @IBAction func slider_changed(_ sender: UISlider) {
 
+//        print(sender.value)
         
-        let fixed = roundf(sender.value / 100.0) * 100.0;
-        sender.setValue(fixed, animated: true)
+    inputField.text = ""
         
+        var fixed = round((sender.value / 100.0) * 100.0)
+//        sender.setValue(fixed, animated: true)
+        
+//       let rounded = fixed.round()
+//        
+//        print(rounded)
         
         let monthly = proposal!.monthly
-        print(fixed)
+        let price = proposal!.price
         
-        print((monthly / 5.99) * 5.99)
+       print(fixed)
+        
+        
+        
+        let fixMonth = round(price / Double(fixed))
+        
+        print(fixMonth)
+        
+        monthsLbl.text = String(Int(fixed))
+        monthlyLbl.text = "$" + String(fixMonth) + "0"
+        
+//        print((monthly / 5.99) * 5.99)
         
     }
 
