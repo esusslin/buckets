@@ -57,6 +57,7 @@ PODS:
   - TSCurrencyTextField (0.1.0):
     - TSCurrencyTextField/Core (= 0.1.0)
   - TSCurrencyTextField/Core (0.1.0)
+  - YLProgressBar (3.10.1)
 
 DEPENDENCIES:
   - ActionCableClient
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - SwiftWebSocket
   - SwiftyJSON
   - TSCurrencyTextField (~> 0.1.0)
+  - YLProgressBar (~> 3.10.1)
 
 SPEC CHECKSUMS:
   ActionCableClient: c8a466410d31bfa14e7a9c209b539c1e2d026a5f
@@ -95,7 +97,8 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 1ef8a0efb023544643bdf480c1ec4a62b204f293
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TSCurrencyTextField: 03f9d4d263d617d1f0e034e4ace12febcfa6fe48
+  YLProgressBar: 763ad9be70b8de5ab98a3fab27953f3771869e3d
 
-PODFILE CHECKSUM: 1d35b42cdba5aca98b74fb8641d2424762a5e11b
+PODFILE CHECKSUM: 33f2aff0a4672803131f11aae8842137eb7cff95
 
 COCOAPODS: 1.2.1
