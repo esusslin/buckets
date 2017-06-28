@@ -50,6 +50,14 @@ class BigBucketCell: UITableViewCell {
     }
     
     
+//    func viewDidLayoutSubviews() {
+//        
+//        itemImage.layer.masksToBounds = true
+//        
+//        itemImage.layer.cornerRadius = bucketImage.frame.size.width/2
+//        
+//    }
+    
     func bindData(bucket: Bucket) {
         
        
@@ -96,10 +104,13 @@ class BigBucketCell: UITableViewCell {
         
         balanceLbl.text = "$" + String(bucket.balance) + "0"
         itemLbl.text = bucket.item
-        itemImage.image = UIImage(named: "bucket")
-//        return cell
-//reload()
-//        self.viewController?.viewDidLoad()
+        itemImage.image = UIImage(named: "bucket-1")
+        itemImage.backgroundColor = UIColor.green.withAlphaComponent(0.2)
+        
+        itemImage.layer.masksToBounds = true
+        
+        itemImage.layer.cornerRadius = itemImage.frame.size.width/2
+
     
     }
 

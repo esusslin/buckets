@@ -68,6 +68,7 @@ class proposalVC: UIViewController {
 //            itemLbl.text = proposal?.item
         // Do any additional setup after loading the view.
     }
+
     
     override func viewDidLayoutSubviews() {
         

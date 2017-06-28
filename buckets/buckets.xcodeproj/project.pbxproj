@@ -184,6 +184,8 @@
 		861356251EF8560A0095631A /* buckets */ = {
 			isa = PBXGroup;
 			children = (
+				8613562A1EF8560A0095631A /* Main.storyboard */,
+				861356AE1EFAD6240095631A /* bucketVC.swift */,
 				8696779D1F03F16000DA95CF /* collectVC.swift */,
 				869677A31F03F66600DA95CF /* TestCell.swift */,
 				861356AA1EFAB6C60095631A /* BucketTableVC.swift */,
@@ -193,7 +195,6 @@
 				869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */,
 				869699381F016DBF00F388E6 /* CreateChannelCell.swift */,
 				861356961EF961250095631A /* loginVC.swift */,
-				861356AE1EFAD6240095631A /* bucketVC.swift */,
 				869677A41F03F66600DA95CF /* TestCell.xib */,
 				8613569E1EF993D50095631A /* tabbarVC.swift */,
 				861356981EF965980095631A /* welcomeVC.swift */,
@@ -204,7 +205,6 @@
 				861356A61EF9D5C50095631A /* proposalVC.swift */,
 				861356B01EFB2C230095631A /* balanceVC.swift */,
 				8613569C1EF990FA0095631A /* urlVC.swift */,
-				8613562A1EF8560A0095631A /* Main.storyboard */,
 				869699321EFDD7E000F388E6 /* customCell.swift */,
 				861356A01EF995620095631A /* bucketListVC.swift */,
 				8696779B1F02CA9300DA95CF /* BuckTableVC.swift */,

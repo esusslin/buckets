@@ -39,7 +39,7 @@ class bucketVC: UIViewController {
         let per2 = Int(per * 100)
         
         percentagelbl.text = "$" + String(per2) + "%"
-        monthlyLbl.text = String(bucket!.monthly)
+//        monthlyLbl.text = String(bucket!.monthly)
         priceLbl.text = "$" + String(bucket!.price)
         microRateLbl.text = String(bucket!.monthly)
         // Do any additional setup after loading the view.
@@ -58,20 +58,29 @@ class bucketVC: UIViewController {
         
             {
                 case 0:
+                    bucket!.ref?.child("period").setValue("monthly")
                 microRateLbl.text = "$" + String(bucket!.monthly) + "0 monthly";
+                bucket!.ref?.child("rate").setValue(bucket!.monthly)
                 case 1:
                     
+
+                    bucket!.ref?.child("period").setValue("weekly")
+                    
                    let wkly = Double(bucket!.monthly/4)
-                   let wk = Double((wkly/100)*100)
+                   let wk = round(Double((wkly/100)*100))
                    
+                    bucket!.ref?.child("rate").setValue(wk)
                 microRateLbl.text = "$" + String(wk) + "0 weekly";
                 
             case 2:
+                bucket!.ref?.child("period").setValue("monthly")
+                                let dailly = Double(bucket!.monthly/30)
+                let dly = Double(round(10*dailly)/10)
                 
-                let dailly = Double(bucket!.monthly/30)
-                let dly = Double((dailly/100)*100)
+                bucket!.ref?.child("rate").setValue(dly)
+
                 
-                microRateLbl.text = "$" + String(dly) + "0 weekly";
+                microRateLbl.text = "$" + String(dly) + "0 daily";
                 
                 
                 default:

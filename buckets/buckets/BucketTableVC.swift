@@ -120,12 +120,8 @@ class BucketTableVC: UITableViewController {
 
         
         for b in buckets {
-            
-            let dailly = Double(b.monthly/30)
-            let dly = (dailly/100)*100
-            
-            
-             b.balance += dly
+        
+
         }
         
         self.tableView.reloadData()
@@ -189,8 +185,21 @@ print(userBal)
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Futura", size: 20)
+        header.textLabel?.textColor = UIColor.lightGray
         (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        
+        
     }
+    
+//    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+//    {
+//        let header = view as! UITableViewHeaderFooterView
+//        header.textLabel?.font = UIFont(name: "Futura", size: 11)
+//        header.textLabel?.textColor = UIColor.lightGrayColor()
+//    }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
