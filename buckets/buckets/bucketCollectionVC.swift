@@ -114,14 +114,14 @@ var ref: DatabaseReference!
         
         iconView.frame.size.height = iconView.frame.size.width
         
-        iconView.backgroundColor = UIColor.white
+        iconView.backgroundColor = UIColor.black
         iconView.layer.cornerRadius = 22.0
         iconView.alpha = 0
   
     
 //        iconViewimage.center.x = 40
 //        iconViewimage.center.y = 40
-        
+        itemImage.layer.masksToBounds = true
         itemImage.center.x = 100
         itemImage.center.y = 100
         
@@ -304,7 +304,7 @@ var ref: DatabaseReference!
         } else if (per2 > 25) && (per2 < 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
-            percentLbl.textColor = UIColor.yellow
+            percentLbl.textColor = UIColor.black
 //            iconViewimage.backgroundColor = UIColor.yellow
             //            cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 75) {

@@ -182,7 +182,7 @@ class ChannelListTableVC: UITableViewController {
             }
 
             
-            chatVc.senderDisplayName = username
+            chatVc.senderDisplayName = "Gary"
             chatVc.channel = channel
             chatVc.channelRef = channelRef.child(channel.id)
         }
