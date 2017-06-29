@@ -74,6 +74,8 @@ class doubleCollectionVC: UIViewController, KDDragAndDropCollectionViewDataSourc
         return data[collectionView.tag].count
     }
     
+    
+    
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
