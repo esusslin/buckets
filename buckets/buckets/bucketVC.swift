@@ -41,7 +41,7 @@ class bucketVC: UIViewController {
         percentagelbl.text = "$" + String(per2) + "%"
 //        monthlyLbl.text = String(bucket!.monthly)
         priceLbl.text = "$" + String(bucket!.price)
-        microRateLbl.text = String(bucket!.monthly)
+        microRateLbl.text = String(bucket!.monthly) + "0  monthly"
         // Do any additional setup after loading the view.
     }
 
@@ -73,7 +73,7 @@ class bucketVC: UIViewController {
                 microRateLbl.text = "$" + String(wk) + "0 weekly";
                 
             case 2:
-                bucket!.ref?.child("period").setValue("monthly")
+                bucket!.ref?.child("period").setValue("daily")
                                 let dailly = Double(bucket!.monthly/30)
                 let dly = Double(round(10*dailly)/10)
                 

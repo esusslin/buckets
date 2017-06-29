@@ -48,7 +48,8 @@ internal class Proposal {
     var key: String
     var item: String
     var price: Double
-  
+//    var period: String
+//    var rate: Double
     var monthly: Double
     var months: Int
     var balance: Double
@@ -65,6 +66,8 @@ internal class Proposal {
         self.months = 0
         self.imageString = ""
         self.balance = 0.0
+//        self.period = "monthly"
+//        self.rate = 0.0
     
         self.active = false
     }
@@ -79,7 +82,8 @@ internal class Proposal {
         balance = snapshotValue["balance"] as! Double
         active = snapshotValue["active"] as! Bool
         imageString = snapshotValue["imageString"] as! String
-//        period
+//        rate = snapshotValue["rate"] as! Double
+//        period = snapshotValue["period"] as! String
         ref = snapshot.ref
     }
     
@@ -95,7 +99,8 @@ internal class Bucket {
     var key: String
     var item: String
     var price: Double
-    
+        var period: String
+        var rate: Double
     var monthly: Double
     var months: Int
     var balance: Double
@@ -112,6 +117,8 @@ internal class Bucket {
         self.months = 0
         self.imageString = ""
         self.balance = 0.0
+        self.period = "monthly"
+        self.rate = 0.0
         
         self.active = false
     }
@@ -126,6 +133,8 @@ internal class Bucket {
         balance = snapshotValue["balance"] as! Double
         active = snapshotValue["active"] as! Bool
         imageString = snapshotValue["imageString"] as! String
+        rate = snapshotValue["rate"] as! Double
+        period = snapshotValue["period"] as! String
         ref = snapshot.ref
     }
     

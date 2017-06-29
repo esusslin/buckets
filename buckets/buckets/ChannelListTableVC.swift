@@ -81,6 +81,8 @@ class ChannelListTableVC: UITableViewController {
     // MARK: View Lifecycle
     override func viewDidLoad() {
         
+        senderDisplayName = "Gary"
+        
         ref = Database.database().reference()
         super.viewDidLoad()
         title = "Channels"
@@ -180,7 +182,7 @@ class ChannelListTableVC: UITableViewController {
             }
 
             
-            chatVc.senderDisplayName = username
+            chatVc.senderDisplayName = "Gary"
             chatVc.channel = channel
             chatVc.channelRef = channelRef.child(channel.id)
         }
