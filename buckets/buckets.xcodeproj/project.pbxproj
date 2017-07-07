@@ -46,6 +46,7 @@
 		869677AC1F059DE800DA95CF /* KDDragAndDropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869677AB1F059DE800DA95CF /* KDDragAndDropManager.swift */; };
 		869677AE1F059F2000DA95CF /* KDDragAndDropCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869677AD1F059F2000DA95CF /* KDDragAndDropCollectionView.swift */; };
 		869677B01F05A27C00DA95CF /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869677AF1F05A27C00DA95CF /* ColorCell.swift */; };
+		869677B81F06B1B600DA95CF /* noun_684961_cc.png in Resources */ = {isa = PBXBuildFile; fileRef = 869677B71F06B1B600DA95CF /* noun_684961_cc.png */; };
 		869699311EFDD71700F388E6 /* bucketCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699301EFDD71700F388E6 /* bucketCollectionVC.swift */; };
 		869699331EFDD7E000F388E6 /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699321EFDD7E000F388E6 /* customCell.swift */; };
 		869699361EFDF4D100F388E6 /* ChannelListTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */; };
@@ -118,6 +119,7 @@
 		869677AB1F059DE800DA95CF /* KDDragAndDropManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDDragAndDropManager.swift; sourceTree = "<group>"; };
 		869677AD1F059F2000DA95CF /* KDDragAndDropCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDDragAndDropCollectionView.swift; sourceTree = "<group>"; };
 		869677AF1F05A27C00DA95CF /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		869677B71F06B1B600DA95CF /* noun_684961_cc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noun_684961_cc.png; sourceTree = "<group>"; };
 		869699301EFDD71700F388E6 /* bucketCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = bucketCollectionVC.swift; sourceTree = "<group>"; };
 		869699321EFDD7E000F388E6 /* customCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
 		869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelListTableVC.swift; sourceTree = "<group>"; };
@@ -192,6 +194,8 @@
 		861356251EF8560A0095631A /* buckets */ = {
 			isa = PBXGroup;
 			children = (
+				861356261EF8560A0095631A /* AppDelegate.swift */,
+				869699321EFDD7E000F388E6 /* customCell.swift */,
 				869677AB1F059DE800DA95CF /* KDDragAndDropManager.swift */,
 				869677AD1F059F2000DA95CF /* KDDragAndDropCollectionView.swift */,
 				869677A71F05785900DA95CF /* doubleCollectionVC.swift */,
@@ -201,26 +205,25 @@
 				869677A31F03F66600DA95CF /* TestCell.swift */,
 				861356AA1EFAB6C60095631A /* BucketTableVC.swift */,
 				861356A41EF9964C0095631A /* Models.swift */,
+				8613569E1EF993D50095631A /* tabbarVC.swift */,
 				869699351EFDF4D100F388E6 /* ChatVC.swift */,
 				869699341EFDF4D100F388E6 /* ChannelListTableVC.swift */,
 				869699381F016DBF00F388E6 /* CreateChannelCell.swift */,
 				861356961EF961250095631A /* loginVC.swift */,
 				869677A41F03F66600DA95CF /* TestCell.xib */,
-				8613569E1EF993D50095631A /* tabbarVC.swift */,
 				8696779D1F03F16000DA95CF /* collectVC.swift */,
 				861356981EF965980095631A /* welcomeVC.swift */,
 				861356AC1EFABBB30095631A /* BucketCell.swift */,
 				86A07CB91EFC568B00F82E82 /* BigBucketCell.swift */,
 				869677A11F03F53F00DA95CF /* SwappingCollectionView.swift */,
-				861356261EF8560A0095631A /* AppDelegate.swift */,
 				861356A61EF9D5C50095631A /* proposalVC.swift */,
 				861356B01EFB2C230095631A /* balanceVC.swift */,
 				8613569C1EF990FA0095631A /* urlVC.swift */,
 				869677AF1F05A27C00DA95CF /* ColorCell.swift */,
-				869699321EFDD7E000F388E6 /* customCell.swift */,
 				861356A01EF995620095631A /* bucketListVC.swift */,
 				8696779B1F02CA9300DA95CF /* BuckTableVC.swift */,
 				8613562D1EF8560A0095631A /* Assets.xcassets */,
+				869677B71F06B1B600DA95CF /* noun_684961_cc.png */,
 				8613562F1EF8560A0095631A /* LaunchScreen.storyboard */,
 				861356321EF8560A0095631A /* Info.plist */,
 				861356941EF95FDF0095631A /* GoogleService-Info.plist */,
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				861356311EF8560A0095631A /* LaunchScreen.storyboard in Resources */,
+				869677B81F06B1B600DA95CF /* noun_684961_cc.png in Resources */,
 				861356951EF95FDF0095631A /* GoogleService-Info.plist in Resources */,
 				8613562E1EF8560A0095631A /* Assets.xcassets in Resources */,
 				869677A61F03F66600DA95CF /* TestCell.xib in Resources */,
@@ -653,6 +657,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = buckets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = esusslin.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -674,6 +679,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = buckets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = esusslin.buckets;
 				PRODUCT_NAME = "$(TARGET_NAME)";

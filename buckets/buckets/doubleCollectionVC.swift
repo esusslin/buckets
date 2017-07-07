@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class DataItem : Equatable {
     
@@ -26,6 +27,11 @@ func ==(lhs: DataItem, rhs: DataItem) -> Bool {
 
 class doubleCollectionVC: UIViewController, KDDragAndDropCollectionViewDataSource {
     
+    var proposals: [Proposal] = []
+    
+    var buckets: [Bucket] = []
+    
+    var ref: DatabaseReference!
     
     @IBOutlet weak var activeCollectionView: UICollectionView!
 
@@ -33,10 +39,66 @@ class doubleCollectionVC: UIViewController, KDDragAndDropCollectionViewDataSourc
     
     var data : [[DataItem]] = [[DataItem]]()
     
+//    var data : [[Any]] = [[Any]]()
+    
     var dragAndDropManager : KDDragAndDropManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = Database.database().reference()
+        
+        let userID = Auth.auth().currentUser?.uid
+        
+        
+        
+        self.ref.child("users").child(userID!).child("buckets").observe(.value, with: { snapshot in
+            
+            var newBuckets: [Bucket] = []
+            
+            for item in snapshot.children {
+                // 4
+                let buck = Bucket(snapshot: item as! DataSnapshot)
+                newBuckets.append(buck)
+            }
+            
+            // 5
+            self.buckets = newBuckets
+                    })
+        
+        self.ref.child("users").child(userID!).child("proposals").observe(.value, with: { snapshot in
+            
+            var newProposals: [Proposal] = []
+            
+            for item in snapshot.children {
+                // 4
+                let prop = Proposal(snapshot: item as! DataSnapshot)
+                newProposals.append(prop)
+            }
+            
+            // 5
+            self.proposals = newProposals
+        })
+        
+        let balanceRef = self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance")
+        
+        self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").observe(.value, with: { snapshot in
+            
+            //        balanceRef.observe(.value, with: { snapshot in
+            
+            print("balance observing")
+            print(snapshot.value!)
+            
+            userBal = snapshot.value! as! Double
+            userBalance = snapshot.value! as! Double
+            
+            self.title = "$" + String(userBal) + "0"
+
+            print(userBal)
+            print(userBalance)
+            
+        })
+
 
         let colours : [UIColor] = [
             UIColor(red: 53.0/255.0, green: 102.0/255.0, blue: 149.0/255.0, alpha: 1.0),
@@ -71,6 +133,24 @@ class doubleCollectionVC: UIViewController, KDDragAndDropCollectionViewDataSourc
     // MARK : UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+//        if section == 0 {
+//            
+//            print("BUCKETS COUNT")
+//            print(buckets.count)
+//            return buckets.count
+//        }
+//        
+//        if section == 1 {
+//            
+//            print("PROPS COUNT")
+//            
+//            print(proposals.count)
+//            return proposals.count
+//        }
+//        return 0
+
+        
         return data[collectionView.tag].count
     }
     
@@ -80,6 +160,9 @@ class doubleCollectionVC: UIViewController, KDDragAndDropCollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         print(indexPath)
+         print(indexPath.section)
+           print(indexPath.row)
+        
         print(data.count)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! customCell

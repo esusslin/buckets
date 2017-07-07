@@ -21,10 +21,12 @@ class BigBucketCell: UITableViewCell {
     
     var bucket: Bucket?
 
+
     @IBOutlet weak var bucketDetailBtn: UIButton!
    
     @IBOutlet weak var itemLbl: UILabel!
     
+    @IBOutlet weak var playBtn: UIButton!
 
     @IBOutlet weak var itemImage: UIImageView!
 
@@ -49,9 +51,40 @@ class BigBucketCell: UITableViewCell {
     @IBAction func detailBtn_pressed(_ sender: Any) {
         
     }
+    @IBAction func playBtn_pressed(_ sender: Any) {
+        
+        
+        
+        if bucket!.active {
+            print("hello?")
+            bucket!.active = false
+            let imge = UIImage(named: "play")
+            
+            let fadedImg = imge?.alpha(0.7)
+            
+            playBtn.imageView?.image = fadedImg
+
+        } else {
+        
+//        if bucket!.active == false {
+            print("hello?????")
+            bucket!.active = true
+            let imge = UIImage(named: "pause")
+            
+            let fadedImg = imge?.alpha(0.7)
+            
+            playBtn.imageView?.image = fadedImg
+         
+        }
+
+        
+        
+    }
     
     
     func bindData(bucket: Bucket) {
+        
+        playBtn.center = itemImage.center
         
         let url = URL(string: bucket.imageString)!
         let data = try? Data(contentsOf: url)
@@ -59,6 +92,29 @@ class BigBucketCell: UITableViewCell {
             let image = UIImage(data: data!)!
 
         }
+        
+        if bucket.active == true {
+            let imge = UIImage(named: "pause")
+            
+            let fadedImg = imge?.alpha(0.6)
+            
+//                playBtn.image = fadedImg
+            playBtn.imageView?.image = fadedImg
+        }
+        
+        if bucket.active == false {
+            let imge = UIImage(named: "play")
+            
+            let fadedImg = imge?.alpha(0.6)
+            
+            playBtn.imageView?.image = fadedImg
+//            playBtn.image = fadedImg
+        }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapButton(_:)))
+        tapGesture.numberOfTapsRequired = 1
+
+       
         
         let per = (bucket.balance / bucket.price) as! Double
         let per2 = Int(per * 100)
@@ -110,6 +166,7 @@ class BigBucketCell: UITableViewCell {
         
         itemImage.layer.masksToBounds = true
         
+        
         itemImage.layer.cornerRadius = itemImage.frame.size.width/2
         
        
@@ -118,9 +175,6 @@ class BigBucketCell: UITableViewCell {
     }
 
 
-    func reload() {
-       self.viewController?.viewDidLoad()
-    }
 
 
     @IBAction func upBtn_pressed(_ sender: Any) {
@@ -136,6 +190,7 @@ class BigBucketCell: UITableViewCell {
 
         bucket!.balance += 1.0
        
+//        localBal = balanceLbl.text
        
         print(bucket!.balance)
         
@@ -196,6 +251,11 @@ class BigBucketCell: UITableViewCell {
         self.viewController?.viewDidAppear(false)
         
     }
+    
+    func tapButton(_ sender: UITapGestureRecognizer) {
+        print("HELLP!")
+    }
+
 
 
     @IBAction func downBtn_pressed(_ sender: Any) {
@@ -215,6 +275,19 @@ class BigBucketCell: UITableViewCell {
         }
     }
 
+}
+
+extension UIImage{
+    
+    func alpha(_ value:CGFloat)->UIImage
+    {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+        
+    }
 }
 
 
