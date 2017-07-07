@@ -1,3 +1,4 @@
+
 //
 //  BucketTableVC.swift
 //  buckets
@@ -112,7 +113,7 @@ class BucketTableVC: UITableViewController {
                 b.balance += b.rate
                 b.ref?.child("balance").setValue(b.balance)
                 
-                userBalance -= 1.0
+                userBalance -= b.rate
                 
                 
                 self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
@@ -133,9 +134,11 @@ class BucketTableVC: UITableViewController {
                 
              let thirty = round((b.rate * 30))
                 b.balance += thirty
+                
+                
                 b.ref?.child("balance").setValue(b.balance)
                 
-                userBalance -= 1.0
+                userBalance -= thirty
                 
                 
                 self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
@@ -150,7 +153,7 @@ class BucketTableVC: UITableViewController {
                 b.balance += b.rate
                 b.ref?.child("balance").setValue(b.balance)
                 
-                userBalance -= 1.0
+                userBalance -= b.rate
                 
                 
                 self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
@@ -165,7 +168,7 @@ class BucketTableVC: UITableViewController {
                 b.balance += quarterly
                 b.ref?.child("balance").setValue(b.balance)
                 
-                userBalance -= 1.0
+                userBalance -= quarterly
                 
                 
                 self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
@@ -217,12 +220,7 @@ class BucketTableVC: UITableViewController {
         
     }
     
-//    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
-//    {
-//        let header = view as! UITableViewHeaderFooterView
-//        header.textLabel?.font = UIFont(name: "Futura", size: 11)
-//        header.textLabel?.textColor = UIColor.lightGrayColor()
-//    }
+
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
@@ -249,10 +247,6 @@ class BucketTableVC: UITableViewController {
         }
     }
     
-    
-//    func tableView(tableView: UITableView, ViewForHeaderInSection section: Int) -> UIView? {
-//        return self.tableView.backgroundColor = UIColor.black
-//    }
 
 
     // MARK: - Table view data source

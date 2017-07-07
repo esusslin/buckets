@@ -38,6 +38,7 @@ var ref: DatabaseReference!
     @IBOutlet weak var downBtn: UIButton!
     @IBOutlet weak var percentLbl: UILabel!
     
+    @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var balaceLbl: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     
@@ -114,16 +115,19 @@ var ref: DatabaseReference!
         
         iconView.frame.size.height = iconView.frame.size.width
         
-        iconView.backgroundColor = UIColor.black
+        iconView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        
+        
+        
         iconView.layer.cornerRadius = 22.0
         iconView.alpha = 0
   
     
-//        iconViewimage.center.x = 40
-//        iconViewimage.center.y = 40
         itemImage.layer.masksToBounds = true
         itemImage.center.x = 100
         itemImage.center.y = 100
+        cancelBtn.center.x = 100
+        cancelBtn.center.y = 100
         
         itemImage.layer.cornerRadius = 12
         upBtn.center.x = 180
@@ -133,6 +137,9 @@ var ref: DatabaseReference!
         
         percentLbl.center.x = 100
         percentLbl.center.y = 160
+        
+        
+        
         
 
         balaceLbl.center.x = 100
@@ -147,17 +154,7 @@ var ref: DatabaseReference!
         
         self.view.addSubview(iconView)
         
-//        for a in buckets {
-//        let url = URL(string: a.imageString)!
-//        let data = try? Data(contentsOf: url)
-//        if let imageData = data {
-//            let image = UIImage(data: data!)!
-//            
-//            itemImages.append(image)
-//            }
-//
-//            
-//        }
+
 
         
      
@@ -170,6 +167,9 @@ var ref: DatabaseReference!
 
         
     }
+    @IBAction func cancelBtn_pressed(_ sender: Any) {
+        hidicon()
+    }
     
     @IBAction func hideViewX(_ sender: Any) {
         
@@ -177,6 +177,81 @@ var ref: DatabaseReference!
     }
     
     
+    
+    @IBAction func days_pass(_ sender: Any) {
+        for b in buckets {
+            
+            if b.period == "daily" {
+                b.balance += b.rate
+                b.ref?.child("balance").setValue(b.balance)
+                
+                userBalance -= b.rate
+                
+                
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+            }
+        }
+        
+        self.collectionView.reloadData()
+        
+    }
+    
+    
+    @IBAction func months_pass(_ sender: Any) {
+        
+        
+        for b in buckets {
+            
+            if b.period == "daily" {
+                
+                let thirty = round((b.rate * 30))
+                b.balance += thirty
+                
+                
+                b.ref?.child("balance").setValue(b.balance)
+                
+                userBalance -= thirty
+                
+                
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+            }
+        }
+        
+        for b in buckets {
+            
+            if b.period == "monthly" {
+                
+                //                let thirty = round((b.rate * 30))
+                b.balance += b.rate
+                b.ref?.child("balance").setValue(b.balance)
+                
+                userBalance -= b.rate
+                
+                
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+            }
+        }
+        
+        for b in buckets {
+            
+            if b.period == "weekly" {
+                
+                let quarterly = round((b.rate * 4))
+                b.balance += quarterly
+                b.ref?.child("balance").setValue(b.balance)
+                
+                userBalance -= quarterly
+                
+                
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("balance").setValue(userBalance)
+            }
+        }
+        
+        
+        self.collectionView.reloadData()
+
+        
+    }
 
     
     func handleLongGesture(gesture: UILongPressGestureRecognizer) {
@@ -214,11 +289,7 @@ var ref: DatabaseReference!
             collectionView.endInteractiveMovement()
         default:
             collectionView.cancelInteractiveMovement()
-       
-        
-        
-        
-        
+
         
 
         }
@@ -300,17 +371,17 @@ var ref: DatabaseReference!
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.red
 //            iconViewimage.backgroundColor = UIColor.red
-            //           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
+//           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 25) && (per2 < 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
             percentLbl.textColor = UIColor.black
 //            iconViewimage.backgroundColor = UIColor.yellow
-            //            cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
+//           cell.percentlabel.text = "$" + String(bucket!.balance) + "0"
         } else if (per2 > 75) {
             print(per2)
             percentLbl.text = String(per2) + "%"
-            percentLbl.textColor = UIColor.red
+            percentLbl.textColor = UIColor.green
             
 //            iconViewimage.backgroundColor = UIColor.green
             
@@ -368,14 +439,8 @@ var ref: DatabaseReference!
         print(indexPath)
         
         cell.itemLbl.text = a.item
-//        let url = URL(string: a.imageString)!
-//        let data = try? Data(contentsOf: url)
-//        if let imageData = data {
-//            let image = UIImage(data: data!)!
-//            
-//             cell.imageView.image = image
-//        }
 
+       
         cell.iconImageView.image = UIImage(named: "bucket-1")
         
         let per = (a.balance / a.price) as! Double
@@ -422,13 +487,15 @@ var ref: DatabaseReference!
         currentIndexPath = indexPath.row
         
        let buck = buckets[indexPath.row]
-        self.showBucket(bucket: buck)
+        self.showBucket(bucket: buck, index: indexPath)
   
 //        currentBucket = buckets[indexPath.row]
     }
 
     
-    func showBucket(bucket: Bucket) {
+    func showBucket(bucket: Bucket, index: IndexPath) {
+        
+        print(index)
         
         let url = URL(string: bucket.imageString)!
         let data = try? Data(contentsOf: url)
@@ -437,6 +504,11 @@ var ref: DatabaseReference!
             
             itemImage.image = image
         }
+        
+        let cell = self.collectionView.cellForItem(at: index)
+        
+        iconView.center.x = (cell?.center.x)!
+        iconView.center.y = (cell?.center.y)!
 
         
         let per = (bucket.balance / bucket.price) as! Double
@@ -474,6 +546,11 @@ var ref: DatabaseReference!
         }
 
 
+    iconView.bringSubview(toFront: view)
+        
+        iconView.center.x = view.center.x
+          iconView.center.y = view.center.y
+        
         
       iconView.transform = CGAffineTransform(scaleX: 0, y: 0)
        iconView.contentMode = .scaleAspectFit
